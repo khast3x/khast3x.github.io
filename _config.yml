@@ -1,7 +1,7 @@
 # Site settings
-title: "khast3x infosec logs"
+title: "khast3x infosec notes"
 email: khast3x@riseup.net
-description: "Information security, paranoia and bugs"
+description: "Information security"
 baseurl: ""
 url: "khast3x.github.io"
 title_image: "https://i.imgur.com/5zVB9Ja.png"
@@ -35,3 +35,5 @@ kramdown:
 
 permalink: pretty
 exclude: [vendor]
+plugins:
+  - jekyll-sitemap
