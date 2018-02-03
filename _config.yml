@@ -6,7 +6,7 @@ baseurl: ""
 url: "khast3x.github.io"
 title_image: "https://i.imgur.com/5zVB9Ja.png"
 title_description: "Consider any information shared on this blog as educational material, and should be read for that purpose only. Use offensive tools in LEGAL frameworks bro, there are plenty of CTF or bug bounties to go around."
-# google_analytics: "UA-20365477-4"
+google_analytics: "UA-113498686-1"
 # disqus_account: cartenoire
 github_repository: https://github.com/khast3x
 # addthis_id: ra-513c6fa83da6ec67
