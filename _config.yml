@@ -1,5 +1,5 @@
 # Site settings
-title: "khast3x infosec notes"
+title: "<i class="fa fa-terminal"></i> khast3x notes"
 email: khast3x@riseup.net
 description: "Information security"
 baseurl: ""
@@ -24,7 +24,7 @@ github_username:  khast3x
 # facebook_link:
 
 # Footer
-footer_right: "<a href=\"https://github.com/jacobtomlinson/carte-noire\">carte noire theme</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
+footer_right: "<a href=\"https://github.com/jacobtomlinson/carte-noire\">theme</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
 
 # Build settings
 markdown: kramdown
