@@ -1,11 +1,11 @@
 # Site settings
 title: "khast3x infosec logs"
-email: me@kstx.eu
+email: khast3x@riseup.net
 description: "Information security, paranoia and bugs"
 baseurl: ""
 url: "khast3x.github.io"
 title_image: "https://i.imgur.com/5zVB9Ja.png"
-title_description: "Consider any information shared on this blog as educational material, and should be read for that purpose only. Use offensive tools in LEGAL frameworks bro, there are plenty of CTF or bug bounties to go around."
+title_description: "Consider any information shared on this blog as educational material, you are responsible for your actions. Drop me a message for collab or CFP suggestions"
 google_analytics: "UA-113498686-1"
 # disqus_account: cartenoire
 github_repository: https://github.com/khast3x
