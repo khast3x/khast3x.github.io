@@ -1,10 +1,10 @@
 # Site settings
-title: "khastex"
+title: "k h <i class="fab fa-amazon"></i> s t e x"
 email: me@khast3x.eu
 description: "Information security, paranoia and bugs"
 baseurl: ""
 url: "khast3x.github.io"
-title_image: "https://i.imgur.com/9uDr3Hc.png"
+title_image: "https://i.imgur.com/5zVB9Ja.png"
 title_description: "Consider any information shared on this blog as educational material, and should be read for that purpose only. Use offensive tools in LEGAL frameworks bro, there are plenty of CTF or bug bounties to go around."
 # google_analytics: "UA-20365477-4"
 # disqus_account: cartenoire
@@ -24,8 +24,8 @@ github_username:  khast3x
 # facebook_link:
 
 # Footer
-footer_left: "Made with <i class=\"fa fa-heart\"></i> by <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
-footer_right: "&lt;/&gt; on <a href=\"https://github.com/jacobtomlinson/carte-noire\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
+# footer_left: "Made with <i class=\"fa fa-heart\"></i> by <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
+footer_right: "Theme: &lt;/&gt; on <a href=\"https://github.com/jacobtomlinson/carte-noire\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
 
 # Build settings
 markdown: kramdown
