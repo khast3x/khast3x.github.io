@@ -24,7 +24,7 @@ make-smaller-titles: true
 
             <div class="articles">
 
-              <h2>Latest Articles</h2>
+              <h1 class="header author-header" itemprop="headline"> Latest Tweets</h1>
 
               <ul>
                   {% for post in site.posts limit: site.post_limit %}
@@ -44,7 +44,7 @@ make-smaller-titles: true
 
         </div>
         <div class="col-md-12 main content-panel">
-          <div class="header author-header">
+          <div class="articles">
             <h2>Latest Tweets</h2>
             <a class="twitter-timeline" data-height="800" data-dnt="true" data-theme="dark" data-link-color="#E95F28" href="https://twitter.com/kh4st3x?ref_src=twsrc%5Etfw">Tweets by kh4st3x</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
