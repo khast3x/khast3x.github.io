@@ -1,11 +1,11 @@
 # Site settings
-title: "khast3x_notes"
+title: "khast3x_club"
 email: khast3x@riseup.net
 description: "Notes and thoughts on my side-projects - Information security"
 baseurl: ""
 url: "khast3x.github.io"
 title_image: "https://i.imgur.com/5zVB9Ja.png"
-title_description: "Notes and thoughts on my side-projects.<br>Consider any information shared on this blog as educational material, you are responsible for your actions."
+title_description: "Information Security.<br>Notes and thoughts on my side-projects.<br>Consider any information shared on this blog as educational material, you are responsible for your actions."
 google_analytics: "UA-113498686-1"
 # disqus_account: cartenoire
 github_repository: https://github.com/khast3x
