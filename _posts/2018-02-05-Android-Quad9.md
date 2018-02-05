@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hardening Android with Quad9 DNS
+title: Hardening vanilla Android with Quad9 DNS
 thumbnail: android
 categories: android
 published: true
