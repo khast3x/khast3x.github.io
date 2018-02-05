@@ -11,8 +11,11 @@ Android phones are easy targets for anyone with a little Google-Fu. The number o
 I'll be explaining a simple and very effective way to harden your Android phone without root.
 
 ### Demo
-| titi | toto |
-|---|---|
+| Priority apples | Second priority | Third priority |
+|-------|--------|---------|
+| ambrosia | gala | red delicious |
+| pink lady | jazz | macintosh |
+| honeycrisp | granny smith | fuji |
 
 #### Trending pastebin app, ad blocks
 
