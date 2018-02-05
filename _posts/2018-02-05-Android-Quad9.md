@@ -1,13 +1,12 @@
 ---
 layout: post
-title: Hardening Vanilla Android with Quad9 DNS
 thumbnail: android
 categories: android
 published: true
 tags:
-	- android
-	- DNS
-	- defense
+ - android
+ - DNS
+ - defense
 ---
 
 ## Vanilla Android hardening: DNS66 and Quad9
