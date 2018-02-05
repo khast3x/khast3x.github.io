@@ -27,10 +27,10 @@ For those not familiar with Quad9, here's a quick recap:
 
 <div class="datatable-begin"></div>
 
-|----Test--- | ---Before---    | ---After---
+| Test  |  Before     |  After
 ------- | -------------------------------------
-Pastebin app with tons of adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" />  | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />          
-thepiratebay.org + typical screen hijacking adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" /> | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />  
+Pastebin app with tons of adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="170" height="270" />  | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="170" height="270" />          
+thepiratebay.org + typical screen hijacking adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="170" height="270" /> | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="170" height="270" />  
 
 
 <div class="datatable-end"></div>
