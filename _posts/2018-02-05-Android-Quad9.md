@@ -11,7 +11,8 @@ Android phones are easy targets for anyone with a little Google-Fu. The number o
 I'll be explaining a simple and very effective way to harden your Android phone without root.
 
 ### Demo
-
+| titi | toto |
+|---|---|
 
 #### Trending pastebin app, ad blocks
 
