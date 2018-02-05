@@ -7,6 +7,7 @@ categories: android
 thumbnail: android
 published: true
 ---
+
 ## Vanilla Android hardening: DNS66 and Quad9
 
 
@@ -18,13 +19,13 @@ I'll be explaining a simple and very effective way to harden your Android phone 
 
 
 #### Trending pastebin app, ad blocks
-![pastebin_no_vpn](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_no_vpn.jpg)
-![pastebin_vpn](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_vpn.jpg)
+<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" />
+<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />
 
 
 #### thepirate.org, unlock & ad block
-![tpb_no_vpn](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_no_vpn.jpg)
-![tpb_vpn](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_vpn.jpg)
+<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" />
+<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />
 
 ### Installing F-Droid & DNS66
 
