@@ -14,13 +14,11 @@ I'll be explaining a simple and very effective way to harden your Android phone 
 
 
 #### Trending pastebin app, ad blocks
-<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" />
-<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />
+<img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" /><img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />
 
 
 #### thepirate.org, unlock & ad block
-<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" />
-<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />
+<img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" /><img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />
 
 ### Installing F-Droid & DNS66
 
