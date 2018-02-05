@@ -5,27 +5,32 @@ thumbnail: android
 categories: android
 published: true
 tags:
- - android
- - DNS
- - defense
+  - android
+  - DNS
+  - defense
 ---
 
 ## Vanilla Android hardening: DNS66 and Quad9
 
 
 ### Abstract
-Android phones are easy targets for anyone with a little Google-Fu. The number of tools to generate Android payloads, evasion, carving on github is getting ridiculous (link to existing tools with nice github font awesome?).  
-I'll be explaining a simple and very effective way to harden your Android phone without root.
+Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads, on github alone is getting ridiculous.
+
+I'll be explaining a simple and very effective way to harden your Android phone without root.  
+
+We're going to redirect all DNS queries through a selection of blacklists, and finally query the Quad9 DNS servers.  
+For those not familiar with Quad9, here's a quick recap:
+> Called Quad9 (after the **9.9.9.9** Internet Protocol address the service has obtained), the service works like any other public DNS server (such as Google's), except that it won't return name resolutions for sites that are identified via threat feeds the service aggregates daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))
 
 ### Demo
 
 
 <div class="datatable-begin"></div>
 
----Before---    | ---After---
+|----Test--- | ---Before---    | ---After---
 ------- | -------------------------------------
-<img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" />  | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />          
-<img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" /> | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />  
+Pastebin app with tons of adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="150" height="250" />  | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="150" height="250" />          
+thepiratebay.org + typical screen hijacking adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="150" height="250" /> | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="150" height="250" />  
 
 
 <div class="datatable-end"></div>
@@ -83,8 +88,6 @@ And at some point the AV will have signatures for it.
 
 We'll be using a mix of several blacklists that come from know researcher feeds, and Quad9 indicators.  
 
-For those not familiar with Quad9, here's a quick recap:
-> Called Quad9 (after the **9.9.9.9** Internet Protocol address the service has obtained), the service works like any other public DNS server (such as Google's), except that it won't return name resolutions for sites that are identified via threat feeds the service aggregates daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))
 
 
 
@@ -96,4 +99,4 @@ When active, any form of Internet connection is tunneled by the underlying netwo
 This is a rather nice side effect!
 To be honest its quite a clever trick to enforce new DNS options WITHOUT having to root your phone.  
 
-Once `DNS66` is installed, we'll set it to query the Quad9 DNS servers at 9.9.9.9.  
+Once `DNS66` is installed, we'll set it to query the Quad9 DNS servers at 9.9.9.9.
