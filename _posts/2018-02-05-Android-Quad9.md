@@ -11,11 +11,19 @@ Android phones are easy targets for anyone with a little Google-Fu. The number o
 I'll be explaining a simple and very effective way to harden your Android phone without root.
 
 ### Demo
-| Priority apples | Second priority | Third priority |
-|-------|--------|---------|
-| ambrosia | gala | red delicious |
-| pink lady | jazz | macintosh |
-| honeycrisp | granny smith | fuji |
+
+
+<div class="datatable-begin"></div>
+
+Food    | Description                           | Category | Sample type
+------- | ------------------------------------- | -------- | -----------
+Apples  | A small, somewhat round ...           | Fruit    | Fuji
+Bananas | A long and curved, often-yellow ...   | Fruit    | Snow
+Kiwis   | A small, hairy-skinned sweet ...      | Fruit    | Golden
+Oranges | A spherical, orange-colored sweet ... | Fruit    | Navel
+
+<div class="datatable-end"></div>
+
 
 #### Trending pastebin app, ad blocks
 
