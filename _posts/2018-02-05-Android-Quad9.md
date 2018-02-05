@@ -1,5 +1,6 @@
 ---
-published: false
+layout: post
+published: true
 ---
 
 ## Vanilla Android hardening: DNS66 and Quad9
