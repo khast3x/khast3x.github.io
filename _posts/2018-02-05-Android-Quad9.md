@@ -2,7 +2,7 @@
 layout:     post
 title:      Simple and effective Android hardening: DNS66 and Quad9
 date:       2018-02-05
-summary:    I'll be explaining a simple and very effective way to harden your Android phone without root
+summary:    Simple and very effective way to harden your Android phone without root
 categories: android
 thumbnail: android
 published: true
