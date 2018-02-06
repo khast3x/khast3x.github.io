@@ -11,20 +11,20 @@ tags:
   - malware
 ---
 
-## Hardening vanilla Android with DNS66 & Quad9
+## Hardening Android with DNS66 & Quad9
 
 
-Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
-I'll be illustrating a simple and very effective way to harden your Android phone **without** root. You can find a demo below.  
+> I'll be illustrating a simple and very effective way to harden your Android phone **without** needing root. You can find a demo below.  
 
-We're going to filter all "Domain Name" queries through a selection of blacklists locally, and finally query the Quad9 DNS servers instead of your default server provided by your ISP.  
+We're going to filter all *Domain Name* queries through a selection of blacklists locally with [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) which can be installed from the [F-Droid Store](https://f-droid.org/en/), and finally set the [Quad9](https://www.globalcyberalliance.org/initiatives/quad9.html) DNS servers as default instead of the one provided by your ISP.  
 This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
 
 For those not familiar with Quad9, here's a quick recap:
-> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))
+> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))  
+>  
+> Quad9 Technical workflow ![q9illustration](https://www.globalcyberalliance.org/wp-content/uploads/quad9-graphic.png)  
 
-[The IBM X-Force group](https://www.ibm.com/security/xforce), for example, is one of the many contributors.
 
 ### Demo
 
@@ -40,29 +40,29 @@ For those not familiar with Quad9, here's a quick recap:
 
 *This will require allowing third-party apps (non Google Play applications)*
 
-> The [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) app presentation page contains all the links if you want to skip the steps.
+>  If you want to skip the steps, the [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) app presentation page contains all required links 🚀.
 
 1. Steps for the F-Droid Store
     1. Allow `Unknown sources` from device settings  
       	1. Go to Settings > Security > "Device Administration" section  
-      	2. Swipe to `Allow`
+      	2. Swipe to `Allow` on `Unknown sources` settings
     1. Install F-Droid    
       	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
       	2. Install the APK by opening the file  
       	3. Open the F-Droid store  
       	4. *Give it a minute so it refreshes the repositories* ⏳  
-1. Install DNS66  
+1. Install [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/)  
 	1. Wait for F-Droid to update  
-	1. Search for `DNS66` and install  
+	1. Search for `DNS66` or go to the [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) app presentation page and install  
 
 ### Harden device with DNS66 & Quad9
 
 Once inside the DNS66 application, *hit the refresh button* ⏳.  
 
-This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
+This will update all blacklists that come out of the box, mixing advertisement and malicious hosts blacklists.  
 
-Now switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server using the "+" button.
-Save, disable defaults, enable Quad9.  
+Now switch to the "DNS" tab and add Quad9 ```9.9.9.9``` as your desired DNS server using the "+" button.
+Save, disable application defaults, enable Quad9.  
 
 *The picture below shows the configuration edit page, and what it should look like once activated.*
 ![quad9](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/quad9_all.jpg?raw=true)  
@@ -80,9 +80,12 @@ Save, disable defaults, enable Quad9.
 
 -----
 ### Technical details
+*for those who want to read a bit more about what's happening*
+
+Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
 This is security by applying a DNS in-depth defense mechanism. It will block requests made from your phone to advertisement servers, but also the most recent malware campaign indicators provided by some big players, as well as multiple research communities.  
-This works for vanilla Android too, as it does not require root permissions.  
+This works for vanilla Android too, as it does not require root permissions to use a VPN.  
 
 A malicious campaign can easily hide its code in legitimate APKs, and go undetected by Android anti-virus apps for months before getting caught. The infection might be dodging the phone's local protection software, but the malware has to *call home* at some point (make requests to the Command & Control Server), and thats where we'll block it.  
 
