@@ -13,26 +13,29 @@ tags:
 
 ## Hardening Android with DNS66 & Quad9
 
+-----
 
+*I'll be illustrating a simple and very effective way to harden your Android phone **without** needing root. Demo below.*  
 
-> I'll be illustrating a simple and very effective way to harden your Android phone **without** needing root. You can find a demo below.  
-
-We're going to filter all *Domain Name* queries through a selection of blacklists locally with [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) which can be installed from the [F-Droid Store](https://f-droid.org/en/), and finally set the [Quad9](https://www.globalcyberalliance.org/initiatives/quad9.html) DNS servers as default instead of the one provided by your ISP.  
+-----
+We're going to locally filter all *Domain Name* queries through a selection of blacklists with [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) which can be installed from the [F-Droid Store](https://f-droid.org/en/), and finally set the [Quad9](https://www.globalcyberalliance.org/initiatives/quad9.html) DNS servers as default instead of the one provided by your ISP.  
 This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
 
-For those not familiar with Quad9, here's a quick recap:
-> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))  
->  
-> Quad9 Technical workflow ![q9illustration](https://www.globalcyberalliance.org/wp-content/uploads/quad9-graphic.png)  
+For those not familiar with Quad9, here's a quick recap:  
 
+Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.   ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))
 
 ### Demo
 
-> Pastebin Android application, that comes riddled with in-line advertisement. Bam 🔥 ![pastebin](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true)
+*You'll find below two examples where the DNS hardening can be seen actively protecting the endpoint.*  
 
-------
+> Pastebin Android app
 
-> [The Pirate bay](thepiratebay.org) unlocked from ISP, while also blocking your typical pirate page adverts with redirects and drive-by downloads. Neat 🔥 🔥 ![tpb](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true)
+Pastebin Android application, that comes riddled with in-line advertisement. Bam 🔥 ![pastebin](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true)
+
+> The Pirate Bay website
+
+[The Pirate bay](thepiratebay.org) unblocked from ISP, while also blocking your typical pirate page adverts with redirects and drive-by downloads. Neat 🔥 🔥 ![tpb](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true)
 
 
 
@@ -40,7 +43,7 @@ For those not familiar with Quad9, here's a quick recap:
 
 *This will require allowing third-party apps (non Google Play applications)*
 
->  If you want to skip the steps, the [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) app presentation page contains all required links 🚀.
+>  The DNS66 app [presentation page](https://f-droid.org/en/packages/org.jak_linux.dns66/) contains all required links, if want to take the shortcuts.  🚀
 
 1. Steps for the F-Droid Store
     1. Allow `Unknown sources` from device settings  
@@ -102,5 +105,9 @@ This is a rather nice side effect!
 To be honest its quite a clever trick to enforce new DNS options WITHOUT having to root your phone.  
 
 Once [`DNS66`](https://f-droid.org/en/packages/org.jak_linux.dns66/) is installed, we'll set it to query the Quad9 DNS servers at 9.9.9.9.
+
+
+> Quad9 Technical workflow ![q9illustration](https://www.globalcyberalliance.org/wp-content/uploads/quad9-graphic.png)  
+
 
 Your phone will now always check a local, constantly updated blacklist, before querying a collaborative security DNS server that also blocks adverts and circumvents censorship. Yey 😎

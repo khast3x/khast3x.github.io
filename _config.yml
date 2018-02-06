@@ -25,7 +25,7 @@ github_username:  khast3x
 
 # Footer
 footer_right: "<a href=\"https://github.com/jacobtomlinson/carte-noire\">theme</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
-footer_left: "author <a href=\"https://twitter.com/kh4stex\"><i class=\"fa fa-twitter\"></i></a>  <a href=\"https://github.com/khast3x\"><i class=\"fa fa-github-alt\"></i></a>"
+footer_left: "<i class=\"fa fa-twitter\"></i> <a href=\"https://twitter.com/kh4st3x\">twitter</a><br><i class=\"fa fa-github\"></i> <a href=\"https://github.com/khast3x\">github</a>"
 # Build settings
 markdown: kramdown
 
