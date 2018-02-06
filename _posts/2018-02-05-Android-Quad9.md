@@ -40,20 +40,21 @@ For those not familiar with Quad9, here's a quick recap:
 
 1. Steps for the F-Droid Store  
   1. Allow `Unknown sources` from device settings  
-  	1. Go to Settings > Security > "Device Administration" section
-  	1. Swipe to `Allow`
+  	1. Go to Settings > Security > "Device Administration" section  
+  	1. Swipe to `Allow`  
   1. Install F-Droid  
-  	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK
-  	1. Install the APK by opening the file
-  	1. Open the F-Droid store
-  	1. **Give it a minute so it refreshes the repositories**
+  	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
+  	1. Install the APK by opening the file  
+  	1. Open the F-Droid store  
+  	1. **Give it a minute so it refreshes the repositories**  
 1. Install DNS66  
-	1. Wait for F-Droid to update
-	1. Search for `DNS66` and install
+	1. Wait for F-Droid to update  
+	1. Search for `DNS66` and install  
 
 ### Harden device with DNS66 & Quad9
 
-Once inside the application, *hit the refresh button*<i class="fa fa-sync"></i>.  
+Once inside the application, *hit the refresh button*.
+ <i class="fa fa-sync"></i>  
 This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
 
 
