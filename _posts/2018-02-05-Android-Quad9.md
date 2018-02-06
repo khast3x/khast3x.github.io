@@ -53,9 +53,9 @@ For those not familiar with Quad9, here's a quick recap:
 	1. Wait for F-Droid to update
 	1. Search for `DNS66` and install
 
-##### Harden device with DNS66 & Quad9
+### Harden device with DNS66 & Quad9
 
-Once inside the application, *hit the refresh button*.  
+Once inside the application, *hit the refresh button*<i class="fa fa-sync"></i>.  
 This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
 
 
