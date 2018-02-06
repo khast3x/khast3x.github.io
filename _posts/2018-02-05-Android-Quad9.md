@@ -8,55 +8,56 @@ tags:
   - android
   - DNS
   - defense
-toc: true
+  - malware
 ---
 
-## Vanilla Android hardening: DNS66 and Quad9
+## Hardening vanilla Android the DNS way
 
 Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
-I'll be illustrating a simple and very effective way to harden your Android phone without root.  
+I'll be illustrating a simple and very effective way to harden your Android phone **without** root. You can find a demo bellow.  
 
 We're going to filter all DNS queries through a selection of blacklists, and finally query the Quad9 DNS servers.  
+This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
+
 For those not familiar with Quad9, here's a quick recap:
-> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it **will block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))  
-> The IBM X-Force group, for example, is one of the many contributors.
+> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))  
+> [The IBM X-Force group](https://www.ibm.com/security/xforce), for example, is one of the many contributors.
 
 ### Demo
 
-> Pastebin Android application, that comes riddled with in-line advertisement. Bam :fire: ![pastebin](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true)
+> Pastebin Android application, that comes riddled with in-line advertisement. Bam 🔥 ![pastebin](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true)
 
 ------
 
-> [The Pirate bay](thepiratebay.org) unlocked from ISP, while also blocking your typical warez page adverts with redirects and drive-by downloads. Neat :fire: :fire: ![tpb](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true)
+> [The Pirate bay](thepiratebay.org) unlocked from ISP, while also blocking your typical pirate page adverts with redirects and drive-by downloads. Neat 🔥 🔥 ![tpb](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true)
 
 
 
 ### Installing the F-Droid Store & DNS66
 
-*This will require allowing third-party apps (non Google Play applications), which can also be considered as a threat.*
+*This will require allowing third-party apps (non Google Play applications)*
 
 > The [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) app presentation page contains all the links if you want to skip the steps.
 
-1. Steps for the F-Droid Store  
-  1. Allow `Unknown sources` from device settings  
-  	1. Go to Settings > Security > "Device Administration" section  
-  	1. Swipe to `Allow`  
-  1. Install F-Droid  
-  	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
-  	1. Install the APK by opening the file  
-  	1. Open the F-Droid store  
-  	1. **Give it a minute so it refreshes the repositories**  
+1. Steps for the F-Droid Store
+    1. Allow `Unknown sources` from device settings  
+      	1. Go to Settings > Security > "Device Administration" section  
+      	2. Swipe to `Allow`
+    1. Install F-Droid    
+      	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
+      	2. Install the APK by opening the file  
+      	3. Open the F-Droid store  
+      	4. ⚠️ Give it a minute so it refreshes the repositories  
 1. Install DNS66  
 	1. Wait for F-Droid to update  
 	1. Search for `DNS66` and install  
 
 ### Harden device with DNS66 & Quad9
 
-Once inside the application, *hit the refresh button*.
- <i class="fa fa-sync"></i>  
-This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
+Once inside the application, *hit the refresh button* ⏳.  
 
+This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
 
 Switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server.
 Save and select it.  
@@ -65,10 +66,18 @@ Save and select it.
 ![quad9](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/quad9_all.jpg?raw=true)  
 
 
->You're done! :clap:
+>You're done! 👏
 
 -----
-### Details
+### Notes
+
+* You can choose to *Resume on system start-up*. Since it does not create a remote connection (the VPN is local), the battery consumption is minimal. I'd recommend it.
+* Same with *Watch connection*, has made it even more transparent in my usage.
+* *IPV6 Support* depends on your configuration. Turn it off if your phone seems to be disconnected.
+* Sometimes, when switching between Wifi and Data, the connection can seem slower or even hanging. If thats the case, simply taping the DNS66 infobar so it can refresh solves the issue.
+
+-----
+### Technical details
 
 This is security by applying a DNS in-depth defense mechanism. It will block requests made from your phone to advertisement servers, but also the most recent malware campaign indicators provided by some big players, as well as multiple research communities.  
 This works for vanilla Android too, as it does not require root permissions.  
