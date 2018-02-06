@@ -15,9 +15,9 @@ tags:
 
 Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
-I'll be illustrating a simple and very effective way to harden your Android phone **without** root. You can find a demo bellow.  
+I'll be illustrating a simple and very effective way to harden your Android phone **without** root. You can find a demo below.  
 
-We're going to filter all DNS queries through a selection of blacklists, and finally query the Quad9 DNS servers.  
+We're going to filter *all* "Domain Name" queries through a selection of blacklists locally, and finally query the Quad9 DNS servers instead of your default server provided by your ISP.  
 This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
 
 For those not familiar with Quad9, here's a quick recap:
@@ -48,18 +48,18 @@ For those not familiar with Quad9, here's a quick recap:
       	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
       	2. Install the APK by opening the file  
       	3. Open the F-Droid store  
-      	4. ⚠️ Give it a minute so it refreshes the repositories  
+      	4. ⏳ *Give it a minute so it refreshes the repositories*  
 1. Install DNS66  
 	1. Wait for F-Droid to update  
 	1. Search for `DNS66` and install  
 
 ### Harden device with DNS66 & Quad9
 
-Once inside the application, *hit the refresh button* ⏳.  
+Once inside the DNS66 application, *hit the refresh button* ⏳.  
 
 This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
 
-Switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server.
+Now switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server.
 Save and select it.  
 
 *The picture below shows the configuration edit page, and what it should look like once activated.*
@@ -86,13 +86,13 @@ A malicious campaign can easily hide its code in legitimate APKs, and go undetec
 
 > If the malware can't call home, it can't ex-filtrate data or receive new instructions.  
 
-(well, *if there's a will there's a way* be egress just got a whole lot harder) And at some point the AV will have signatures for it.  
+(well, *if there's a will there's a way* but egress just got a whole lot harder) And at some point the AV will have signatures for it.  
 
 We're using a mix of several blacklists that come from know researcher feeds, and Quad9 indicators.  
 
 
  [`DNS66`](https://f-droid.org/en/packages/org.jak_linux.dns66/)  will create a local VPN connection, thus forcing all outbound DNS requests through your desired servers.  
-When active, any form of Internet connection is tunneled by the underlying network stack. This trick is often used to access websites that are typically blocked by ISPs and also block adverts.  
+When active, any form of Internet connection is tunneled by the underlying network stack. This is often used to access websites that are normally blocked by ISPs.  
 This is a rather nice side effect!
 To be honest its quite a clever trick to enforce new DNS options WITHOUT having to root your phone.  
 
