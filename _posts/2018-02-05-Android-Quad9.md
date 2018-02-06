@@ -26,15 +26,11 @@ For those not familiar with Quad9, here's a quick recap:
 ### Demo
 
 
-<div class="datatable-begin"></div>
+> Pastebin Android application, that comes riddled with in-line advertisement. Bam :fire: ![pastebin](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true)
 
-| Test  |  Before     |  After
-------- | -------------------------------------
-Pastebin app with tons of adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_no_vpn.jpg" width="170" height="270" />  | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/pastebin_vpn.jpg" width="170" height="270" />          
-thepiratebay.org + typical screen hijacking adverts | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_no_vpn.jpg" width="170" height="270" /> | <img src="https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/tpb_vpn.jpg" width="170" height="270" />  
+Here's a classic:
 
-
-<div class="datatable-end"></div>
+> [The Pirate bay](thepiratebay.org) unlocked from ISP, while also blocking your typical warez page adverts with redirects and drive-by downloads. Neat :fire: :fire: ![tpb](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true)
 
 
 
