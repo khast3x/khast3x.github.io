@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hardening Android: DNS
+title: "Hardening Android : DNS"
 thumbnail: android
 categories: android
 published: true
@@ -12,6 +12,7 @@ tags:
 ---
 
 ## Hardening vanilla Android with DNS66 & Quad9
+
 
 Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 

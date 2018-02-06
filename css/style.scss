@@ -826,6 +826,9 @@ ul {
 	.fa-heart {
 		color: $red;
 	}
+	.fa-thumbs-up {
+		color: $red;
+	}
 
 	@media (min-width: $screen-sm-min) {
 		width: 90%;
@@ -843,7 +846,7 @@ ul {
 	}
 
 	div {
-		color: $light-medium;
+		color: $white;
 		text-align: center;
 		margin-top: 20px;
 		margin-bottom: 20px;
