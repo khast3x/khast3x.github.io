@@ -13,8 +13,7 @@ toc: true
 
 ## Vanilla Android hardening: DNS66 and Quad9
 
-### Abstract
-Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (each word is link to a different example :).
+Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
 I'll be illustrating a simple and very effective way to harden your Android phone without root.  
 
@@ -39,18 +38,18 @@ For those not familiar with Quad9, here's a quick recap:
 
 > The [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) presentation page contains all the links if you want to skip the steps.
 
-1. Steps for the F-Droid Store
-  1. Allow `Unknown sources` from device settings
+1. Steps for the F-Droid Store  
+  1. Allow `Unknown sources` from device settings  
   	1. Go to Settings > Security > "Device Administration" section
   	1. Swipe to `Allow`
 
-  1. Install F-Droid
+  1. Install F-Droid  
   	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK
   	1. Install the APK by opening the file
   	1. Open the F-Droid store
   	1. **Give it a minute so it refreshes the repositories**
 
-1. Install DNS66
+1. Install DNS66  
 	1. Wait for F-Droid to update
 	1. Search for `DNS66` and install
 
