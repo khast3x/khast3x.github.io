@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hardening vanilla Android with Quad9 DNS
+title: Hardening Android: DNS
 thumbnail: android
 categories: android
 published: true
@@ -11,18 +11,19 @@ tags:
   - malware
 ---
 
-## Hardening vanilla Android the DNS way
+## Hardening vanilla Android with DNS66 & Quad9
 
 Android phones are easy targets for anyone with a little Google-Fu. The [number](https://github.com/AaronVigal/Metasploit-Android) [of](https://github.com/giovannicolonna/msfvenom-backdoor-android) [tools](https://github.com/AhMyth/AhMyth-Android-RAT) [to](https://github.com/Screetsec/TheFatRat) [generate](https://github.com/DoctorsHacking/Argus-RAT) Android payloads on github alone is getting ridiculous (btw, each word is a link to a *different* tool).
 
 I'll be illustrating a simple and very effective way to harden your Android phone **without** root. You can find a demo below.  
 
-We're going to filter *all* "Domain Name" queries through a selection of blacklists locally, and finally query the Quad9 DNS servers instead of your default server provided by your ISP.  
+We're going to filter all "Domain Name" queries through a selection of blacklists locally, and finally query the Quad9 DNS servers instead of your default server provided by your ISP.  
 This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
 
 For those not familiar with Quad9, here's a quick recap:
-> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))  
-> [The IBM X-Force group](https://www.ibm.com/security/xforce), for example, is one of the many contributors.
+> Quad9 (**9.9.9.9**) works like any other public DNS server, except that it will **block** sites that are identified via threat feeds aggregated daily.  ([source](https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/))
+
+[The IBM X-Force group](https://www.ibm.com/security/xforce), for example, is one of the many contributors.
 
 ### Demo
 
@@ -48,7 +49,7 @@ For those not familiar with Quad9, here's a quick recap:
       	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
       	2. Install the APK by opening the file  
       	3. Open the F-Droid store  
-      	4. ⏳ *Give it a minute so it refreshes the repositories*  
+      	4. *Give it a minute so it refreshes the repositories* ⏳  
 1. Install DNS66  
 	1. Wait for F-Droid to update  
 	1. Search for `DNS66` and install  
@@ -59,8 +60,8 @@ Once inside the DNS66 application, *hit the refresh button* ⏳.
 
 This will update all blacklists that come out of the box, mixing advertisement and malicious hosts.  
 
-Now switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server.
-Save and select it.  
+Now switch to the "DNS" tab and add quad9 ```9.9.9.9``` as your desired DNS server using the "+" button.
+Save, disable defaults, enable Quad9.  
 
 *The picture below shows the configuration edit page, and what it should look like once activated.*
 ![quad9](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/quad9_all.jpg?raw=true)  
@@ -97,3 +98,5 @@ This is a rather nice side effect!
 To be honest its quite a clever trick to enforce new DNS options WITHOUT having to root your phone.  
 
 Once [`DNS66`](https://f-droid.org/en/packages/org.jak_linux.dns66/) is installed, we'll set it to query the Quad9 DNS servers at 9.9.9.9.
+
+Your phone will now always check a local, constantly updated blacklist, before querying a collaborative security DNS server that also blocks adverts and circumvents censorship. Yey 😎
