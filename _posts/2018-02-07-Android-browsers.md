@@ -27,7 +27,7 @@ I consider two major use-cases when it comes to opening links on my phone.
 I want this to be as [sandboxed](https://en.wikipedia.org/wiki/Sandbox_(computer_security)) as possible.  
 To be explicit: I don't want scripts to be able to read my cookies, so no pre-loaded cookies.  
 No pre-loaded tabs either.  
-Ideally, the browser called upon in this use-case must be disposable once content is seen. It is removed from memory completely ♻️  
+Ideally, the browser called upon in this use-case must be disposable once content is seen. It is then removed from memory completely ♻️  
 
 2. **Opening pages that require persistent data.**  
 These include logged in accounts, pre-set forms, preferences, bookmarks, keeping tabs open. Basically, anything not a memesite/article/video/clickbait website, which is a big part of the content that y'all browse.
