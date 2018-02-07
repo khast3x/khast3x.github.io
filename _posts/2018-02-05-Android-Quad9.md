@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hardening Android : DNS"
+title: 'Hardening Android : DNS'
 thumbnail: android
 categories: android
 published: true
@@ -47,7 +47,7 @@ Pastebin Android application, that comes riddled with in-line advertisement. Bam
 
 1. Steps for the F-Droid Store
     1. Allow `Unknown sources` from device settings  
-      	1. Go to Settings > Security > "Device Administration" section  
+      	1. Go to your Phone's Settings > Security > "Device Administration" section  
       	2. Swipe to `Allow` on `Unknown sources` settings
     1. Install F-Droid    
       	1. [Click here](https://f-droid.org/FDroid.apk) to download the APK  
