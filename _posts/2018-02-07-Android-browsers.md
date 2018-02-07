@@ -47,12 +47,12 @@ I've tried this setup against [OPSEC](https://en.wikipedia.org/wiki/Operations_s
 
 I've downloaded [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus), and explicitly set it up as the **default browser**.  
 You can read about the the specifics on the Play Store page, but it's basically the ideal solution to my sandboxed approach.   
-If there is a link that you want to open outside of the sandboxed Firefox app, just share it to the Brave Browser.  
-Other than that, when closing Firefox, instead of leaving another open tab in the background when pressing back, it will remove all traces of the opened page from memory.  
+💡  If there is a link that you want to open outside of the sandboxed Firefox app, just _share_ it to your persistent browser.  
+When closing Firefox, instead of leaving another open tab in the background when pressing back, it will remove all traces of the opened page from memory.  
 Neat 🔥
 
 
-I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_).  
+I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_). YMMV  
 There is a _Send usage data_ option, but it's turned off by default if I recall correctly.  
 
 > When persistent data is required. Accounts, tabs etc...
