@@ -38,7 +38,7 @@ So it's basically opening the Chrome browser inside an application. The browser 
 Here is what I'm currently going for. It's likely not the meanest configuration, but I find that its a very good compromise between **security and usability**.  
 
 
-🔴  Keep in mind that I'm also running the "Hardened DNS" configuration [I wrote about earlier](https://khast3x.club/android/2018/02/05/Android-Quad9/).  
+🔴  Keep in mind that I'm also running the "Hardened DNS" configuration [I wrote about earlier](https://khast3x.club/android/tips/2018/02/05/Android-Quad9/).  
 I've tried this setup against [OPSEC](https://en.wikipedia.org/wiki/Operations_security) JavaScript browser fingerprinting tools, and I have to say its not bad at all 😎 .
 
 -----
