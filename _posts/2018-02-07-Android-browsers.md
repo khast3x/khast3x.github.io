@@ -35,23 +35,30 @@ Security considerations: _When clicking on links, some applications (such as Ins
 Here is what I'm currently going for. It's very likely not the most optimized, but I find that its a very good compromise between **security and usability**.  
 
 
-🔴 Keep in mind that I'm also running the "Hardened DNS" configuration [I wrote about earlier](https://khast3x.club/android/2018/02/05/Android-Quad9/). I've tried this setup against [OPSEC](https://en.wikipedia.org/wiki/Operations_security) JavaScript browser fingerprinting tools, and I have to say its not bad at all.
+🔴 Keep in mind that I'm also running the "Hardened DNS" configuration [I wrote about earlier](https://khast3x.club/android/2018/02/05/Android-Quad9/). I've tried this setup against [OPSEC](https://en.wikipedia.org/wiki/Operations_security) JavaScript browser fingerprinting tools, and I have to say its not bad at all 😎 .
 
 -----
 
-> [![fffocus](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true)](https://play.google.com/store/apps/details?id=org.mozilla.focus)Day to day browsing
+> Day to day browsing
 
 I've downloaded [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus), and explicitly set it up as the default browser.  
 You can read about the the specifics on the Play Store page, but it's basically the ideal solution to my sandboxed approach.   I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_).  
-There is a `Send usage data` option, but it's turned off by default if I recall correctly.
+There is a `Send usage data` option, but it's turned off by default if I recall correctly.  
+[![fffocus](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true)](https://play.google.com/store/apps/details?id=org.mozilla.focus)
 
+> When persistent data is required
 
-> [![bravebrowser](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true)](https://play.google.com/store/apps/details?id=com.brave.browser)When persistent data is required
-
-For this I've tried several popular recommendations (hello /g/) and settled on using [Brave browser](https://play.google.com/store/apps/details?id=com.brave.browser&hl=en).  
+For this I've tried several popular recommendations (hello /g/) and settled on using [Brave browser](https://play.google.com/store/apps/details?id=com.brave.browser).  
 Its great for keeping browsing clean without maintenance, while easily blocking or modifying it's behavior according to your paranoia level. Some basics settings are worth changing like the default search engine (I highly recommend [Startpage](https://www.startpage.com/))
 
+[![bravebrowser](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true)](https://play.google.com/store/apps/details?id=com.brave.browser)
+
 -----
+
+### Privacy settings comparison
+
+I though it would be interesting to include this for the reader's pleasure
+![browsers_privacy_settings](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/browsers_privacy_settings.jpg?raw=true)
 
 ### Notes:
 
