@@ -25,7 +25,9 @@ I consider two major use-cases when it comes to opening links on my phone.
 
 1. **Opening links from various apps without much prior knowledge of content.**  
 I want this to be as [sandboxed](https://en.wikipedia.org/wiki/Sandbox_(computer_security)) as possible.  
-To be explicit: I don't want scripts to be bale to read my cookies, so no pre-loaded cookies. No pre-loaded tabs either. Ideally, the browser called upon in this use-case must be disposable once content is seen. ♻️  
+To be explicit: I don't want scripts to be able to read my cookies, so no pre-loaded cookies.  
+No pre-loaded tabs either.  
+Ideally, the browser called upon in this use-case must be disposable once content is seen. ♻️  
 
 2. **Opening pages that require persistant data.**  
 These include logged in accounts, pre-set forms, preferences, bookmarks, keeping tabs open. Basically, anything not a memesite/article/video/clickbait website, which is a big part of the content that y'all browse.
@@ -41,15 +43,17 @@ Here is what I'm currently going for. It's very likely not the most optimized, b
 
 > Day to day browsing
 
-I've downloaded [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus), and explicitly set it up as the default browser.  
-You can read about the the specifics on the Play Store page, but it's basically the ideal solution to my sandboxed approach.   I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_).  
+I've downloaded [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus), and explicitly set it up as the **default browser**.  
+You can read about the the specifics on the Play Store page, but it's basically the ideal solution to my sandboxed approach.   
+I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_).  
 There is a `Send usage data` option, but it's turned off by default if I recall correctly.  
 [![fffocus](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true)](https://play.google.com/store/apps/details?id=org.mozilla.focus)
 
-> When persistent data is required
+> When persistent data is required. Accounts, tabs etc...
 
 For this I've tried several popular recommendations (hello /g/) and settled on using [Brave browser](https://play.google.com/store/apps/details?id=com.brave.browser).  
-Its great for keeping browsing clean without maintenance, while easily blocking or modifying it's behavior according to your paranoia level. Some basics settings are worth changing like the default search engine (I highly recommend [Startpage](https://www.startpage.com/))
+Its great for keeping browsing clean without maintenance, while easily blocking or modifying it's behavior according to your paranoia level. Some basics settings are worth changing like the default search engine (I highly recommend [Startpage](https://www.startpage.com/)).  
+Tip: you'll have to uncheck `Send metrics` in the Privacy options.
 
 [![bravebrowser](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true)](https://play.google.com/store/apps/details?id=com.brave.browser)
 
@@ -69,4 +73,5 @@ Other than that, when closing Firefox, instead of leaving another open tab in th
 
 -----
 
-Brave browser picture: By Source (WP:NFCC#4), Fair use, https://en.wikipedia.org/w/index.php?curid=54004571
+
+[Brave browser picture: By Source (WP:NFCC#4), Fair use](https://en.wikipedia.org/w/index.php?curid=54004571)
