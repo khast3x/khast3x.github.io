@@ -70,7 +70,8 @@ Tip: you'll have to uncheck _Send metrics_ in the Privacy options.
 I though it would be interesting to include this for the reader's pleasure.
 ![browsers_privacy_settings](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/browsers_privacy_settings.jpg?raw=true)
 
-Overall, not keeping the daily *junk* accumulated through the days in the form of tabs will have a nice impact on the overall device usage.  
+A note on performance:  
+Not keeping the daily *junk* accumulated through the days in the form of tabs will have a nice impact on the overall device usage.  
 
 > Enjoy 👍
 
