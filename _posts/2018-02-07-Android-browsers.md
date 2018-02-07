@@ -2,7 +2,7 @@
 layout: post
 title: "Hardening Android : Browsers"
 thumbnail: android
-categories: android, tips
+categories: android tips
 published: true
 tags:
   - android
