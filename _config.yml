@@ -23,6 +23,16 @@ github_username:  khast3x
 # xing_link:
 # facebook_link:
 
+# Jekyll SEO plugins
+url: https://khast3x.club
+author: khast3x
+
+social:
+    name: khast3x
+    links:
+        - https://twitter.com/kh4st3x
+        - https://github.com/khast3x
+
 # Footer
 footer_right: "<i class=\"fa fa-github-alt\"></i><a href=\"https://github.com/jacobtomlinson/carte-noire\"> theme</a>"
 footer_left: "<i class=\"fa fa-twitter\"></i> <a href=\"https://twitter.com/kh4st3x\">twitter</a><br><i class=\"fa fa-github\"></i> <a href=\"https://github.com/khast3x\">github</a>"
@@ -38,3 +48,4 @@ exclude: [vendor]
 plugins:
   - jekyll-sitemap
   - jemoji
+  - jekyll-seo-tag
