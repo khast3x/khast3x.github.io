@@ -1,7 +1,7 @@
 # Site settings
 title: "khast3x_club"
 email: khast3x@riseup.net
-description: "Notes and thoughts on my side-projects - Information security"
+description: "Information security, tips, hacks and giggles"
 baseurl: ""
 url: "khast3x.github.io"
 title_image: "https://i.imgur.com/5zVB9Ja.png"
@@ -24,7 +24,7 @@ github_username:  khast3x
 # facebook_link:
 
 # Footer
-footer_right: "<a href=\"https://github.com/jacobtomlinson/carte-noire\">theme</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
+footer_right: "<i class=\"fa fa-github-alt\"></i><a href=\"https://github.com/jacobtomlinson/carte-noire\">theme</a>"
 footer_left: "<i class=\"fa fa-twitter\"></i> <a href=\"https://twitter.com/kh4st3x\">twitter</a><br><i class=\"fa fa-github\"></i> <a href=\"https://github.com/khast3x\">github</a>"
 # Build settings
 markdown: kramdown
