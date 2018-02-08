@@ -17,7 +17,7 @@ tags:
 ## Hardening Android with Privacy-Focused Browsers
 
 -----
-*This is a quick post about my experience with browsers on Android. I'll be showing off how I've configured my phone for daily usage. You'll actually be gaining performance too!*
+*This is a quick post about my experience with browsers on Android. I'll be showing off how I've configured my phone for daily usage. You might be gaining performance too!*
 
 -----
 
