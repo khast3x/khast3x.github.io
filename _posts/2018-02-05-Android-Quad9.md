@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hardening Android : DNS"
+description: "Using a simple DNS trick to heavily harden you Android device (non-root)"
 thumbnail: android
 categories: android tips
 published: true

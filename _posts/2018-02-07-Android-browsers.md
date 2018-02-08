@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hardening Android : Browsers"
+description: "Privacy oriented browser workflow for Android"
 thumbnail: android
 categories: android tips
 published: true
@@ -40,7 +41,7 @@ Here is what I'm currently going for. It's likely not the meanest configuration,
 I've tried this setup against [OPSEC](https://en.wikipedia.org/wiki/Operations_security) JavaScript & DNS  fingerprinting tools, and I have to say its not bad at all 😎 .
 
 -----
-
+>[![fffocus](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true)](https://play.google.com/store/apps/details?id=org.mozilla.focus)
 > Day to day browsing
 
 I've downloaded [Firefox Focus](https://play.google.com/store/apps/details?id=org.mozilla.focus), and explicitly set it up as the **default browser**.  
@@ -50,18 +51,18 @@ When closing Firefox, instead of leaving another open tab in the background when
 Neat 🔥
 
 
-I've gone a step further and blocked all types of trackers (ad, analytics, social, _other content_). YMMV  
+I've gone a step further and blocked all types of trackers (ad, analytics, social, 'other content'). YMMV  
 There is a _Send usage data_ option, but it's turned off by default if I recall correctly.  
 
-[![fffocus](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true)](https://play.google.com/store/apps/details?id=org.mozilla.focus)
 
+>[![bravebrowser](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true)](https://play.google.com/store/apps/details?id=com.brave.browser)
 > When persistent data is required. Accounts, tabs etc...
 
 For this I've tried several popular recommendations (hello /g/) and settled on using [Brave browser](https://play.google.com/store/apps/details?id=com.brave.browser).  
 Its great for keeping browsing clean without maintenance, while easily blocking or modifying it's behavior according to your paranoia level. Some basics settings are worth changing like the default search engine (I recommend [Startpage](https://www.startpage.com/)).  
 Tip: you'll have to uncheck _Send metrics_ in the Privacy options.
 
-[![bravebrowser](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true)](https://play.google.com/store/apps/details?id=com.brave.browser)
+
 
 -----
 
