@@ -21,6 +21,7 @@ tags:
 
 *I'll be illustrating a simple and very effective way to harden your Android phone **without** needing root. Demo below.*  
 <!--more-->
+
 -----
 We're going to locally filter all *Domain Name* queries through a selection of blacklists with [DNS66](https://f-droid.org/en/packages/org.jak_linux.dns66/) which can be installed from the [F-Droid Store](https://f-droid.org/en/), and finally set the [Quad9](https://www.globalcyberalliance.org/initiatives/quad9.html) DNS servers as default instead of the one provided by your ISP.  
 This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).  
