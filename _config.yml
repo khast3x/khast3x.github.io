@@ -24,7 +24,7 @@ github_username:  khast3x
 # facebook_link:
 
 # Footer
-footer_right: "<i class=\"fa fa-github-alt\"></i><a href=\"https://github.com/jacobtomlinson/carte-noire\">theme</a>"
+footer_right: "<i class=\"fa fa-github-alt\"></i><a href=\"https://github.com/jacobtomlinson/carte-noire\"> theme</a>"
 footer_left: "<i class=\"fa fa-twitter\"></i> <a href=\"https://twitter.com/kh4st3x\">twitter</a><br><i class=\"fa fa-github\"></i> <a href=\"https://github.com/khast3x\">github</a>"
 # Build settings
 markdown: kramdown
