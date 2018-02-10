@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "'kisspwn' : Easy Python breach checker"
-description: "summary_large_image"
 summary: "Release of the kisspwn python module to query haveibeenpwned.com"
 thumbnail: kisspwn
 image:
