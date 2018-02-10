@@ -54,5 +54,6 @@ plugins:
   -
     scope:
       path: "" # an empty string here means all files in the project
+      type: "posts"
     values:
-      image: haunter_alt
+      image: "https://i.imgur.com/5zVB9Ja.png"
