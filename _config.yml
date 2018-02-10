@@ -56,4 +56,4 @@ plugins:
       path: "" # an empty string here means all files in the project
       type: "posts"
     values:
-      image: "https://i.imgur.com/5zVB9Ja.png"
+      image: /assets/demo/haunter_alt.png
