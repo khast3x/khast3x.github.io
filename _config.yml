@@ -49,3 +49,10 @@ plugins:
   - jekyll-sitemap
   - jemoji
   - jekyll-seo-tag
+
+  defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      image: haunter_alt
