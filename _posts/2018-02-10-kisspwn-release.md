@@ -3,7 +3,10 @@ layout: post
 title: "'kisspwn' : Easy Python breach checker"
 description: "Release of the kisspwn python module to query haveibeenpwned.com"
 thumbnail: kisspwn
-image: /assets/demo/boat-1299071.png
+image:
+  path: /assets/demo/boat-1299071.png
+  height: 100
+  width: 100
 categories: python OSINT
 excerpt_separator: <!--more-->
 published: true
