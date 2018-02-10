@@ -50,10 +50,10 @@ plugins:
   - jemoji
   - jekyll-seo-tag
 
-  defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts"
-    values:
-      image: /assets/demo/haunter_alt.png
+defaults:
+-
+  scope:
+    path: "" # an empty string here means all files in the project
+    type: "posts"
+  values:
+    image: /assets/demo/haunter_alt.png
