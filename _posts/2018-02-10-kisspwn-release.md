@@ -26,7 +26,7 @@ All details can be found by clicking on the button below.
 <!--more-->  
 
 You'll find all required details on how to install module from pip or from source, as well as code snippet.
-## [![button](https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/button_view-project-page.png)](https://khastex.club/kisspwn)
+## [![button](https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/button_view-project-page.png)](https://khast3x.club/kisspwn/)
 
 Quick installation:
 
