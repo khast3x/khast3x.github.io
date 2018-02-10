@@ -5,8 +5,8 @@ summary: "Release of the kisspwn python module to query haveibeenpwned.com"
 thumbnail: kisspwn
 image:
   path: /assets/demo/boat-1299071.png
-  height: 100
-  width: 100
+  height: 400
+  width: 400
 categories: python OSINT
 excerpt_separator: <!--more-->
 published: true
