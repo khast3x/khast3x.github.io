@@ -1,6 +1,17 @@
 ---
-published: false
----
+layout: post
+title: "Easy Python breach checker: kisspwn"
+description: "Release of the kisspwn python module to query haveibeenpwned.com"
+thumbnail: https://i.imgur.com/MoLtSU5.png
+categories: python OSINT
+excerpt_separator: <!--more-->
+published: true
+tags:
+  - python
+  - osint
+  - haveibeenpwned
+
+  ---
 ## Python kisspwn module release
 
 --------
@@ -11,8 +22,9 @@ _This is a simple Python module to facilitate making queries to haveibeenpwned.c
 The name is from the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle).
 
 All details can be found by clicking on the button below.  
-  
-  
+<!--more-->  
+
+
 > [![button](https://raw.githubusercontent.com/khast3x/khast3x.github.io/master/assets/demo/button_view-project-page.png)](https://khastex.club/kisspwn)
 
 ```python
