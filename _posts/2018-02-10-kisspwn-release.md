@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "'kisspwn' : Easy Python breach checker"
-summary: "Release of the kisspwn python module to query haveibeenpwned.com"
+title: '''kisspwn'' : Easy Python breach checker'
+summary: Release of the kisspwn python module to query haveibeenpwned.com
 thumbnail: kisspwn
 image:
   path: /assets/demo/boat-1299071.png
@@ -17,7 +17,7 @@ tags:
 ---
 
 
-## Introducing my 'kisspwn' module
+## Introducing 'kisspwn' module
 --------
 _This is a simple Python module to facilitate making queries to haveibeenpwned.com while respecting the API's throttling suggestions_  
 
@@ -38,9 +38,6 @@ Quick installation:
 # The module is pushed to pypi so you can just do:
 $ pip3 install kisspwn
 ```
-
-
-I used the [python cookiecutter tool](https://github.com/ionelmc/cookiecutter-pylibrary) to generate the boilerplate, I might make a post about it.
 
 Here is a demo of a simple usage with the python interpreter, making a query with `test@example.com` as the target.  
 
