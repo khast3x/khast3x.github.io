@@ -146,8 +146,9 @@ ENTRYPOINT [ "serve", "-dir", "/go/bin/"]
 
 * Let's see how this goes
 
-INSERT BUILD GIF
-INSERT serve png
+![build](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_build.gif?raw=true)
+
+![serve](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_serve.png?raw=true)
 
 ## Deploying the implant
 
@@ -175,7 +176,7 @@ $ cat --ssl --ssl-cert server.pem --ssl-key server.key -lvp 8088
 
 If everything goes according to plan, running the hershell binary should get you a clean reverse connection to the ncat listener.
 
-INSERT SCREENSHOT rev shell
+![rev](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_ncat.png?raw=true)
 
 ### MSF
 
@@ -200,13 +201,13 @@ We're using the `docker run` line from the [Docker hub page](https://hub.docker.
 
 Once the container is up and running, you'll land in a classic shell. You'll find all the classic `msf` framework tools.
 
-INSERT MSF TAB screeshot
-
+![msf](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_msf_binaries.png?raw=true)
 We'll launch the `msfconsole` and let it load. Once you're greeted with the prompt, we'll need to retrieve our `server.key`.
 
 We can use `wget` from inside the `msfconsole` and fetch them from our previously mentioned `serve` http page.
 
 ```
+msfconsole
 msf5 > wget http://DOCKER-IP:8000/server.key
 
 ```
