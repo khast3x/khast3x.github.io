@@ -1,5 +1,3 @@
-
-
 ---
 layout: post
 title: "Using Docker to host a cloud hershell implant listener and a Metasploit C2"
