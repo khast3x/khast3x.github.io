@@ -157,6 +157,9 @@ ENTRYPOINT [ "serve", "-dir", "/go/bin/"]
 
 ![serve](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_serve.png?raw=true)
 
+
+[You can find the final Dockerfile here](https://github.com/khast3x/hershell/blob/master/Dockerfile)
+
 ## Deploying the implant
 
 To launch our web page and fetch our files, we simply run:
