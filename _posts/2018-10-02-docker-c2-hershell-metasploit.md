@@ -34,11 +34,11 @@ One of the many powers of golang is it's cross platform capabilities. Since the 
 
 We want to use Docker to build a fresh [hershell](https://github.com/lesnuages/hershell) implant and easily distribute it.  
 
-[Hershell](https://github.com/lesnuages/hershell) comes with the ability to upgrade the infected target to a `meterpreter` implant or inject shellcode directly in memory. We'll also be using Docker to host our second stage Metasploit C2 (C3 in this article)
+[Hershell](https://github.com/lesnuages/hershell) comes with the ability to upgrade the infected target to a `meterpreter` implant or inject shellcode directly in memory. We'll also be using Docker to host our second stage Metasploit C2.
 
 Once done, generating, sharing and managing the implant should be a fast and cloud-native process.
 
-Deploying a server to catch the reverse callback will should be fast and clean.  
+Deploying a server to catch the reverse callback will be fast and clean.  
 # Requirements
 
 You'll need a `docker` environment [installed](https://docs.docker.com/install/), and some place to host your C2 and C3.  
