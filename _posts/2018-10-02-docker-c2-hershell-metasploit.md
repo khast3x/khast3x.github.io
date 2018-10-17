@@ -19,8 +19,6 @@ tags:
 
 ---
 
-## Using Docker to host a cloud hershell implant listener and a Metasploit C2
-
 ------
 
 In the following article we'll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider's infrastructure.  
