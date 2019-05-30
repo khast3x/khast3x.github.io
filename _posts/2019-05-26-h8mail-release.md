@@ -5,7 +5,7 @@ description: How to hunt for passwords with h8mail
 thumbnail: mug-hot
 categories: h8mail
 excerpt_separator: <!--more-->
-published: false
+published: true
 tags:
   - h8mail
   - OSINT
@@ -200,3 +200,16 @@ You can chain usage of the chasing feature with API and local search, making it 
 
 I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
 
+
+----
+
+I think I'll close the write-up here.  
+
+You can use the Docker image to spawn h8mail in a cloud environment, handy if you want to download breaches using a VPS and keep it there.  
+
+Other than that most features and usage examples have been covered.
+
+If you create content based on h8mail (blog, video..) feel free to let me know, I'll add it to the homepage if its relevant.
+
+Be nice, use your power for good etc.  
+Thanks for reading!
