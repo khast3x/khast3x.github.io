@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'h8mail Release'
-description: A quick overlook at finding passwords with h8mail
+description: How to hunt for passwords with h8mail
 thumbnail: mug-hot
 categories: h8mail
 excerpt_separator: <!--more-->
@@ -14,29 +14,45 @@ tags:
   - haveibeenpwned
   - leak
 ---
+![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
 
 **h8mail v2 has just been released** :tada:
 
-New features have been added to better hunt down passwords. The `README` file covers most of the expected information for running h8mail. I'll be showing off various use-cases that should beef up your searches.
+New features have been added to better hunt down passwords. In the following write-up, we'll be covering h8mail's options with examples and use-cases.
 
 <!--more-->
 
+
+# Table of Content
+
+- [Table of Content](#table-of-content)
+- [Installing](#installing)
+  - [Python](#python)
+  - [Using `pip` to install h8mail](#using-pip-to-install-h8mail)
+    - [Getting `pip`](#getting-pip)
+- [Local Searching](#local-searching)
+    - [*Loose* search and inputs](#loose-search-and-inputs)
+    - [Single file mode](#single-file-mode)
+- [Breach Compilation](#breach-compilation)
+- [Chasing](#chasing)
+
+
 # Installing
 
-h8mail is now distributed using `pip`, which is Python's package manager. This article won't go into details on how to configure python for your environment. To start you should at least:  
+h8mail is now distributed using `pip`, which is a Python package manager. This article won't go into details on how to configure python for your environment. To start you should at least:  
 
 * Have Python3.6+ installed
 * Be able to call python in your terminal
 
 ## Python
 We'll review some common installation patterns below:  
-Having Python 2 and 3 installed is common. You can check the default Python version by running:  
+Having both Python 2 and 3 installed is common. You can check the default Python version by running:  
 
 ```bash
 $ python --version
 ```
 
-If it says `Python 2.x`, but you have installed Python 3.6+, chances are you can just run:
+If it says `Python 2.x`, and have installed Python 3.6+, chances are you can just run:
 
 ```bash
 $ python3 --version
@@ -58,7 +74,8 @@ Simply add `--user` like so:
 ```bash
 $ pip install --user h8mail
 ```
-
+* Illustrated installation:  
+![h8mail-install](https://i.postimg.cc/Vs9vznN3/h8mail-install.gif)
 
 ### Getting `pip`
 This write-up assumes you have a Python environment correctly configured.  
@@ -107,6 +124,15 @@ By default, h8mail will use multiprocessing, one "worker" for each file. This me
 
 The local search can be combined with other h8mail features, such as HIBP, API services or regrouped results.
 
+* Illustrated local cleartext search
+![txt](https://i.postimg.cc/L4Q7Y0hf/h8mail-local-cleartext.gif)
+
+
+* Illustrated local compressed search with Collection1:
+![gz](https://i.postimg.cc/xCzRXgZG/ezgif-3-5e71a055555f.gif)
+
+(I had to compress the last GIF to make it fit, which is fitting don't you think...)
+
 
 ### *Loose* search and inputs
 
@@ -135,6 +161,10 @@ Or even recurring password:
 $ h8mail --loose --skip -t "JSm1th99" -gz ../Collection1/
 ```
 
+* Illustrated *loose* search:
+![loose](https://i.postimg.cc/HspwmpT9/ezgif-3-eda2bfcfa2c3.gif)
+
+
 ### Single file mode
 
 To avoid loosing performance, data is not passed between processes while performing a local search. This also means that h8mail will not output a precise lookup progress bar.  
@@ -143,6 +173,17 @@ If you wish to disable multiprocessing to get a more verbose live lookup status,
 $ h8mail -t targets.txt -lb /tmp/combolists/ -sf -sk
 ```
 
+# Breach Compilation
+
+This feature was already part of h8mail's first version, and has been reintegrated. Since this breach is amongst the most shared, I think it's okay to reference a link in this write-up. h8mail uses the `query.sh` script that is included in the torrent, meaning this will **only work on Linux & OSX** platforms. Windows users can still use the generic `-lb` on the data.
+
+h8mail was built using the Breach Compilation version referenced [here](https://gist.github.com/scottlinux/9a3b11257ac575e4f71de811322ce6b3#gistcomment-2298792)
+
+To use this option, simply point the `-bc` argument to the downloaded BreachCompilation folder.
+
+```bash
+$ h8mail -t test@evilcorp.com -bc ./BreachedCompilation/ -sk
+```
 
 # Chasing
 
@@ -159,14 +200,3 @@ You can chain usage of the chasing feature with API and local search, making it 
 
 I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
 
-
-
-# Configuration file
-
-
-# APIs
-
-## Leaklookup
-
-
-# Docker
