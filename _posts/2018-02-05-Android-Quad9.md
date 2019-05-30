@@ -15,6 +15,14 @@ tags:
   - OPSEC
 ---
 
+
+- [Hardening Android with DNS66 & Quad9](#hardening-android-with-dns66--quad9)
+  - [Demo](#demo)
+  - [Installing the F-Droid Store & DNS66](#installing-the-f-droid-store--dns66)
+  - [Harden device with DNS66 & Quad9](#harden-device-with-dns66--quad9)
+  - [Notes](#notes)
+  - [Technical details](#technical-details)
+
 # Hardening Android with DNS66 & Quad9
 
 --------------------------------------------------------------------------------
