@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'h8mail v2 Release'
-description: How to hunt for passwords with h8mail
+description: How to become a password necromancer with h8mail 💀
 thumbnail: mug-hot
 categories: h8mail
 excerpt_separator: <!--more-->
@@ -16,19 +16,16 @@ tags:
 ---
 ![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
 
-**h8mail v2 has just been released** :tada:
+# 🌈 **h8mail v2 has just been released** 
 
 New features have been added to better hunt down passwords.  
 
-In the following write-up, we'll be covering h8mail's options with examples and use-cases. At the end of this page, you'll find resources to find and download leaked breaches.  
-At the end of the day, you'll hopefully be hunting down passwords like a pro!
+In the following write-up, we'll be covering h8mail's options with examples and use-cases. At the end of this page, you'll bringing passwords back like a necromancer 💀
 
 <!--more-->
 
 
 # Table of Content
-
-- [Table of Content](#table-of-content)
 - [Installing](#installing)
   - [Python](#python)
   - [Using `pip` to install h8mail](#using-pip-to-install-h8mail)
@@ -43,8 +40,9 @@ At the end of the day, you'll hopefully be hunting down passwords like a pro!
 - [Coming up next](#coming-up-next)
 
 
+
 As with all good modern stories, we have to start with the software's installation procedure.  
-If thats already done, **you can jump to [Local Searching](#local-searching)**.
+If thats already done, **[you can jump to Local Searching](#local-searching)**.
 
 
 # Installing
