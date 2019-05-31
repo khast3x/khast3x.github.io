@@ -125,7 +125,7 @@ By default, h8mail will use multiprocessing, one "worker" for each file. This me
 The local search can be combined with other h8mail features, such as HIBP, API services or regrouped results.
 
 * Illustrated local cleartext search
-![txt](https://i.postimg.cc/L4Q7Y0hf/h8mail-local-cleartext.gif)
+![txt](https://github.com/khast3x/khast3x.github.io/blob/master/assets/h8mail/local-cleartext.gif?raw=true)
 
 
 * Illustrated local compressed search with Collection1:
