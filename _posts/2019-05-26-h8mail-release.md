@@ -2,8 +2,8 @@
 layout: post
 title: 'h8mail v2 Release'
 description: How to become a password necromancer with h8mail 💀
-cover: "/assets/demo/cover.png"
-categories: h8mail
+thumbnail: "/assets/demo/cover.png"
+categories: h8mail leak password breach compilation collection
 excerpt_separator: <!--more-->
 published: true
 tags:
