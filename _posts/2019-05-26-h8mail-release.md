@@ -18,7 +18,10 @@ tags:
 
 **h8mail v2 has just been released** :tada:
 
-New features have been added to better hunt down passwords. In the following write-up, we'll be covering h8mail's options with examples and use-cases.
+New features have been added to better hunt down passwords.  
+
+In the following write-up, we'll be covering h8mail's options with examples and use-cases. At the end of this page, you'll find resources to find and download leaked breaches.  
+At the end of the day, you'll hopefully be hunting down passwords like a pro!
 
 <!--more-->
 
@@ -37,6 +40,11 @@ New features have been added to better hunt down passwords. In the following wri
     - [Breach Compilation](#breach-compilation)
 - [Chasing](#chasing)
 - [Finding and downloading breaches](#finding-and-downloading-breaches)
+- [Coming up next](#coming-up-next)
+
+
+As with all good modern stories, we have to start with the software's installation procedure.  
+If thats already done, **you can jump to [Local Searching](#local-searching)**.
 
 
 # Installing
@@ -214,15 +222,22 @@ This should be plenty enough to get you started.
 
 ----
 
+# Coming up next
+
+In the next write-ups, we're going to look at using h8mail with API services, such as [Snusbase](https://snusbase.com/) and [Leak-lookup](https://leak-lookup.com/).
+
+We'll also look at some additional features, such as `--hide` for demonstrations, combining h8mail with Docker to download torrents super fast, even maybe using [WhatBreach](https://github.com/Ekultek/WhatBreach) with h8mail.
+
+----
+
+
 I think I'll close the write-up here.  
-
-You can use the Docker image to spawn h8mail in a cloud environment, handy if you want to download breaches using a VPS and keep it there.  
-
-Other than that most features and usage examples have been covered.
 
 If you create content based on h8mail (blog, video..) feel free to let me know, I'll add it to the homepage if its relevant.
 
-Be nice, use your powers to help others.   
+
+
+Finally, be nice, use your powers to help others. And show support for your open-source developers :)   
 Thank you for reading!
 
 
