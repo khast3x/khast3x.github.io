@@ -31,9 +31,10 @@ New features have been added to better hunt down passwords. In the following wri
   - [Using `pip` to install h8mail](#using-pip-to-install-h8mail)
     - [Getting `pip`](#getting-pip)
 - [Local Searching](#local-searching)
+    - [Working with compress or cleartext breaches](#working-with-compress-or-cleartext-breaches)
     - [*Loose* search and inputs](#loose-search-and-inputs)
     - [Single file mode](#single-file-mode)
-- [Breach Compilation](#breach-compilation)
+    - [Breach Compilation](#breach-compilation)
 - [Chasing](#chasing)
 
 
@@ -105,8 +106,10 @@ $ python -m pip -h
 
 # Local Searching
 
-One of h8mail's freshest new feature is the local search. You can use compressed `.gz` files or uncompressed `.txt` files.  
+One of h8mail's new feature is the local search. You can use compressed `.gz` files or uncompressed `.txt` files.  
 
+
+### Working with compress or cleartext breaches
 
 Arguments can be passed loosely, such as:  
 
@@ -125,7 +128,7 @@ By default, h8mail will use multiprocessing, one "worker" for each file. This me
 The local search can be combined with other h8mail features, such as HIBP, API services or regrouped results.
 
 * Illustrated local cleartext search
-![txt](../assets/h8mail/h8mail-local-cleartext.gif)
+![txt](https://i.postimg.cc/L4Q7Y0hf/h8mail-local-cleartext.gif)
 
 
 * Illustrated local compressed search with Collection1:
@@ -173,7 +176,7 @@ If you wish to disable multiprocessing to get a more verbose live lookup status,
 $ h8mail -t targets.txt -lb /tmp/combolists/ -sf -sk
 ```
 
-# Breach Compilation
+### Breach Compilation
 
 This feature was already part of h8mail's first version, and has been reintegrated. Since this breach is amongst the most shared, I think it's okay to reference a link in this write-up. h8mail uses the `query.sh` script that is included in the torrent, meaning this will **only work on Linux & OSX** platforms. Windows users can still use the generic `-lb` on the data.
 
@@ -194,9 +197,9 @@ You can use the chasing feature with a [free hunter.io AI key](https://hunter.io
 $ h8mail -t admin@evilcorp.com -ch 10 -c config.ini
 ```
 
-The `-ch` or `--chase` option needs the number of email per target to chase, as well as the API key for hunter.io.
+The `-ch` or `--chase` option needs the number of email per target to *chase*, as well as the API key for hunter.io.
 
-You can chain usage of the chasing feature with API and local search, making it very powerful feature when targeting an organization.  
+You can chain usage of the *chasing* feature with API and local search, making it very powerful feature when targeting an organization.  
 
 I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
 
