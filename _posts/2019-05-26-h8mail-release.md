@@ -36,6 +36,7 @@ New features have been added to better hunt down passwords. In the following wri
     - [Single file mode](#single-file-mode)
     - [Breach Compilation](#breach-compilation)
 - [Chasing](#chasing)
+- [Finding and downloading breaches](#finding-and-downloading-breaches)
 
 
 # Installing
@@ -203,6 +204,13 @@ You can chain usage of the *chasing* feature with API and local search, making i
 
 I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
 
+# Finding and downloading breaches
+
+Without giving away all the keys, I'll add a few tips for those getting started.  
+First, data breaches are **big**. You'll quickly want to learn how to use seedboxes and work remotely. Docker is great for this too.  
+
+In regards to where to find them, you can get the BreachCompilation torrent referenced earlier. You can also look into specialized communities, such as raidforums, [link-base.org](https://link-base.org), or direct download them from [databases.today](https://databases.today/).  
+This should be plenty enough to get you started.
 
 ----
 
@@ -214,5 +222,8 @@ Other than that most features and usage examples have been covered.
 
 If you create content based on h8mail (blog, video..) feel free to let me know, I'll add it to the homepage if its relevant.
 
-Be nice, use your power for good etc.  
-Thanks for reading!
+Be nice, use your powers to help others.   
+Thank you for reading!
+
+
+[![logo-transparent.png](https://i.postimg.cc/LXR6Jq8Y/logo-transparent.png)](https://github.com/khast3x/h8mail)
