@@ -152,14 +152,14 @@ By default, h8mail looks for email patterns. This means you can pass raw files a
 
 
 ```bash
-$ h8mail -t admins-list-page.html -lb /tmp/combos.txt --skip
+$ h8mail -t admins-list-page.html -lb /tmp/combos.txt
 ```
 
 Since h8mail supports globing, you could even do something like this:  
 ```bash
-$ h8mail -t /crawled-html/*.html -gz ../Collection1/ --skip
+$ h8mail -t /crawled-html/*.html -gz ../Collection1/
 ```
-APIs don't support this, so be sure to skip online checks. This can be useful when looking for a domain, or patterns of usernames inside local files.
+Next, we're going to introduce the `--loose` argument. APIs don't support this, so be sure to skip online checks with `-sk` or `--skip`. This can be useful when looking for a domain, or patterns of usernames inside local files.
 
 ```bash
 $ h8mail --loose --skip -t "evilcorp.com" -gz ../Collection1/
