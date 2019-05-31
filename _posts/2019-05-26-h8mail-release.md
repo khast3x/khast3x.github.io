@@ -53,7 +53,6 @@ h8mail is now distributed using `pip`, which is a Python package manager. This a
 * Be able to call python in your terminal
 
 ## Python
-We'll review some common installation patterns below:  
 Having both Python 2 and 3 installed is common. You can check the default Python version by running:  
 
 ```bash
@@ -82,13 +81,11 @@ Simply add `--user` like so:
 ```bash
 $ pip install --user h8mail
 ```
-* Illustrated installation:  
-![h8mail-install](https://i.postimg.cc/Vs9vznN3/h8mail-install.gif)
 
 ### Getting `pip`
 This write-up assumes you have a Python environment correctly configured.  
 Here are some tips if you run into trouble.  
-Once your `python` command working, you need to have `pip` installed. It probably shipped with your Python installation.  
+Once your `python` command is working, you need to have `pip` installed. It probably shipped with your Python installation.  
 To check, simply type:
 
 ```bash
@@ -109,6 +106,9 @@ If installation was successful and still having issues invoking `pip`, you can t
 ```bash
 $ python -m pip -h
 ```
+
+
+![h8mail-install](https://i.postimg.cc/Vs9vznN3/h8mail-install.gif)
 
 
 # Local Searching
