@@ -147,17 +147,17 @@ The local search can be combined with other h8mail features, such as HIBP, API s
 ### *Loose* search and inputs
 
 
-Another one of h8mail's new features is the ability to perform *loose* searching, which is basically bypassing the pattern recognition.  
+Another one of h8mail's new features is the ability to perform *loose* searching, which is basically bypassing the email pattern recognition.  
 By default, h8mail looks for email patterns. This means you can pass raw files as targets, h8mail will look for emails and automatically add them to targets.
 
 
 ```bash
-$ h8mail -t admins-list-page.html -lb /tmp/combos.txt
+$ h8mail -t admins-list-page.html -lb /tmp/combos.txt --skip
 ```
 
 Since h8mail supports globing, you could even do something like this:  
 ```bash
-$ h8mail -t /crawled-html/*.html -gz ../Collection1/
+$ h8mail -t /crawled-html/*.html -gz ../Collection1/ --skip
 ```
 APIs don't support this, so be sure to skip online checks. This can be useful when looking for a domain, or patterns of usernames inside local files.
 
