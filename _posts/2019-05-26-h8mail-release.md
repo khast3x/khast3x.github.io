@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Finally! The official h8mail v2 write-up lol'
+title: 'Finally! The official h8mail v2 write-up'
 description: Or how to become a password necromancer with h8mail 💀
 image: /assets/h8mail/cover_writeup.png
 categories: h8mail
@@ -23,7 +23,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
 
 <!--more-->
 
-![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
+![h8](https://i.postimg.cc/rw7mcgM1/cover-writeup.png)
 
 # Table of Content
 - **[Installing](#installing)**
