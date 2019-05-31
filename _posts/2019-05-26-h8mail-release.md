@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'h8mail v2 Release Write-Up'
+title: 'Finally! The official h8mail v2 Write-Up'
 description: Or how to become a password necromancer with h8mail 💀
 image: /assets/demo/cover.png
 categories: h8mail
