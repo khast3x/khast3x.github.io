@@ -226,4 +226,4 @@ Be nice, use your powers to help others.
 Thank you for reading!
 
 
-[![logo-transparent.png](https://i.postimg.cc/LXR6Jq8Y/logo-transparent.png)](https://github.com/khast3x/h8mail)
+[![logo-transparent.png](https://i.postimg.cc/qqszqKBm/logo.png)](https://github.com/khast3x/h8mail)
