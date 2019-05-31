@@ -2,7 +2,7 @@
 layout: post
 title: 'h8mail v2 Release Write-Up'
 description: Or how to become a password necromancer with h8mail 💀
-summary_large_image: "https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png"
+image: /assets/demo/cover.png
 categories: h8mail
 excerpt_separator: <!--more-->
 published: true
