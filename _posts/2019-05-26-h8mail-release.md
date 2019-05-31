@@ -198,7 +198,7 @@ $ h8mail -t test@evilcorp.com -bc ./BreachedCompilation/ -sk
 # Chasing
 
 Another one of h8mail's new feature is the ability to target related emails using hunter.io. This is referred as *chasing*.  
-You can use the chasing feature with a [free hunter.io AI key](https://hunter.io/api).
+You can use the chasing feature with a [free hunter.io API key](https://hunter.io/api).
 
 ```bash
 $ h8mail -t admin@evilcorp.com -ch 10 -c config.ini
