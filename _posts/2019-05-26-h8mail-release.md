@@ -26,18 +26,18 @@ In the following write-up, we'll be covering h8mail's options with examples and 
 ![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
 
 # Table of Content
-**- [Installing](#installing)
-  - [Python](#python)
-  - [Using `pip` to install h8mail](#using-pip-to-install-h8mail)
-    - [Getting `pip`](#getting-pip)
-- [Local Searching](#local-searching)
-    - [Working with compress or cleartext breaches](#working-with-compress-or-cleartext-breaches)
-    - [*Loose* search and inputs](#loose-search-and-inputs)
-    - [Single file mode](#single-file-mode)
-    - [Breach Compilation](#breach-compilation)
-- [Chasing](#chasing)
-- [Finding and downloading breaches](#finding-and-downloading-breaches)
-- [Coming up next](#coming-up-next)**
+- **[Installing](#installing)**
+  - **[Python](#python)**
+  - **[Using `pip` to install h8mail](#using-pip-to-install-h8mail)**
+    - **[Getting `pip`](#getting-pip)**
+- **[Local Searching](#local-searching)**
+    - **[Working with compress or cleartext breaches](#working-with-compress-or-cleartext-breaches)**
+    - **[*Loose* search and inputs](#loose-search-and-inputs)**
+    - **[Single file mode](#single-file-mode)**
+    - **[Breach Compilation](#breach-compilation)**
+- **[Chasing](#chasing)**
+- **[Finding and downloading breaches](#finding-and-downloading-breaches)**
+- **[Coming up next](#coming-up-next)**
 
 
 
