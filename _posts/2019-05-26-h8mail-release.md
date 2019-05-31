@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'h8mail Release'
+title: 'h8mail v2 Release'
 description: How to hunt for passwords with h8mail
 thumbnail: mug-hot
 categories: h8mail
