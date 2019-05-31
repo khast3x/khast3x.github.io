@@ -31,7 +31,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
   - **[Using `pip` to install h8mail](#using-pip-to-install-h8mail)**
     - **[Getting `pip`](#getting-pip)**
 - **[Local Searching](#local-searching)**
-    - **[Working with compress or cleartext breaches](#working-with-compress-or-cleartext-breaches)**
+    - **[Working with compressed or cleartext breaches](#working-with-compressed-or-cleartext-breaches)**
     - **[*Loose* search and inputs](#loose-search-and-inputs)**
     - **[Single file mode](#single-file-mode)**
     - **[Breach Compilation](#breach-compilation)**
@@ -116,7 +116,7 @@ $ python -m pip -h
 One of h8mail's new feature is the local search. You can use compressed `.gz` files or uncompressed `.txt` files.  
 
 
-### Working with compress or cleartext breaches
+### Working with compressed or cleartext breaches
 
 Arguments can be passed loosely, such as:  
 
