@@ -14,19 +14,19 @@ tags:
   - haveibeenpwned
   - leak
 ---
-![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
 
 # 🌈 **h8mail v2 has just been released** 
 
 New features have been added to better hunt down passwords.  
 
-In the following write-up, we'll be covering h8mail's options with examples and use-cases. At the end of this page, you'll bringing passwords back like a necromancer 💀
+In the following write-up, we'll be covering h8mail's options with examples and use-cases. At the end of this page, you'll hopefully be bringing passwords back like a necromancer 💀
 
 <!--more-->
 
+![h8](https://i.postimg.cc/jS2yWZwW/facebook-cover-photo-2.png)
 
 # Table of Content
-- [Installing](#installing)
+**- [Installing](#installing)
   - [Python](#python)
   - [Using `pip` to install h8mail](#using-pip-to-install-h8mail)
     - [Getting `pip`](#getting-pip)
@@ -37,7 +37,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
     - [Breach Compilation](#breach-compilation)
 - [Chasing](#chasing)
 - [Finding and downloading breaches](#finding-and-downloading-breaches)
-- [Coming up next](#coming-up-next)
+- [Coming up next](#coming-up-next)**
 
 
 
