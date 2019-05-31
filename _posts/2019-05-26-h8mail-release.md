@@ -42,7 +42,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
 
 
 As with all good modern stories, we have to start with the software's installation procedure.  
-If thats already done, **[you can jump to Local Searching](#local-searching)**.
+If thats done already, **[you can jump to Local Searching](#local-searching)**.
 
 
 # Installing
