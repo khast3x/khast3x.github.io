@@ -29,7 +29,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
 - **[Installing](#installing)**
   - **[Python](#python)**
   - **[Using `pip` to install h8mail](#using-pip-to-install-h8mail)**
-    - **[Getting `pip`](#getting-pip)**
+    - **[Troubleshooting tips](#troubleshooting-tips)**
 - **[Local Searching](#local-searching)**
     - **[Working with compressed or cleartext breaches](#working-with-compressed-or-cleartext-breaches)**
     - **[*Loose* search and inputs](#loose-search-and-inputs)**
@@ -82,8 +82,7 @@ Simply add `--user` like so:
 $ pip install --user h8mail
 ```
 
-### Getting `pip`
-This write-up assumes you have a Python environment correctly configured.  
+### Troubleshooting Tips
 Here are some tips if you run into trouble.  
 Once your `python` command is working, you need to have `pip` installed. It probably shipped with your Python installation.  
 To check, simply type:
@@ -123,6 +122,8 @@ Arguments can be passed loosely, such as:
 ```bash
 $ h8mail -t targets.txt -gz ./Leaks/2019-*
 ```
+
+More complex:
 ```bash
 $ h8mail -t john@gmail.com -gz . ../Collection1/ ../Collection2/EU_* -lb /tmp/combolists/2019-* /tmp/dumps/leak.txt -o output.csv
 ```
@@ -134,20 +135,19 @@ By default, h8mail will use multiprocessing, one "worker" for each file. This me
 
 The local search can be combined with other h8mail features, such as HIBP, API services or regrouped results.
 
-* Illustrated local cleartext search
+*Illustrated local cleartext search:*
 ![txt](https://i.postimg.cc/L4Q7Y0hf/h8mail-local-cleartext.gif)
 
 
-* Illustrated local compressed search with Collection1:
-![gz](https://i.postimg.cc/xCzRXgZG/ezgif-3-5e71a055555f.gif)
+*Illustrated local compressed search with Collection1:*
+![gz](https://i.imgur.com/o85iGND.gif)
 
-(I had to compress the last GIF to make it fit, which is fitting don't you think...)
 
 
 ### *Loose* search and inputs
 
 
-Another one of h8mail's new features is the ability to perform *loose* searching, which is basically bypassing the email pattern recognition.  
+Another one of h8mail's new feature is the ability to perform *loose* searching, which is basically bypassing the email pattern recognition.  
 By default, h8mail looks for email patterns. This means you can pass raw files as targets, h8mail will look for emails and automatically add them to targets.
 
 
@@ -171,7 +171,7 @@ Or even recurring password:
 $ h8mail --loose --skip -t "JSm1th99" -gz ../Collection1/
 ```
 
-* Illustrated *loose* search:
+*Illustrated `loose` search:*
 ![loose](https://i.postimg.cc/HspwmpT9/ezgif-3-eda2bfcfa2c3.gif)
 
 
@@ -206,7 +206,7 @@ $ h8mail -t admin@evilcorp.com -ch 10 -c config.ini
 
 The `-ch` or `--chase` option needs the number of email per target to *chase*, as well as the API key for hunter.io.
 
-You can chain usage of the *chasing* feature with API and local search, making it very powerful feature when targeting an organization.  
+You can chain usage of the *chasing* feature with APIs and local search, making it a very powerful feature when targeting an organization.  
 
 I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
 
@@ -225,6 +225,10 @@ This should be plenty enough to get you started.
 In the next write-ups, we're going to look at using h8mail with API services, such as [Snusbase](https://snusbase.com/) and [Leak-lookup](https://leak-lookup.com/).
 
 We'll also look at some additional features, such as `--hide` for demonstrations, combining h8mail with Docker to download torrents super fast, even maybe using [WhatBreach](https://github.com/Ekultek/WhatBreach) with h8mail.
+
+
+
+[![button-follow-me-on-twitter-to-stay-updated.png](https://i.postimg.cc/c1vyQ33j/button-follow-me-on-twitter-to-stay-updated.png)](https://twitter.com/kh4st3x)
 
 ----
 
