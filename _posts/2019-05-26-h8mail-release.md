@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Write-Up: h8mail v2 Release'
+title: 'Write-Up: Getting started with h8mail v2'
 description: Or how to become a password necromancer with h8mail 💀
 image: /assets/h8mail/cover_writeup.png
 categories: h8mail
@@ -40,7 +40,7 @@ In the following write-up, we'll be covering h8mail's options with examples and 
 - **[Coming up next](#coming-up-next)**
 
 
-
+h8mail's homepage can be found on [github](https://github.com/khast3x/h8mail).  
 As with all good modern stories, we have to start with the software's installation procedure.  
 If thats done already, **[you can jump to Local Searching](#local-searching)**.
 
@@ -185,7 +185,7 @@ $ h8mail -t targets.txt -lb /tmp/combolists/ -sf -sk
 
 ### Breach Compilation
 
-This feature was already part of h8mail's first version, and has been reintegrated. Since this breach is amongst the most shared, I think it's okay to reference a link in this write-up. h8mail uses the `query.sh` script that is included in the torrent, meaning this will **only work on Linux & OSX** platforms. Windows users can still use the generic `-lb` on the data.
+This feature was already part of h8mail's first version, and has been reintegrated. h8mail uses the `query.sh` script that is included in the torrent, meaning this will **only work on Linux & OSX** platforms. Windows users can still use the generic `-lb` on the data.
 
 h8mail was built using the Breach Compilation version referenced [here](https://gist.github.com/scottlinux/9a3b11257ac575e4f71de811322ce6b3#gistcomment-2298792)
 
@@ -208,7 +208,7 @@ The `-ch` or `--chase` option needs the number of email per target to *chase*, a
 
 You can chain usage of the *chasing* feature with APIs and local search, making it a very powerful feature when targeting an organization.  
 
-I might add search depths in a future version (launch a new *chase* with found related emails), but also considering nerfing it.
+I might add search depths in a future version (launch a new *chase* with found related emails).
 
 # Finding and downloading breaches
 
