@@ -44,6 +44,7 @@ h8mail's homepage can be found on [github](https://github.com/khast3x/h8mail).
 As with all good modern stories, we have to start with the software's installation procedure.  
 If thats done already, **[you can jump to Local Searching](#local-searching)**.
 
+----
 
 # Installing
 
@@ -109,6 +110,8 @@ $ python -m pip -h
 
 ![h8mail-install](https://i.postimg.cc/Vs9vznN3/h8mail-install.gif)
 
+
+----
 
 # Local Searching
 
@@ -195,6 +198,8 @@ To use this option, simply point the `-bc` argument to the downloaded BreachComp
 $ h8mail -t test@evilcorp.com -bc ./BreachedCompilation/ -sk
 ```
 
+----
+
 # Chasing
 
 Another one of h8mail's new feature is the ability to target related emails using hunter.io. This is referred as *chasing*.  
@@ -209,6 +214,8 @@ The `-ch` or `--chase` option needs the number of email per target to *chase*, a
 You can chain usage of the *chasing* feature with APIs and local search, making it a very powerful feature when targeting an organization.  
 
 I might add search depths in a future version (launch a new *chase* with found related emails).
+
+----
 
 # Finding and downloading breaches
 

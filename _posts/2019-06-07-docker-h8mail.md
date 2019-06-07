@@ -51,6 +51,9 @@ This message shows that your installation appears to be working correctly.
 
 We're set the next steps.
 
+
+----
+
 # Downloading the breach
 
 
@@ -115,6 +118,8 @@ But using the -lb flag works
  -->
 
 
+
+----
 
 # Downloading files instead of torrents
 
