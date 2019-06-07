@@ -82,7 +82,7 @@ If unsure of your IP, you can run `curl icanhazip.com`.
 ![dl](https://i.postimg.cc/PNnJ8QJB/screely-1559870254049.png)
 
 
-## The shared volume
+## Volume sharing
 
 We are using a shared volume to allow h8mail to parse the downloaded torrent. You can [read more](https://www.digitalocean.com/community/tutorials/how-to-share-data-between-docker-containers) about it, but the gist of it that we create a volume called `dl` when running the `-v` argument for the torrent container.  
 You can view more information about this volume by typing:  
