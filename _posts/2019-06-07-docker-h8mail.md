@@ -84,7 +84,7 @@ If unsure of your IP, you can run `curl icanhazip.com`.
 
 ## Volume sharing
 
-We are using a shared volume to allow h8mail to parse the downloaded torrent. You can [read more](https://www.digitalocean.com/community/tutorials/how-to-share-data-between-docker-containers) about it, but the gist of it that we create a volume called `dl` when running the `-v` argument for the torrent container.  
+We are using a shared volume to allow h8mail to parse the downloaded torrent. You can [read more](https://www.digitalocean.com/community/tutorials/how-to-share-data-between-docker-containers) about it, but the gist of it is that we create a volume called `dl` when running the `-v` argument for the torrent container.  
 You can view more information about this volume by typing:  
 ```bash
 $ docker volume inspect dl 
@@ -110,20 +110,54 @@ You'll notice the "Mountpoint" path. You can `cd` to that directory to interact 
 For the purpose of demonstration we'll be using the volume through Docker's abstraction layer, but you know where to find your files on the Docker host.
 
 
+----
 
-<!-- Error, [Errno 2] No such file or directory: '/dl/BreachCompilation/query.sh': '/dl/BreachCompilation/query.sh'
+# Searching the breach
 
-But using the -lb flag works
+Once the BreachCompilation is downloaded, you can stop the torrent container:  
+```bash
+$ docker rm -f ct
+```
 
- -->
+At this point, the BreachCompilation torrent lives in the "dl" volume we created & mounted to the torrent download path.  
+You can check it out by going to the previously mentioned Mountpoint path:
 
+```bash
+root@docker-host:$ docker volume inspect dl
+[
+    {
+        "CreatedAt": "2019-06-07T01:02:30Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/dl/_data",
+        "Name": "dl",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+root@docker-host:$ cd /var/lib/docker/volumes/dl/_data
+root@docker-host:$ ls -la
+total 644
+drwxr-xr-x 3 root root    4096 Jun  7 01:02 .
+drwxr-xr-x 3 root root    4096 Jun  7 01:00 ..
+drwxr-x--- 4 root root    4096 Jun  7 01:27 BreachCompilation
+
+```
+
+We're going to run the auto-built h8mail docker container, mount the dl volume with the BreachCompilation, and seamlessly search for our targets:
+
+```bash
+docker run -it -v dl:/dl kh4st3x00/h8mail -t john.smith@gmail.com -bc /dl/BreachCompilation/ -sk
+```
+
+If all goes well, you'll be searching through the BreachCompilation torrent like a real cloud ninja
 
 
 ----
 
 # Downloading files instead of torrents
 
-This also works with general files.  
+This also works with generic files.  
 
 You can use [JDownloader](https://hub.docker.com/r/jlesage/jdownloader-2/#quick-start) as a Docker image, and share its volume with h8mail.
 
@@ -132,3 +166,21 @@ You can use [JDownloader](https://hub.docker.com/r/jlesage/jdownloader-2/#quick-
 More advanced but worth looking into, you can also use [aria2](https://github.com/abcminiuser/docker-aria2-with-webui) with a Web UI, and share the download volume with h8mail.  
 
 ![](https://raw.githubusercontent.com/mayswind/AriaNg-WebSite/master/screenshots/desktop.png)
+
+
+----
+
+# Closing remarks
+
+Using the cloud to juggle with those large datasets is increasingly necessary.  
+You can find free hosting providers [with most cloud providers](https://github.com/ripienaar/free-for-dev#major-cloud-providers). Be sure to get comfortable with cloud services, as these skills will definitely boost your scope of actions.  
+
+If you're looking for more offensive deployments using Docker, be sure to check my other project: [Redcloud](https://github.com/khast3x/Redcloud).  
+[**It contains more than 30 offensive templates to deploy, and a comfy UI to manage them!**](https://github.com/khast3x/Redcloud)
+
+Finally, this is meant to help infosec students and professionals educate themselves and their peers on credential leaks.  
+
+Thank you for reading through, I hope you enjoyed reading through.  
+If thats the case, be sure to support the project by sharing this page!
+
+----

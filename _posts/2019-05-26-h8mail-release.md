@@ -74,13 +74,13 @@ In the following instructions, remember to replace `python` with `python3` if th
 
 To install h8mail using `pip`, simply use:
 ```bash
-$ pip install h8mail
+$ pip3 install h8mail
 ```
 
 If you have not set your venvs, you might get a permission error saying `Consider using the --user option or check the permissions`.  
 Simply add `--user` like so:
 ```bash
-$ pip install --user h8mail
+$ pip3 install --user h8mail
 ```
 
 ### Troubleshooting Tips
@@ -89,7 +89,6 @@ Once your `python` command is working, you need to have `pip` installed. It prob
 To check, simply type:
 
 ```bash
-$ pip -h
 $ pip3 -h
 ```
 
@@ -97,7 +96,7 @@ If that's not the case, you can use an integrated Python module to install `pip`
 
 ```bash
 $ python -m ensurepip
-$ pip -h
+$ pip3 -h
 ```
 
 This should take care of fetching, installing and linking `pip`.  
