@@ -5,7 +5,7 @@ description: Pushing all the heavy lifting of breach studies to the cloud
 image: /assets/h8mail/cover_writeup.png
 categories: h8mail
 excerpt_separator: <!--more-->
-published: false
+published: true
 tags:
   - h8mail
   - OSINT
