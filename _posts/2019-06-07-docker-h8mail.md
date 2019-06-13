@@ -28,8 +28,9 @@ You'll first need a working Docker environment on a remote server. This can be a
 *  choosing to boot into a ready-made Docker "image" with your cloud service provider
 *  installing Docker on a vanilla Ubuntu server.    
 Here is the documentation for [installing docker on Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/).  
+Here is a detailed community tutorial for getting started with [Docker on DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04).
 
-> Make sure the server you're renting has enough storage space for our downloads. In this tutorial ~60GB should be okay.
+*Make sure the server you're renting has enough storage space for our downloads. In this tutorial ~60GB should be okay.*
 
 To test that everything is working correctly, SSH into your new instance and run this docker "hello-world":
 
@@ -182,7 +183,7 @@ More advanced but worth looking into, you can also use [aria2](https://github.co
 
 Using the cloud to move around those large datasets is increasingly necessary.  
 
-You can find free hosting providers [with most cloud providers](https://github.com/ripienaar/free-for-dev#major-cloud-providers).  
+You can find free hosting tiers [with most cloud providers](https://github.com/ripienaar/free-for-dev#major-cloud-providers).  
 Be sure to get comfortable with cloud services, as these skills will definitely boost your scope of actions.  
 
 If you're looking for more offensive deployments using Docker, be sure to check my other project: [**Redcloud**](https://github.com/khast3x/Redcloud).  
@@ -190,7 +191,7 @@ If you're looking for more offensive deployments using Docker, be sure to check 
 
 Finally, this is meant to help infosec students and professionals educate themselves and their peers on credential leaks.  
 
-Thank you for reading through, I hope you enjoyed reading through.  
+Thank you for reading through, I hope you enjoyed it.  
 If thats the case, be sure to support the project by sharing this page!
 
 ----
