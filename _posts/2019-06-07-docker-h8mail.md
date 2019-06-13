@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Downloading and analysing breaches with Docker and h8mail'
+title: 'Password Breaches with Docker and h8mail'
 description: Pushing all the heavy lifting of breach studies to the cloud
 image: /assets/h8mail/dockertorrent.jpg
 categories: h8mail
