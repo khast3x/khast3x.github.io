@@ -2,7 +2,7 @@
 layout: post
 title: 'Understanding h8mail internals'
 description: Overview of how h8mail internals work for future reference
-image: /assets/h8mail/dockertorrent.jpg
+image: /assets/h8mail/cover.png
 categories: h8mail
 excerpt_separator: <!--more-->
 published: false
@@ -29,6 +29,8 @@ It has been over a year since h8mail is online, and the code base is starting to
 
 
 h8mail was, like most projects, just a script that evolved. We'll go over the files and folders first.
+
+----
 
 # h8mail files and folders
 
@@ -118,6 +120,8 @@ The `target` *object factory* calls `target` object methods depending on user ch
 Once APIs have been called, if the user specified local searching, h8mail will start calling the appropriate functions depending on the file type (cleartext or `tar.gz`).
 Once that's done, h8mail will print a formatted table, a summary, and optionally save results as CSV.
 
+----
+
 # Code Diagram
 
 Now that we have a basic idea of how things run, here are the UML illustrations generated with `pyreverse`.
@@ -134,6 +138,7 @@ Hopefully, having read the previous blog segment will demystify the following di
 
 ![](../assets/h8mail/packages_h8mail.png)
 
+----
 
 # Guidelines
 
@@ -143,6 +148,6 @@ Some of the guidelines I'm trying to keep:
 * API logic goes straight to the `target` class as a method
 * Adding a new service requires adding it to the list of searched items in the printing functions
 * Adding a new service requires adding to the methods called in `run.py`
-* API logic is *per target*, whereas local searching is *per line*. All targets will be looked for in a single call for a single line on the local file
+* API logic is *per target*, whereas local searching is *per line*. All targets will be looked for in a single call for a single line for the local file search
 * The code should stay cross-platform
 * Readable python > intricate python
