@@ -22,10 +22,10 @@ It has been over a year since h8mail is online, and the code base is starting to
 <!--more-->
 
 - [h8mail files and folders](#h8mail-files-and-folders)
-- [Code Diagram](#Code-Diagram)
-      - [Classes](#Classes)
-      - [Packages](#Packages)
-- [Guidelines](#Guidelines)
+- [Code Diagrams](#code-diagrams)
+      - [Classes](#classes)
+      - [Packages](#packages)
+- [Guidelines](#guidelines)
 
 
 h8mail was, like most projects, just a script that evolved. We'll go over the files and folders first.
@@ -96,7 +96,7 @@ drwxrwxr-x 6 k k 4096 jul. 12 02:23 ../
 ```
 
 h8mail is distributed using `pip`, which already comes with some folder layout restrictions.  
-h8mail is *actually* an executable python module. As such, the actual h8mail code is found in the h8mail folder.
+h8mail is *actually* an executable python module. As such, the actual h8mail code is found in the `h8mail/h8mail` folder.
 
 Here is an overview of "what does what". References to code logic will make more sense as we go on.  
 
@@ -122,7 +122,7 @@ Once that's done, h8mail will print a formatted table, a summary, and optionally
 
 ----
 
-# Code Diagram
+# Code Diagrams
 
 Now that we have a basic idea of how things run, here are the UML illustrations generated with `pyreverse`.
 
