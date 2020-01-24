@@ -1,0 +1,40 @@
+baseURL: https://khast3x.club
+disablePathToLower: true
+languageCode: en-us
+title: khast3x_club
+theme: hello-friend
+googleAnalytics: UA-113498686-2
+twitter: https://twitter.com/kh4st3x
+
+languages:
+    en:
+      title: khast3x blog
+      subtitle: Thoughts and notes on my side projects
+      keywords: ''
+      menuMore: Show more
+      writtenBy: Written by
+      readMore: Read more
+      readOtherPosts: Read other posts
+      newerPosts: Newer posts
+      olderPosts: Older posts
+      dateFormatSingle: 2006-01-02
+      dateFormatList: 2006-01-02
+      
+      params:
+        logo:
+          logoText: khast3x blog
+          logoHomeLink: /
+      #   or
+      #
+      #   path: /img/your-example-logo.svg
+      #   alt: Your example logo alt text
+      
+      menu:
+        main:
+        - identifier: about
+          name: About
+          url: /about
+        # - identifier: showcase
+        #   name: Showcase
+        #   url: /showcase
+

@@ -1,18 +1,18 @@
 ---
-layout: post
-title: 'Hardening Android : DNS'
-description: Using a simple DNS trick to heavily harden you Android device (non-root)
-thumbnail: android
 categories: android tips
+date: "2018-02-05T00:00:00Z"
+description: Using a simple DNS trick to heavily harden you Android device (non-root)
 excerpt_separator: <!--more-->
 published: true
 tags:
-  - android
-  - DNS
-  - defense
-  - malware
-  - applications
-  - OPSEC
+- android
+- DNS
+- defense
+- malware
+- applications
+- OPSEC
+thumbnail: android
+title: 'Hardening Android : DNS'
 ---
 
 
@@ -28,7 +28,7 @@ tags:
 --------------------------------------------------------------------------------
 
 _I'll be illustrating a simple and very effective way to harden your Android phone **without** needing root. Demo below._<br>
-<!-- more -->
+<!--more-->
 
 --------------------------------------------------------------------------------
 

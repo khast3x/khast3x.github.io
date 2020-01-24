@@ -1,22 +1,21 @@
 ---
-layout: post
-title: "Cloud reverse-shell: Hershell, Metasploit and Docker"
-description: "Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly"
-thumbnail: chess-knight
 categories: offensive
+date: "2018-10-02T00:00:00Z"
+description: Quickly deploy a minimal cross-platform shell and host the Command Center
+  using Docker. Upgrade to a meterpreter shell seamlessly
 excerpt_separator: <!--more-->
 published: true
 tags:
-  - shell
-  - metasploit
-  - cloud
-  - aws
-  - azure
-  - gce
-  - pentest
-  - golang
-
-
+- shell
+- metasploit
+- cloud
+- aws
+- azure
+- gce
+- pentest
+- golang
+thumbnail: chess-knight
+title: 'Cloud reverse-shell: Hershell, Metasploit and Docker'
 ---
 
 ------

@@ -1,20 +1,20 @@
 ---
-layout: post
-title: 'Understanding h8mail internals'
-description: Overview of how h8mail internals work for future reference
-image: /assets/h8mail/cover.png
 categories: h8mail
+date: "2019-07-12T00:00:00Z"
+description: Overview of how h8mail internals work for future reference
 excerpt_separator: <!--more-->
+image: /assets/h8mail/cover.png
 published: false
 tags:
-  - h8mail
-  - OSINT
-  - password
-  - breach
-  - haveibeenpwned
-  - leak
-  - docker
-  - cloud
+- h8mail
+- OSINT
+- password
+- breach
+- haveibeenpwned
+- leak
+- docker
+- cloud
+title: Understanding h8mail internals
 ---
 
 It has been over a year since h8mail is online, and the code base is starting to "stabilize". I'm starting new projects, so I'll try to explain how things work for future reference, or if someone is brave enough to consider making a pull request! :smile:

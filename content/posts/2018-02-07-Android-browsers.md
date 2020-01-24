@@ -1,18 +1,18 @@
 ---
-layout: post
-title: "Hardening Android : Browsers"
-description: "Privacy oriented browser workflow for Android"
-thumbnail: android
 categories: android tips
+date: "2018-02-07T00:00:00Z"
+description: Privacy oriented browser workflow for Android
 published: true
 tags:
-  - android
-  - OPSEC
-  - privacy
-  - applications
-  - malware
-  - Firefox
-  - Brave
+- android
+- OPSEC
+- privacy
+- applications
+- malware
+- Firefox
+- Brave
+thumbnail: android
+title: 'Hardening Android : Browsers'
 ---
 ## Hardening Android with Privacy-Focused Browsers
 
