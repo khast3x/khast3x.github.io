@@ -1,18 +1,18 @@
 ---
-layout: post
-title: 'Getting started with h8mail v2'
-description: Or how to become a password necromancer with h8mail 💀
-image: /assets/h8mail/cover_writeup.png
 categories: h8mail
+date: "2019-05-26T00:00:00Z"
+description: "Or how to become a password necromancer with h8mail \U0001F480"
 excerpt_separator: <!--more-->
+image: /assets/h8mail/cover_writeup.png
 published: true
 tags:
-  - h8mail
-  - OSINT
-  - password
-  - breach
-  - haveibeenpwned
-  - leak
+- h8mail
+- OSINT
+- password
+- breach
+- haveibeenpwned
+- leak
+title: Getting started with h8mail v2
 ---
 
 # 🌈 **h8mail v2 has just been released** 

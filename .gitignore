@@ -4,3 +4,4 @@ _site
 _site/
 Gemfile
 Gemfile.lock
+old_jekyll/

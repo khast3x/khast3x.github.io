@@ -1,20 +1,20 @@
 ---
-layout: post
-title: 'Password Breaches with Docker and h8mail'
-description: Pushing all the heavy lifting of breach studies to the cloud
-image: /assets/h8mail/dockertorrent.jpg
 categories: h8mail
+date: "2019-06-07T00:00:00Z"
+description: Pushing all the heavy lifting of breach studies to the cloud
 excerpt_separator: <!--more-->
+image: /assets/h8mail/dockertorrent.jpg
 published: true
 tags:
-  - h8mail
-  - OSINT
-  - password
-  - breach
-  - haveibeenpwned
-  - leak
-  - docker
-  - cloud
+- h8mail
+- OSINT
+- password
+- breach
+- haveibeenpwned
+- leak
+- docker
+- cloud
+title: Password Breaches with Docker and h8mail
 ---
 
 In this tutorial, we're going to move downloading and searching operations to the cloud to speed things up.  

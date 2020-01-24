@@ -1,17 +1,17 @@
 ---
-layout: post
-title: 'Getting started with sliver C2'
-description: "Introduction to deploying golang-based cross platform C2, sliver!"
-image: /assets/h8mail/dockertorrent.jpg
 categories: tools
+date: "2019-06-18T00:00:00Z"
+description: Introduction to deploying golang-based cross platform C2, sliver!
 excerpt_separator: <!--more-->
+image: /assets/h8mail/dockertorrent.jpg
 published: false
 tags:
-  - offensive
-  - docker
-  - cloud
-  - golang
-  - C2
+- offensive
+- docker
+- cloud
+- golang
+- C2
+title: Getting started with sliver C2
 ---
 
 

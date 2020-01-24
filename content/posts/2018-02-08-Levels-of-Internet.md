@@ -1,15 +1,15 @@
 ---
-layout: post
-title: "The levels of the Internet"
-description: "Funny fictionous description of the internet skill tree"
-thumbnail: tasks
 categories: giggles
+date: "2018-02-08T00:00:00Z"
+description: Funny fictionous description of the internet skill tree
 excerpt_separator: <!--more-->
 published: true
 tags:
-  - Internet
-  - meme
-  - reddit
+- Internet
+- meme
+- reddit
+thumbnail: tasks
+title: The levels of the Internet
 ---
 
 
