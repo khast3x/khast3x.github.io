@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud on khast3x blog</title>
+    <link>https://khast3x.club/tags/cloud/</link>
+    <description>Recent content in cloud on khast3x blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://khast3x.club/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Password Breaches with Docker and h8mail</title>
+      <link>https://khast3x.club/posts/2019-06-07-docker-h8mail/</link>
+      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2019-06-07-docker-h8mail/</guid>
+      <description>&lt;p&gt;In this tutorial, we&amp;rsquo;re going to move downloading and searching operations to the cloud to speed things up.&lt;br&gt;
+We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&lt;/strong&gt;, the &lt;strong&gt;h8mail container&lt;/strong&gt; and &lt;strong&gt;a shared volume&lt;/strong&gt;. For demonstration purposes, we&amp;rsquo;ll be studying the Breach Compilation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cloud reverse-shell: Hershell, Metasploit and Docker</title>
+      <link>https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/</link>
+      <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;In the following article we&amp;rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&amp;rsquo;s infrastructure.&lt;br&gt;
+One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. Since the codebase is minimal, we&amp;rsquo;ll see how to use a container to host our C2.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

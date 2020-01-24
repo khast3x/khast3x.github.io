@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Hardening Android : DNS :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content=" Hardening Android with DNS66 &amp;amp; Quad9  Demo Installing the F-Droid Store &amp;amp; DNS66 Harden device with DNS66 &amp;amp; Quad9 Notes Technical details    Hardening Android with DNS66 &amp;amp; Quad9  _I&amp;rsquo;ll be illustrating a simple and very effective way to harden your Android phone without needing root. Demo below._"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2018-02-05-Android-Quad9/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hardening Android : DNS"/>
+<meta name="twitter:description" content="Using a simple DNS trick to heavily harden you Android device (non-root)"/>
+
+
+
+<meta property="og:title" content="Hardening Android : DNS" />
+<meta property="og:description" content="Using a simple DNS trick to heavily harden you Android device (non-root)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2018-02-05-Android-Quad9/" />
+<meta property="article:published_time" content="2018-02-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-02-05T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2018-02-05-Android-Quad9/">Hardening Android : DNS</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2018-02-05
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/android/">android</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/DNS/">DNS</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/defense/">defense</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/malware/">malware</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/applications/">applications</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OPSEC/">OPSEC</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <ul>
+<li><a href="#hardening-android-with-dns66--quad9">Hardening Android with DNS66 &amp; Quad9</a>
+<ul>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#installing-the-f-droid-store--dns66">Installing the F-Droid Store &amp; DNS66</a></li>
+<li><a href="#harden-device-with-dns66--quad9">Harden device with DNS66 &amp; Quad9</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#technical-details">Technical details</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="hardening-android-with-dns66--quad9">Hardening Android with DNS66 &amp; Quad9</h1>
+<hr>
+<p>_I&rsquo;ll be illustrating a simple and very effective way to harden your Android phone <strong>without</strong> needing root. Demo below._<!-- raw HTML omitted --></p>
+<hr>
+<p>We&rsquo;re going to locally filter all <em>Domain Name</em> queries through a selection of blacklists with <a href="https://f-droid.org/en/packages/org.jak_linux.dns66/">DNS66</a> which can be installed from the <a href="https://f-droid.org/en/">F-Droid Store</a>, and finally set the <a href="https://www.globalcyberalliance.org/initiatives/quad9.html">Quad9</a> DNS servers as default instead of the one provided by your ISP.<!-- raw HTML omitted -->
+This will be done transparently with a local VPN, and will apply to all outbound connections (so even applications that run in the background).</p>
+<p>For those not familiar with Quad9, here&rsquo;s a quick recap:</p>
+<p>Quad9 (<strong>9.9.9.9</strong>) works like any other public DNS server, except that it will <strong>block</strong> sites that are identified via threat feeds aggregated daily. (<a href="https://arstechnica.com/information-technology/2017/11/new-quad9-dns-service-blocks-malicious-domains-for-everyone/">source</a>)</p>
+<h2 id="demo">Demo</h2>
+<p><em>You&rsquo;ll find below two examples where the DNS hardening can be seen actively protecting the endpoint.</em></p>
+<blockquote>
+<p>Pastebin Android app</p>
+</blockquote>
+<p>Pastebin Android application, that comes riddled with in-line advertisement. Bam 🔥 <img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/pastebin_all.jpg?raw=true" alt="pastebin"></p>
+<blockquote>
+<p>The Pirate Bay website</p>
+</blockquote>
+<p><a href="thepiratebay.org">The Pirate bay</a> unblocked from ISP, while also blocking your typical pirate page adverts with redirects and drive-by downloads. Neat 🔥 🔥 <img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/tpb_all.jpg?raw=true" alt="tpb"></p>
+<h2 id="installing-the-f-droid-store--dns66">Installing the F-Droid Store &amp; DNS66</h2>
+<p><em>This will require allowing third-party apps (non Google Play applications)</em></p>
+<blockquote>
+<p>The DNS66 app <a href="https://f-droid.org/en/packages/org.jak_linux.dns66/">presentation page</a> contains all required links, if want to take the shortcuts. 🚀</p>
+</blockquote>
+<ol>
+<li>
+<p>Steps for the F-Droid Store</p>
+</li>
+<li>
+<p>Allow <code>Unknown sources</code> from device settings</p>
+</li>
+</ol>
+<pre><code>1. Go to Settings &gt; Security &gt; &quot;Device Administration&quot; section
+2. Swipe to `Allow` on `Unknown sources` settings
+</code></pre>
+<ol start="2">
+<li>Install F-Droid</li>
+</ol>
+<pre><code>1. [Click here](https://f-droid.org/FDroid.apk) to download the APK
+2. Install the APK by opening the file
+3. Open the F-Droid store
+4. _Give it a minute so it refreshes the repositories_ ⏳
+</code></pre>
+<ol start="2">
+<li>
+<p>Install <a href="https://f-droid.org/en/packages/org.jak_linux.dns66/">DNS66</a></p>
+</li>
+<li>
+<p>Wait for F-Droid to update</p>
+</li>
+<li>
+<p>Search for <code>DNS66</code> or go to the <a href="https://f-droid.org/en/packages/org.jak_linux.dns66/">DNS66</a> app presentation page and install</p>
+</li>
+</ol>
+<h2 id="harden-device-with-dns66--quad9">Harden device with DNS66 &amp; Quad9</h2>
+<p>Once inside the DNS66 application, <em>hit the refresh button</em> ⏳.</p>
+<p>This will update all blacklists that come out of the box, mixing advertisement and malicious hosts blacklists.</p>
+<p>Now switch to the &ldquo;DNS&rdquo; tab and add Quad9 <code>9.9.9.9</code> as your desired DNS server using the &ldquo;+&rdquo; button. Save, disable application defaults, enable Quad9.</p>
+<p><em>The picture below shows the configuration edit page, and what it should look like once activated.</em> <img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/quad9_all.jpg?raw=true" alt="quad9"></p>
+<blockquote>
+<p>You&rsquo;re done! 👏</p>
+</blockquote>
+<hr>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>You can choose to <em>Resume on system start-up</em>. Since it does not create a remote connection (the VPN is local), the battery consumption is minimal. I&rsquo;d recommend it.</li>
+<li>Same with <em>Watch connection</em>, has made it even more transparent in my usage.</li>
+<li><em>IPV6 Support</em> depends on your configuration. Turn it off if your phone seems to be disconnected.</li>
+<li>Sometimes, when switching between Wifi and Data, the connection can seem slower or even hanging. If thats the case, simply taping the DNS66 infobar so it can refresh solves the issue.</li>
+</ul>
+<hr>
+<h2 id="technical-details">Technical details</h2>
+<p><em>for those who want to read a bit more about what&rsquo;s happening</em></p>
+<p>Android phones are easy targets for anyone with a little Google-Fu. The <a href="https://github.com/AaronVigal/Metasploit-Android">number</a> <a href="https://github.com/giovannicolonna/msfvenom-backdoor-android">of</a> <a href="https://github.com/AhMyth/AhMyth-Android-RAT">tools</a> <a href="https://github.com/Screetsec/TheFatRat">to</a> <a href="https://github.com/DoctorsHacking/Argus-RAT">generate</a> Android payloads on github alone is getting ridiculous (btw, each word is a link to a <em>different</em> tool).</p>
+<p>This is security by applying a DNS in-depth defense mechanism. It will block requests made from your phone to advertisement servers, but also the most recent malware campaign indicators provided by some big players, as well as multiple research communities.<!-- raw HTML omitted -->
+This works for vanilla Android too, as it does not require root permissions to use a VPN.</p>
+<p>A malicious campaign can easily hide its code in legitimate APKs, and go undetected by Android anti-virus apps for months before getting caught. The infection might be dodging the phone&rsquo;s local protection software, but the malware has to <em>call home</em> at some point (make requests to the Command &amp; Control Server), and thats where we&rsquo;ll block it.</p>
+<blockquote>
+<p>If the malware can&rsquo;t call home, it can&rsquo;t ex-filtrate data or receive new instructions.</p>
+</blockquote>
+<p>(well, <em>if there&rsquo;s a will there&rsquo;s a way</em> but egress just got a whole lot harder) And at some point the AV will have signatures for it.</p>
+<p>We&rsquo;re using a mix of several blacklists that come from know researcher feeds, and Quad9 indicators.</p>
+<p><a href="https://f-droid.org/en/packages/org.jak_linux.dns66/"><code>DNS66</code></a> will create a local VPN connection, thus forcing all outbound DNS requests through your desired servers.<!-- raw HTML omitted -->
+When active, any form of Internet connection is tunneled by the underlying network stack. This is often used to access websites that are normally blocked by ISPs.<!-- raw HTML omitted -->
+This is a rather nice side effect! To be honest its quite a clever trick to enforce new DNS options WITHOUT having to root your phone.</p>
+<p>Once <a href="https://f-droid.org/en/packages/org.jak_linux.dns66/"><code>DNS66</code></a> is installed, we&rsquo;ll set it to query the Quad9 DNS servers at 9.9.9.9.</p>
+<blockquote>
+<p>Quad9 Technical workflow <img src="https://www.globalcyberalliance.org/wp-content/uploads/quad9-graphic.png" alt="q9illustration"></p>
+</blockquote>
+<p>Your phone will now always check a local, constantly updated blacklist, before querying a collaborative security DNS server that also blocks adverts and circumvents censorship. Yey 😎</p>
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

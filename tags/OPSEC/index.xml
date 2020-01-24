@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OPSEC on khast3x blog</title>
+    <link>https://khast3x.club/tags/OPSEC/</link>
+    <description>Recent content in OPSEC on khast3x blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://khast3x.club/tags/OPSEC/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hardening Android : Browsers</title>
+      <link>https://khast3x.club/posts/2018-02-07-Android-browsers/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2018-02-07-Android-browsers/</guid>
+      <description>Hardening Android with Privacy-Focused Browsers  This is a quick post about my experience with browsers on Android. I&amp;rsquo;ll be showing off how I&amp;rsquo;ve configured my phone for daily usage. You might be gaining performance too!
+ I consider two major use-cases when it comes to opening links on my phone.
+  Opening links from various apps without much prior knowledge of content.
+I want this to be as sandboxed as possible.</description>
+    </item>
+    
+    <item>
+      <title>Hardening Android : DNS</title>
+      <link>https://khast3x.club/posts/2018-02-05-Android-Quad9/</link>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2018-02-05-Android-Quad9/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#hardening-android-with-dns66--quad9&#34;&gt;Hardening Android with DNS66 &amp;amp; Quad9&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#demo&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#installing-the-f-droid-store--dns66&#34;&gt;Installing the F-Droid Store &amp;amp; DNS66&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#harden-device-with-dns66--quad9&#34;&gt;Harden device with DNS66 &amp;amp; Quad9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#notes&#34;&gt;Notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#technical-details&#34;&gt;Technical details&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;hardening-android-with-dns66--quad9&#34;&gt;Hardening Android with DNS66 &amp;amp; Quad9&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;_I&amp;rsquo;ll be illustrating a simple and very effective way to harden your Android phone &lt;strong&gt;without&lt;/strong&gt; needing root. Demo below._&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>h8mail v2.3 release :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Abstract h8mail 2.3 has been released. In this blog post, we&amp;rsquo;ll be having an overview of all the new features.
+Click here to read previous h8mail v2 release post.
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="h8mail v2.3 release"/>
+<meta name="twitter:description" content="Overview of h8mail v2.3 features"/>
+
+
+
+<meta property="og:title" content="h8mail v2.3 release" />
+<meta property="og:description" content="Overview of h8mail v2.3 features" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/" />
+<meta property="article:published_time" content="2019-08-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-14T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/">h8mail v2.3 release</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-08-14
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/haveibeenpwned/">haveibeenpwned</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/leak/">leak</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/username/">username</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <h1 id="abstract">Abstract</h1>
+<p>h8mail 2.3 has been released. In this blog post, we&rsquo;ll be having an overview of all the new features.<br>
+<a href="https://khast3x.club/h8mail/2019/05/26/h8mail-release/">Click here</a> to read previous h8mail v2 release post.</p>
+<h1 id="table-of-content">Table of Content</h1>
+<ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#table-of-content">Table of Content</a></li>
+<li><a href="#updating">Updating</a></li>
+<li><a href="#tldr">TL;DR</a></li>
+<li><a href="#h8mail-23-features">h8mail 2.3 features</a>
+- <a href="#search-operators-summary">Search Operators Summary</a>
+<ul>
+<li><a href="#generate-a-blank-configuration-file">Generate a blank configuration file</a></li>
+<li><a href="#haveibeenpwned-v3">HaveIBeenPwned v3</a></li>
+<li><a href="#debug-output">Debug output</a></li>
+<li><a href="#new-search-queries">New search queries</a></li>
+<li><a href="#power-chasing">Power-chasing</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="updating">Updating</h1>
+<ul>
+<li>If you installed h8mail using <code>pip</code>, simply use</li>
+</ul>
+<pre><code>$ pip3 install --upgrade h8mail
+</code></pre><p>Use <code>--user</code> at the end if getting a permission message from pip</p>
+<ul>
+<li>If you installed h8mail using the <code>setup.py</code> file, remove h8mail with</li>
+</ul>
+<pre><code>$ pip3 uninstall h8mail
+</code></pre><p>And re-install it by cloning the repository and running the following inside the folder</p>
+<pre><code>$ python3 setup.py install
+</code></pre><p>Add <code>--user</code> if getting a permission message.</p>
+<hr>
+<h1 id="tldr">TL;DR</h1>
+<ul>
+<li>Added HIBP v3</li>
+<li>Switch to emailrep.io as default for breach checks, since haveibeenpwned has discontinued their free tier API.</li>
+<li>Implemented username &amp; password &amp; ip search for all API providers</li>
+<li>Implemented hash, domain search</li>
+<li>Check if running latest version</li>
+<li>Fix breachcomp separator issues</li>
+<li>Generate template config file in CWD (<code>gen-config</code>)</li>
+<li>Added more related emails from API services</li>
+<li>Rewrote chasing (recursive)</li>
+<li>Added &lsquo;power-chasing&rsquo; for additional related emails targeting (related emails found using WeLeakInfo, Snusbase or Leak-Lookup)</li>
+<li>Added &ndash;debug output</li>
+</ul>
+<hr>
+<h1 id="h8mail-23-features">h8mail 2.3 features</h1>
+<h4 id="search-operators-summary">Search Operators Summary</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">username</th>
+<th align="center">domain</th>
+<th align="center">hash</th>
+<th align="center">password</th>
+<th align="center">ip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WeLeakInfo</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+<tr>
+<td>LeakLookup</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+<tr>
+<td>Snusbase</td>
+<td align="center">yes</td>
+<td align="center"></td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generate-a-blank-configuration-file">Generate a blank configuration file</h2>
+<p>You can now generate a blank configuration file to add your API keys. It will have all available fields commented using <code>;</code>.<br>
+Simply use <code>--gen-config</code> or <code>-g</code>. It will generate a configuration file called <code>h8mail_config.ini</code> in the current working directory &amp; exit.</p>
+<p>Be careful as it will overwrite existing <code>h8mail_config.ini</code> file.
+To remove a comment, remove the <code>;</code> at the beginning of the file.</p>
+<h2 id="haveibeenpwned-v3">HaveIBeenPwned v3</h2>
+<p>Troy Hunt <a href="https://www.troyhunt.com/authentication-and-the-have-i-been-pwned-api/">has announced</a> that starting on the 18/08/2019, HIBP will only support authenticated requests.</p>
+<p>You can purchase your API key <a href="https://haveibeenpwned.com/API/Key?ref=h8mail">here</a>.</p>
+<p>Once you have your API key, add it to the <code>hibp</code> line, and uncomment the line.</p>
+<p>Pass the configuration file using <code>-c h8mail_config.ini</code></p>
+<p>h8mail will be relying on emailrep.io&rsquo;s free API to identify breaches for emails.</p>
+<h2 id="debug-output">Debug output</h2>
+<p>To dump incoming and outgoing requests, simply add <code>--debug</code> to your command.</p>
+<h2 id="new-search-queries">New search queries</h2>
+<p>This was probably the most requested feature since h8mail v2 release. View the table to see which provider supports what.<br>
+You can now use the following keywords with <code>-q</code> to tell h8mail what to query:</p>
+<ul>
+<li><code>username</code></li>
+<li><code>password</code></li>
+<li><code>ip</code></li>
+<li><code>hash</code></li>
+<li><code>domain</code></li>
+</ul>
+<p>Typically:</p>
+<ul>
+<li>to search for all breaches for the username bob.smith:</li>
+</ul>
+<pre><code>$ h8mail -t bob.smith -q username -c h8mail_config.ini
+</code></pre><ul>
+<li>to search for all breaches for the ip 80.90.100.110, output to CSV:</li>
+</ul>
+<pre><code>$ h8mail -t 80.90.100.110 -q ip -c h8mail_config.ini -o results.csv
+</code></pre><p><em>(links contain refs)</em><br>
+You can purchase API keys for:</p>
+<ul>
+<li><a href="https://snusbase.com/?ref=h8mail">Snusbase</a></li>
+<li><a href="https://weleakinfo.com/?ref=h8mail">WeLeakInfo</a></li>
+<li><a href="https://leak-lookup.com/?ref=h8mail">Leak-Lookup</a></li>
+</ul>
+<h2 id="power-chasing">Power-chasing</h2>
+<p>Since h8mail now supports broader queries (such as <code>domain</code>) you can use breach services to add related emails to target, instead of relying on <code>hunter.io</code> only.</p>
+<p>This is activated by adding <code>--power-chase</code> to a chasing h8mail command:</p>
+<pre><code>$ h8mail -t evilcorp.com -q domain -c h8mail_config.ini -ch 2 --power-chase
+</code></pre><p><img src="https://camo.githubusercontent.com/2f7f9ce9d47bc1a1256a1f8f06d617564a7eedf0/68747470733a2f2f692e706f7374696d672e63632f445a436a304252372f757365726e616d652e676966" alt="powerchase"></p>
+<hr>
+<p>Hope y&rsquo;all have fun and do good deeds.</p>
+<p>Cheers!</p>
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

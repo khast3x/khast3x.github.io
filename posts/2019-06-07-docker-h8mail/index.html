@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Password Breaches with Docker and h8mail :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="In this tutorial, we&amp;rsquo;re going to move downloading and searching operations to the cloud to speed things up.
+We&amp;rsquo;ll achieve this using a torrent downloader container, the h8mail container and a shared volume. For demonstration purposes, we&amp;rsquo;ll be studying the Breach Compilation.
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2019-06-07-docker-h8mail/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Password Breaches with Docker and h8mail"/>
+<meta name="twitter:description" content="Pushing all the heavy lifting of breach studies to the cloud"/>
+
+
+
+<meta property="og:title" content="Password Breaches with Docker and h8mail" />
+<meta property="og:description" content="Pushing all the heavy lifting of breach studies to the cloud" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2019-06-07-docker-h8mail/" />
+<meta property="article:published_time" content="2019-06-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-07T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2019-06-07-docker-h8mail/">Password Breaches with Docker and h8mail</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-06-07
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/haveibeenpwned/">haveibeenpwned</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/leak/">leak</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloud/">cloud</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <p>In this tutorial, we&rsquo;re going to move downloading and searching operations to the cloud to speed things up.<br>
+We&rsquo;ll achieve this using a <strong>torrent downloader container</strong>, the <strong>h8mail container</strong> and <strong>a shared volume</strong>. For demonstration purposes, we&rsquo;ll be studying the Breach Compilation.</p>
+<p><img src="https://i.postimg.cc/CxK85jf7/facebook-cover-photo-2dockertorrent.jpg" alt=""></p>
+<ul>
+<li><a href="#Getting-started">Getting started</a></li>
+<li><a href="#Downloading-the-breach">Downloading the breach</a>
+<ul>
+<li><a href="#Volume-sharing">Volume sharing</a></li>
+</ul>
+</li>
+<li><a href="#Searching-the-breach">Searching the breach</a></li>
+<li><a href="#Downloading-files-instead-of-torrents">Downloading files instead of torrents</a></li>
+<li><a href="#Closing-remarks">Closing remarks</a></li>
+</ul>
+<h1 id="getting-started">Getting started</h1>
+<p>You&rsquo;ll first need a working Docker environment on a remote server. This can be achieved by:</p>
+<ul>
+<li>choosing to boot into a ready-made Docker &ldquo;image&rdquo; with your cloud service provider</li>
+<li>installing Docker on a vanilla Ubuntu server. <br>
+Here is the documentation for <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">installing docker on Ubuntu</a>.<br>
+Here is a detailed community tutorial for getting started with <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04">Docker on DigitalOcean</a>.</li>
+</ul>
+<p><em>Make sure the server you&rsquo;re renting has enough storage space for our downloads. In this tutorial ~60GB should be okay.</em></p>
+<p>To test that everything is working correctly, SSH into your new instance and run this docker &ldquo;hello-world&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -it hello-world
+</code></pre></div><p>And get the following output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Unable to find image <span style="color:#e6db74">&#39;hello-world:latest&#39;</span> locally
+latest: Pulling from library/hello-world
+c1eda109e4da: Pull complete 
+Digest: sha256:0e11c388b664df8a27a901dce21eb89f11d8292f7fca1b3e3c4321bf7897bffe
+Status: Downloaded newer image <span style="color:#66d9ef">for</span> hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+<span style="color:#f92672">[</span>...<span style="color:#f92672">]</span>
+</code></pre></div><p>We&rsquo;re set for the next steps.</p>
+<hr>
+<h1 id="downloading-the-breach">Downloading the breach</h1>
+<p>We&rsquo;re first going to launch our torrent container with basic password protection, a volume and a port.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d --name ct -p 3000:3000 -e AUTH<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;h8admin:h8p4ss&#39;</span> -v dl:/downloads jpillora/cloud-torrent
+</code></pre></div><ul>
+<li>In case some of you are discovering Docker</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d</td>
+<td>daemon mode</td>
+</tr>
+<tr>
+<td>&ndash;name ct</td>
+<td>container name is <code>ct</code></td>
+</tr>
+<tr>
+<td>-p 3000:3000</td>
+<td>map container port 3000 with host port 3000</td>
+</tr>
+<tr>
+<td>-e AUTH=&quot;admin:pass&rdquo;</td>
+<td>this is where you set authentication details</td>
+</tr>
+<tr>
+<td>-v dl:/downloads</td>
+<td>we&rsquo;re mapping a volume called <code>dl</code> to <code>/downloads</code> in the container</td>
+</tr>
+</tbody>
+</table>
+<p>Once the command is executed, you can check your running containers with <code>docker ps</code>.</p>
+<p>Head over to your browser and navigate to <code>http://your-docker-ip:3000</code>, authenticate and paste the <a href="https://gist.github.com/scottlinux/9a3b11257ac575e4f71de811322ce6b3#gistcomment-2298792">BreachCompilation magnet link</a>.</p>
+<p>If unsure of your IP, you can run <code>curl icanhazip.com</code>.</p>
+<p><em>Tip: Since the torrent has a huge directory tree, I suggest you shrink the web interface&rsquo;s torrent directory list to avoid loading them in your browser window</em></p>
+<p><img src="https://i.postimg.cc/PNnJ8QJB/screely-1559870254049.png" alt="dl"></p>
+<h2 id="volume-sharing">Volume sharing</h2>
+<p>We are using a shared volume to allow h8mail to parse the downloaded torrent. You can <a href="https://www.digitalocean.com/community/tutorials/how-to-share-data-between-docker-containers">read more</a> about it, basically we create a volume called <code>dl</code> when running the <code>-v</code> argument for the torrent container.<br>
+You can view more information about this volume by typing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker volume inspect dl 
+</code></pre></div><p>Which you give you something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
+    {
+        <span style="color:#f92672">&#34;CreatedAt&#34;</span>: <span style="color:#e6db74">&#34;2019-06-07T42:02:30Z&#34;</span>,
+        <span style="color:#f92672">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
+        <span style="color:#f92672">&#34;Labels&#34;</span>: <span style="color:#66d9ef">null</span>,
+        <span style="color:#f92672">&#34;Mountpoint&#34;</span>: <span style="color:#e6db74">&#34;/var/lib/docker/volumes/dl/_data&#34;</span>,
+        <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;dl&#34;</span>,
+        <span style="color:#f92672">&#34;Options&#34;</span>: <span style="color:#66d9ef">null</span>,
+        <span style="color:#f92672">&#34;Scope&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>
+    }
+]
+</code></pre></div><p>You&rsquo;ll notice the &ldquo;Mountpoint&rdquo; path. You can <code>cd</code> to that directory to interact directly with your data.</p>
+<p>For the purpose of demonstration we&rsquo;ll be using the volume through Docker&rsquo;s abstraction layer, but you know where to find your files on the Docker host.</p>
+<hr>
+<h1 id="searching-the-breach">Searching the breach</h1>
+<p>Once the BreachCompilation is downloaded, you can stop the torrent container:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker rm -f ct
+</code></pre></div><p>At this point, the BreachCompilation torrent lives in the &ldquo;dl&rdquo; volume we created &amp; mounted to the torrent download path.</p>
+<p>You can check it out by going to the previously mentioned Mountpoint path:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@docker-host:$ docker volume inspect dl
+<span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;CreatedAt&#34;</span>: <span style="color:#e6db74">&#34;2019-06-07T01:02:30Z&#34;</span>,
+        <span style="color:#e6db74">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
+        <span style="color:#e6db74">&#34;Labels&#34;</span>: null,
+        <span style="color:#e6db74">&#34;Mountpoint&#34;</span>: <span style="color:#e6db74">&#34;/var/lib/docker/volumes/dl/_data&#34;</span>,
+        <span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;dl&#34;</span>,
+        <span style="color:#e6db74">&#34;Options&#34;</span>: null,
+        <span style="color:#e6db74">&#34;Scope&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">]</span>
+root@docker-host:$ cd /var/lib/docker/volumes/dl/_data
+root@docker-host:$ ls -la
+total <span style="color:#ae81ff">644</span>
+drwxr-xr-x <span style="color:#ae81ff">3</span> root root    <span style="color:#ae81ff">4096</span> Jun  <span style="color:#ae81ff">7</span> 01:02 .
+drwxr-xr-x <span style="color:#ae81ff">3</span> root root    <span style="color:#ae81ff">4096</span> Jun  <span style="color:#ae81ff">7</span> 01:00 ..
+drwxr-x--- <span style="color:#ae81ff">4</span> root root    <span style="color:#ae81ff">4096</span> Jun  <span style="color:#ae81ff">7</span> 01:27 BreachCompilation
+
+</code></pre></div><p>We&rsquo;re going to run the auto-built h8mail docker container, mount the dl volume with the BreachCompilation, and seamlessly search for our targets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -it -v dl:/dl kh4st3x00/h8mail -t john.smith@gmail.com -bc /dl/BreachCompilation/ -sk
+</code></pre></div><p>If all goes well, you&rsquo;ll be searching through the BreachCompilation torrent like a real cloud ninja</p>
+<p><strong>Done.</strong></p>
+<p><img src="https://i.postimg.cc/SRjDbJpN/h8mailtorrent1.gif" alt="h8mail-docker-torrent2.gif">
+<em>Searching the BreachCompilation using a shared docker volume with the torrent-downloader container</em></p>
+<hr>
+<h1 id="downloading-files-instead-of-torrents">Downloading files instead of torrents</h1>
+<p>This also works with generic files.</p>
+<p>You can use <a href="https://hub.docker.com/r/jlesage/jdownloader-2/#quick-start">JDownloader</a> as a Docker image, and share its volume with h8mail.</p>
+<p><img src="https://i.postimg.cc/d075wfdF/DM6-NGm-OU8-AANf-Zu.png" alt=""></p>
+<p>More advanced but worth looking into, you can also use <a href="https://github.com/abcminiuser/docker-aria2-with-webui">aria2</a> with a Web UI, and share the download volume with h8mail.</p>
+<p><img src="https://raw.githubusercontent.com/mayswind/AriaNg-WebSite/master/screenshots/desktop.png" alt=""></p>
+<hr>
+<h1 id="closing-remarks">Closing remarks</h1>
+<p>Using the cloud to move around those large datasets is increasingly necessary.</p>
+<p>You can find free hosting tiers <a href="https://github.com/ripienaar/free-for-dev#major-cloud-providers">with most cloud providers</a>.<br>
+Be sure to get comfortable with cloud services, as these skills will definitely boost your scope of actions.</p>
+<p>If you&rsquo;re looking for more offensive deployments using Docker, be sure to check my other project: <a href="https://github.com/khast3x/Redcloud"><strong>Redcloud</strong></a>.<br>
+<a href="https://github.com/khast3x/Redcloud"><strong>It contains more than 30 offensive templates to deploy, and a comfy UI to manage them!</strong></a></p>
+<p>Finally, this is meant to help infosec students and professionals educate themselves and their peers on credential leaks.</p>
+<p>Thank you for reading through, I hope you enjoyed it.<br>
+If thats the case, be sure to support the project by sharing this page!</p>
+<hr>
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

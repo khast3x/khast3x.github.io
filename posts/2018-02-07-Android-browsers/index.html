@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Hardening Android : Browsers :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Hardening Android with Privacy-Focused Browsers  This is a quick post about my experience with browsers on Android. I&amp;rsquo;ll be showing off how I&amp;rsquo;ve configured my phone for daily usage. You might be gaining performance too!
+ I consider two major use-cases when it comes to opening links on my phone.
+  Opening links from various apps without much prior knowledge of content.
+I want this to be as sandboxed as possible."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2018-02-07-Android-browsers/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hardening Android : Browsers"/>
+<meta name="twitter:description" content="Privacy oriented browser workflow for Android"/>
+
+
+
+<meta property="og:title" content="Hardening Android : Browsers" />
+<meta property="og:description" content="Privacy oriented browser workflow for Android" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2018-02-07-Android-browsers/" />
+<meta property="article:published_time" content="2018-02-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-02-07T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2018-02-07-Android-browsers/">Hardening Android : Browsers</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2018-02-07
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/android/">android</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OPSEC/">OPSEC</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/privacy/">privacy</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/applications/">applications</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/malware/">malware</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/Firefox/">Firefox</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/Brave/">Brave</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <h2 id="hardening-android-with-privacy-focused-browsers">Hardening Android with Privacy-Focused Browsers</h2>
+<hr>
+<p><em>This is a quick post about my experience with browsers on Android. I&rsquo;ll be showing off how I&rsquo;ve configured my phone for daily usage. You might be gaining performance too!</em></p>
+<hr>
+<p>I consider two major use-cases when it comes to opening links on my phone.</p>
+<ol>
+<li>
+<p><strong>Opening links from various apps without much prior knowledge of content.</strong><br>
+I want this to be as <a href="https://en.wikipedia.org/wiki/Sandbox_(computer_security)">sandboxed</a> as possible.<br>
+To be explicit: I don&rsquo;t want scripts to be able to read my cookies, so no pre-loaded cookies.<br>
+No pre-loaded tabs either.<br>
+Ideally, the browser called upon in this use-case must be disposable once content is seen. It is then removed from memory completely ♻️</p>
+</li>
+<li>
+<p><strong>Opening pages that require persistent data.</strong><br>
+These include logged in accounts, pre-set forms, preferences, bookmarks, keeping tabs open. Basically, anything not a memesite/article/video/clickbait website, which is a big part of the content that y&rsquo;all browse.</p>
+</li>
+</ol>
+<p>Here is what I&rsquo;m currently going for. It&rsquo;s likely not the meanest configuration, but I find that its a very good compromise between <strong>security and usability</strong>.</p>
+<hr>
+<p>🔴  Keep in mind that I&rsquo;m also running the &ldquo;Hardened DNS&rdquo; configuration <a href="https://khast3x.club/android/tips/2018/02/05/Android-Quad9/">I wrote about earlier</a>.<br>
+I&rsquo;ve tried this setup against <a href="https://en.wikipedia.org/wiki/Operations_security">OPSEC</a> JavaScript &amp; DNS  fingerprinting tools, and I have to say its not bad at all 😎 .</p>
+<hr>
+<blockquote>
+<p><a href="https://play.google.com/store/apps/details?id=org.mozilla.focus"><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/fffocus.png?raw=true" alt="fffocus"></a>
+Day to day browsing</p>
+</blockquote>
+<p>I&rsquo;ve downloaded <a href="https://play.google.com/store/apps/details?id=org.mozilla.focus">Firefox Focus</a>, and explicitly set it up as the <strong>default browser</strong>.<br>
+You can read about the the specifics on the Play Store page, but it&rsquo;s basically the ideal solution to my sandboxed approach.<br>
+💡  If there is a link that you want to open outside of the sandboxed Firefox app, just <em>share</em> it to your persistent browser.<br>
+When closing Firefox, instead of leaving another open tab in the background when pressing back, it will remove all traces of the opened page from memory.<br>
+Neat 🔥</p>
+<p>I&rsquo;ve gone a step further and blocked all types of trackers (ad, analytics, social, &lsquo;other content&rsquo;). YMMV<br>
+There is a <em>Send usage data</em> option, but it&rsquo;s turned off by default if I recall correctly.</p>
+<blockquote>
+<p><a href="https://play.google.com/store/apps/details?id=com.brave.browser"><img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/brave.png?raw=true" alt="bravebrowser"></a>
+When persistent data is required. Accounts, tabs etc&hellip;</p>
+</blockquote>
+<p>For this I&rsquo;ve tried several popular recommendations (hello /g/) and settled on using <a href="https://play.google.com/store/apps/details?id=com.brave.browser">Brave browser</a>.<br>
+Its great for keeping browsing clean without maintenance, while easily blocking or modifying it&rsquo;s behavior according to your paranoia level. Some basics settings are worth changing like the default search engine (I recommend <a href="https://www.startpage.com/">Startpage</a>).<br>
+Tip: you&rsquo;ll have to uncheck <em>Send metrics</em> in the Privacy options.</p>
+<hr>
+<h3 id="privacy-settings-comparison">Privacy settings comparison</h3>
+<p>I though it would be interesting to include this for the reader&rsquo;s pleasure.
+<img src="https://github.com/khast3x/khast3x.github.io/blob/master/assets/demo/browsers_privacy_settings.jpg?raw=true" alt="browsers_privacy_settings"></p>
+<p>A note on performance:<br>
+Not keeping the daily <em>junk</em> accumulated through the days in the form of tabs will have a nice impact on the overall device usage.</p>
+<blockquote>
+<p>Enjoy 👍</p>
+</blockquote>
+<hr>
+<p>Additional considerations on defaults:<br>
+<em>When clicking on links, some applications (such as Instant Messaging apps) will sometimes use the Chrome browser as an in-line browser if no others are set as  default.<br>
+So it&rsquo;s basically opening the Chrome browser inside an application. The browser with all the other tabs and logged in accounts. And saved passwords. We don&rsquo;t want that unless explicitly&hellip; wanted</em></p>
+<p><a href="https://en.wikipedia.org/w/index.php?curid=54004571">Brave browser picture: By Source (WP:NFCC#4), Fair use</a></p>
+
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

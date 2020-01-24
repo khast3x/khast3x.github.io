@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Getting started with h8mail v2 :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="🌈 h8mail v2 has just been released New features have been added to better hunt down passwords.
+In the following write-up, we&amp;rsquo;ll be covering h8mail&amp;rsquo;s options with examples and use-cases. At the end of this page, you&amp;rsquo;ll hopefully be bringing passwords back like a necromancer 💀
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2019-05-26-h8mail-release/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Getting started with h8mail v2"/>
+<meta name="twitter:description" content="Or how to become a password necromancer with h8mail 💀"/>
+
+
+
+<meta property="og:title" content="Getting started with h8mail v2" />
+<meta property="og:description" content="Or how to become a password necromancer with h8mail 💀" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2019-05-26-h8mail-release/" />
+<meta property="article:published_time" content="2019-05-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-05-26T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/2019-05-26-h8mail-release/">Getting started with h8mail v2</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-05-26
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/haveibeenpwned/">haveibeenpwned</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/leak/">leak</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <h1 id="-h8mail-v2-has-just-been-released">🌈 <strong>h8mail v2 has just been released</strong></h1>
+<p>New features have been added to better hunt down passwords.</p>
+<p>In the following write-up, we&rsquo;ll be covering h8mail&rsquo;s options with examples and use-cases. At the end of this page, you&rsquo;ll hopefully be bringing passwords back like a necromancer 💀</p>
+<p><img src="https://i.postimg.cc/rw7mcgM1/cover-writeup.png" alt="h8"></p>
+<h1 id="table-of-content">Table of Content</h1>
+<ul>
+<li><strong><a href="#installing">Installing</a></strong>
+<ul>
+<li><strong><a href="#python">Python</a></strong></li>
+<li><strong><a href="#using-pip-to-install-h8mail">Using <code>pip</code> to install h8mail</a></strong>
+<ul>
+<li><strong><a href="#troubleshooting-tips">Troubleshooting tips</a></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><a href="#local-searching">Local Searching</a></strong>
+<ul>
+<li><strong><a href="#working-with-compressed-or-cleartext-breaches">Working with compressed or cleartext breaches</a></strong></li>
+<li><strong><a href="#loose-search-and-inputs"><em>Loose</em> search and inputs</a></strong></li>
+<li><strong><a href="#single-file-mode">Single file mode</a></strong></li>
+<li><strong><a href="#breach-compilation">Breach Compilation</a></strong></li>
+</ul>
+</li>
+<li><strong><a href="#chasing">Chasing</a></strong></li>
+<li><strong><a href="#finding-and-downloading-breaches">Finding and downloading breaches</a></strong></li>
+<li><strong><a href="#coming-up-next">Coming up next</a></strong></li>
+</ul>
+<p>h8mail&rsquo;s homepage can be found on <a href="https://github.com/khast3x/h8mail">github</a>.<br>
+As with all good modern stories, we have to start with the software&rsquo;s installation procedure.<br>
+If thats done already, <strong><a href="#local-searching">you can jump to Local Searching</a></strong>.</p>
+<hr>
+<h1 id="installing">Installing</h1>
+<p>h8mail is now distributed using <code>pip</code>, which is a Python package manager. This article won&rsquo;t go into details on how to configure python for your environment. To start you should at least:</p>
+<ul>
+<li>Have Python3.6+ installed</li>
+<li>Be able to call python in your terminal</li>
+</ul>
+<h2 id="python">Python</h2>
+<p>Having both Python 2 and 3 installed is common. You can check the default Python version by running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python --version
+</code></pre></div><p>If it says <code>Python 2.x</code>, and have installed Python 3.6+, chances are you can just run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 --version
+</code></pre></div><p>This is typically the case for OSX, Kali Linux, and older Linux distributions.
+In the following instructions, remember to replace <code>python</code> with <code>python3</code> if that&rsquo;s your case.</p>
+<h2 id="using-pip-to-install-h8mail">Using <code>pip</code> to install h8mail</h2>
+<p>To install h8mail using <code>pip</code>, simply use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pip3 install h8mail
+</code></pre></div><p>If you have not set your venvs, you might get a permission error saying <code>Consider using the --user option or check the permissions</code>.<br>
+Simply add <code>--user</code> like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pip3 install --user h8mail
+</code></pre></div><h3 id="troubleshooting-tips">Troubleshooting Tips</h3>
+<p>Here are some tips if you run into trouble.<br>
+Once your <code>python</code> command is working, you need to have <code>pip</code> installed. It probably shipped with your Python installation.<br>
+To check, simply type:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pip3 -h
+</code></pre></div><p>If that&rsquo;s not the case, you can use an integrated Python module to install <code>pip</code> like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -m ensurepip
+$ pip3 -h
+</code></pre></div><p>This should take care of fetching, installing and linking <code>pip</code>.<br>
+If installation was successful and still having issues invoking <code>pip</code>, you can try running it as a module:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -m pip -h
+</code></pre></div><p><img src="https://i.postimg.cc/Vs9vznN3/h8mail-install.gif" alt="h8mail-install"></p>
+<hr>
+<h1 id="local-searching">Local Searching</h1>
+<p>One of h8mail&rsquo;s new feature is the local search. You can use compressed <code>.gz</code> files or uncompressed <code>.txt</code> files.</p>
+<h3 id="working-with-compressed-or-cleartext-breaches">Working with compressed or cleartext breaches</h3>
+<p>Arguments can be passed loosely, such as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t targets.txt -gz ./Leaks/2019-*
+</code></pre></div><p>More complex:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t john@gmail.com -gz . ../Collection1/ ../Collection2/EU_* -lb /tmp/combolists/2019-* /tmp/dumps/leak.txt -o output.csv
+</code></pre></div><p>If you wish to keep you search local, you can use <code>-sk</code> or <code>--skip</code> to skip online checks.</p>
+<p>By default, h8mail will use multiprocessing, one &ldquo;worker&rdquo; for each file. This means h8mail will search multiple files at the same time. One &ldquo;worker&rdquo; will be spawned for each core your CPU has.</p>
+<p>The local search can be combined with other h8mail features, such as HIBP, API services or regrouped results.</p>
+<p><em>Illustrated local cleartext search:</em>
+<img src="https://i.postimg.cc/L4Q7Y0hf/h8mail-local-cleartext.gif" alt="txt"></p>
+<p><em>Illustrated local compressed search with Collection1:</em>
+<img src="https://i.imgur.com/o85iGND.gif" alt="gz"></p>
+<h3 id="loose-search-and-inputs"><em>Loose</em> search and inputs</h3>
+<p>Another one of h8mail&rsquo;s new feature is the ability to perform <em>loose</em> searching, which is basically bypassing the email pattern recognition.<br>
+By default, h8mail looks for email patterns. This means you can pass raw files as targets, h8mail will look for emails and automatically add them to targets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t admins-list-page.html -lb /tmp/combos.txt
+</code></pre></div><p>Since h8mail supports globing, you could even do something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t /crawled-html/*.html -gz ../Collection1/
+</code></pre></div><p>Next, we&rsquo;re going to introduce the <code>--loose</code> argument. APIs don&rsquo;t support this, so be sure to skip online checks with <code>-sk</code> or <code>--skip</code>. This can be useful when looking for a domain, or patterns of usernames inside local files.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail --loose --skip -t <span style="color:#e6db74">&#34;evilcorp.com&#34;</span> -gz ../Collection1/
+$ h8mail --loose --skip -t <span style="color:#e6db74">&#34;john.smith&#34;</span> <span style="color:#e6db74">&#34;jsmith&#34;</span> -gz ../Collection1/
+</code></pre></div><p>Or even recurring password:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail --loose --skip -t <span style="color:#e6db74">&#34;JSm1th99&#34;</span> -gz ../Collection1/
+</code></pre></div><p><em>Illustrated <code>loose</code> search:</em>
+<img src="https://i.postimg.cc/HspwmpT9/ezgif-3-eda2bfcfa2c3.gif" alt="loose"></p>
+<h3 id="single-file-mode">Single file mode</h3>
+<p>To avoid loosing performance, data is not passed between processes while performing a local search. This also means that h8mail will not output a precise lookup progress bar.<br>
+If you wish to disable multiprocessing to get a more verbose live lookup status, use the <code>-sf</code> or <code>--single-file</code> option, like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t targets.txt -lb /tmp/combolists/ -sf -sk
+</code></pre></div><h3 id="breach-compilation">Breach Compilation</h3>
+<p>This feature was already part of h8mail&rsquo;s first version, and has been reintegrated. h8mail uses the <code>query.sh</code> script that is included in the torrent, meaning this will <strong>only work on Linux &amp; OSX</strong> platforms. Windows users can still use the generic <code>-lb</code> on the data.</p>
+<p>h8mail was built using the Breach Compilation version referenced <a href="https://gist.github.com/scottlinux/9a3b11257ac575e4f71de811322ce6b3#gistcomment-2298792">here</a></p>
+<p>To use this option, simply point the <code>-bc</code> argument to the downloaded BreachCompilation folder.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t test@evilcorp.com -bc ./BreachedCompilation/ -sk
+</code></pre></div><hr>
+<h1 id="chasing">Chasing</h1>
+<p>Another one of h8mail&rsquo;s new feature is the ability to target related emails using hunter.io. This is referred as <em>chasing</em>.<br>
+You can use the chasing feature with a <a href="https://hunter.io/api">free hunter.io API key</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t admin@evilcorp.com -ch <span style="color:#ae81ff">10</span> -c config.ini
+</code></pre></div><p>The <code>-ch</code> or <code>--chase</code> option needs the number of email per target to <em>chase</em>, as well as the API key for hunter.io.</p>
+<p>You can chain usage of the <em>chasing</em> feature with APIs and local search, making it a very powerful feature when targeting an organization.</p>
+<p>I might add search depths in a future version (launch a new <em>chase</em> with found related emails).</p>
+<hr>
+<h1 id="finding-and-downloading-breaches">Finding and downloading breaches</h1>
+<p>Without giving away all the keys, I&rsquo;ll add a few tips for those getting started.<br>
+First, data breaches are <strong>big</strong>. You&rsquo;ll quickly want to learn how to use seedboxes and work remotely. Docker is great for this too.</p>
+<p>In regards to where to find them, you can get the BreachCompilation torrent referenced earlier. You can also look into specialized communities, such as raidforums, <a href="https://link-base.org">link-base.org</a>, or direct download them from <a href="https://databases.today/">databases.today</a>.<br>
+This should be plenty enough to get you started.</p>
+<hr>
+<h1 id="coming-up-next">Coming up next</h1>
+<p>In the next write-ups, we&rsquo;re going to look at using h8mail with API services, such as <a href="https://snusbase.com/">Snusbase</a> and <a href="https://leak-lookup.com/">Leak-lookup</a>.</p>
+<p>We&rsquo;ll also look at some additional features, such as <code>--hide</code> for demonstrations, combining h8mail with Docker to download torrents super fast, even maybe using <a href="https://github.com/Ekultek/WhatBreach">WhatBreach</a> with h8mail.</p>
+<p><a href="https://twitter.com/kh4st3x"><img src="https://i.postimg.cc/c1vyQ33j/button-follow-me-on-twitter-to-stay-updated.png" alt="button-follow-me-on-twitter-to-stay-updated.png"></a></p>
+<hr>
+<p>I think I&rsquo;ll close the write-up here.</p>
+<p>If you create content based on h8mail (blog, video..) feel free to let me know, I&rsquo;ll add it to the homepage if its relevant.</p>
+<p>Finally, be nice, use your powers to help others. And show support for your open-source developers :)<br>
+Thank you for reading!</p>
+<p><a href="https://github.com/khast3x/h8mail"><img src="https://i.postimg.cc/qqszqKBm/logo.png" alt="logo-transparent.png"></a></p>
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>
