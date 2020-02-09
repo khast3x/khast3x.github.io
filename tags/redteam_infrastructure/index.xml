@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redteam_infrastructure on khast3x blog</title>
+    <link>https://khast3x.club/tags/redteam_infrastructure/</link>
+    <description>Recent content in redteam_infrastructure on khast3x blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://khast3x.club/tags/redteam_infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Serving payloads with Metasploit and Traefik</title>
+      <link>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</guid>
+      <description>Since Redcloud, and generally getting more comfortable deploying Docker container as C2, I have been meaning to try out Traefik as an Apache/NGINX alternative for a C2 reverse-proxy.
+In this post, I&amp;rsquo;ll be demonstrating how to achieve this.
+What are we doing We&amp;rsquo;re going to use Traefik as a reverse proxy to Metasploit. This includes payload delivery from Metasploit&amp;rsquo;s web_delivery script, and the reverse call back from the meterpreter, both meterpreter_reverse_http and meterpreter_reverse_tcp.</description>
+    </item>
+    
+  </channel>
+</rss>

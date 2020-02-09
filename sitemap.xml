@@ -3,27 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://khast3x.club/categories/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/h8mail/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/categories/h8mail/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/2020-02-01-h8mail_2.5-release/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/OSINT/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/</loc>
+    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/categories/c2/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/docker/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/metasploit/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/redteam_infrastructure/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/traefik/</loc>
+    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://khast3x.club/tags/breach/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://khast3x.club/categories/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/docker/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/h8mail/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/categories/h8mail/</loc>
+    <loc>https://khast3x.club/tags/cloudC2/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,17 +93,7 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://khast3x.club/tags/leak/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/OSINT/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -58,7 +103,7 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/posts/</loc>
+    <loc>https://khast3x.club/tags/satellite/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,7 +113,7 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/tags/</loc>
+    <loc>https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -119,11 +164,6 @@
   
   <url>
     <loc>https://khast3x.club/tags/golang/</loc>
-    <lastmod>2018-10-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/metasploit/</loc>
     <lastmod>2018-10-02T00:00:00+00:00</lastmod>
   </url>
   
