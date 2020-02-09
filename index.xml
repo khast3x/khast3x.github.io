@@ -22,17 +22,6 @@ $ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single
     </item>
     
     <item>
-      <title>Serving payloads with Metasploit and Traefik</title>
-      <link>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</link>
-      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</guid>
-      <description>Since Redcloud, and generally getting more comfortable deploying Docker container as C2, I have been meaning to try out Traefik as an Apache/NGINX alternative for a C2 reverse-proxy.
-In this post, I&amp;rsquo;ll be demonstrating how to achieve this.
-What are we doing We&amp;rsquo;re going to use Traefik as a reverse proxy to Metasploit. This includes payload delivery from Metasploit&amp;rsquo;s web_delivery script, and the reverse call back from the meterpreter, both meterpreter_reverse_http and meterpreter_reverse_tcp.</description>
-    </item>
-    
-    <item>
       <title>h8mail v2.4 release</title>
       <link>https://khast3x.club/posts/2019-10-19-h8mail_2.4-release/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>

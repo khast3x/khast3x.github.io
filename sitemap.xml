@@ -43,42 +43,22 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/categories/c2/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/docker/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/metasploit/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/redteam_infrastructure/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/traefik/</loc>
-    <lastmod>2020-01-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://khast3x.club/tags/breach/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>https://khast3x.club/categories/c2/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://khast3x.club/tags/cloudC2/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/docker/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -94,6 +74,11 @@
   
   <url>
     <loc>https://khast3x.club/tags/leak/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/metasploit/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
