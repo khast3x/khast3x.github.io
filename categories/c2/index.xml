@@ -17,7 +17,7 @@
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</guid>
-      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract Using Docker, we want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
+      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
 It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
 Why
 Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, compared to manual installs.</description>
