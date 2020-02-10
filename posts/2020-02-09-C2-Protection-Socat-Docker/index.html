@@ -28,7 +28,9 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
 <link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
 <meta name="twitter:title" content="Hosting and hiding your C2 with Docker and Socat"/>
 <meta name="twitter:description" content="Deliver payloads from your docker-hosted MSF C2, hidden behind socat containers"/>
 
@@ -38,6 +40,7 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
 <meta property="og:description" content="Deliver payloads from your docker-hosted MSF C2, hidden behind socat containers" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
 <meta property="article:published_time" content="2020-02-09T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-02-09T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
 
@@ -189,18 +192,18 @@ Docker greatly facilites abstraction of networking and volumes, and makes for ea
 <h2 id="setup-">Setup 🔧</h2>
 <h3 id="docker">Docker</h3>
 <p>This post won&rsquo;t introduce docker as there is plenty of excellent write-ups. For this post, you need to have a grasp on docker networks, volumes, and to be able to run the <code>hello-world</code> container.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker run hello-world <span style="color:#75715e"># Hello from docker</span>
-</code></pre></div><p>Let&rsquo;s create our isolated network first:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker network create c2-net
-</code></pre></div><h3 id="socat">Socat</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run hello-world <span style="color:#75715e"># Hello from docker</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Let&rsquo;s create our isolated network first:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker network create c2-net<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h3 id="socat">Socat</h3>
 <p>We&rsquo;re now going to create two different socat containers, one for each route.<br>
 We&rsquo;re going to launch our two socat containers as daemons.</p>
 <p>Socat will natively resolve the <code>msf</code> container hostname since they will all be in the internal <em>c2-net</em> network.</p>
 <p>🔹 The first one, redirecting port 443 to our Metasploit web_delivery server on port 8080:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker run --rm -d -p 443:443 --network<span style="color:#f92672">=</span>c2-net --name socat_delivery alpine/socat -v TCP4-LISTEN:443,fork TCP4:msf:8080
-</code></pre></div><p>🔹 The second one for our meterpreter session, from port 80 to the Metasploit handler on port 4444:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker run --rm -d -p 80:80 --network<span style="color:#f92672">=</span>c2-net --name socat_handler alpine/socat -v TCP4-LISTEN:80,fork TCP4:msf:4444
-</code></pre></div><p>The containers are now running in the background. I&rsquo;ve launched them with the optional verbose argument for easier fiddling.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run --rm -d -p 443:443 --network<span style="color:#f92672">=</span>c2-net --name socat_delivery alpine/socat -v TCP4-LISTEN:443,fork TCP4:msf:8080<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>🔹 The second one for our meterpreter session, from port 80 to the Metasploit handler on port 4444:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run --rm -d -p 80:80 --network<span style="color:#f92672">=</span>c2-net --name socat_handler alpine/socat -v TCP4-LISTEN:80,fork TCP4:msf:4444<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>The containers are now running in the background. I&rsquo;ve launched them with the optional verbose argument for easier fiddling.</p>
 <p>To view the logs, you can either:</p>
 <ul>
 <li>Run <code>docker logs CONTAINER</code> where container could be <code>socat_delivery</code></li>
