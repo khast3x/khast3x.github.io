@@ -154,8 +154,12 @@ It&rsquo;s straightforward once you&rsquo;ve gotten the grip.</p>
 <p><strong>Why</strong></p>
 <p>Using containers means we get the &ldquo;it always works&rdquo; factor, compared to manual installs. Since each docker image is already built, we can just pull it and have everything working out of the box.<br>
 Docker greatly facilites abstraction of networking and volumes, and makes for easy repeatable deployments.</p>
+<p>To quote a seasoned professional:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Peeps if you’re not using Docker during your tests you’re missing out. Not having to deal with VMs/tool install woes speeds everything up. There is an adjustment period, change is hard but in the end it will speed up your workflow significantly.</p>&mdash; Marcello (@byt3bl33d3r) <a href="https://twitter.com/byt3bl33d3r/status/1225924500849475584?ref_src=twsrc%5Etfw">February 7, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <p><strong>How</strong></p>
-<p>We&rsquo;re ideally running our Docker host on a VPS, that we can ssh into. There are some free or very cheap options out there.</p>
+<p>We&rsquo;re ideally running our Docker host on a VPS, that we can ssh into. A simple <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script">Ubuntu + Docker CE</a> will suffice. There are some free or very cheap options out there.</p>
 <p>We wish to keep our C2 container in a segmented Docker network, <strong>isolated</strong> from the outside. Two socat routes to it are needed.</p>
 <table>
 <thead>
