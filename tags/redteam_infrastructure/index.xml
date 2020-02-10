@@ -6,20 +6,20 @@
     <description>Recent content in redteam_infrastructure on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/redteam_infrastructure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Serving payloads with Metasploit and Traefik</title>
-      <link>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</link>
-      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
+      <title>Hosting and hiding your C2 with Docker and Socat</title>
+      <link>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/2020-01-29-RTI-Reverse-Traefik-1/</guid>
-      <description>Since Redcloud, and generally getting more comfortable deploying Docker container as C2, I have been meaning to try out Traefik as an Apache/NGINX alternative for a C2 reverse-proxy.
-In this post, I&amp;rsquo;ll be demonstrating how to achieve this.
-What are we doing We&amp;rsquo;re going to use Traefik as a reverse proxy to Metasploit. This includes payload delivery from Metasploit&amp;rsquo;s web_delivery script, and the reverse call back from the meterpreter, both meterpreter_reverse_http and meterpreter_reverse_tcp.</description>
+      <guid>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</guid>
+      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract Using Docker, we want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
+It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
+We wish to keep our C2 container in a segmented Docker network.</description>
     </item>
     
   </channel>

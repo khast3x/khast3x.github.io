@@ -211,7 +211,7 @@ Since we need to retrieve our certificates, we&rsquo;ll copy these too.</p>
 </code></pre><h3 id="sharing">Sharing</h3>
 <p>There&rsquo;s hardly an easier method than the classic <code>python -m SimpleHTTPServer</code> to serve files using a quick web server.</p>
 <p>Since we&rsquo;re using a golang image, it would be counter-productive to add another language environment to our container. Instead, we&rsquo;ll use <code>serve</code>, a <a href="https://github.com/fogleman/serve"><em>simple Go file server for command line development use, a la Python&rsquo;s SimpleHTTPServer</em></a>.<br>
-Perfect :smirk:</p>
+Perfect 😏</p>
 <p>We&rsquo;ll simply <code>go get</code>-it like our <code>hershell</code> package. <code>serve</code> uses port 8000 by default.</p>
 <pre><code>RUN apk add --update make git openssl upx \
     &amp;&amp; go get github.com/lesnuages/hershell \
@@ -246,7 +246,7 @@ The <code>nmap</code> package is also pre installed, meaning we have <code>ncat<
 <p>Contrary to the previous method, MSF will only need our <code>server.pem</code> file.</p>
 <p>To launch our <code>metasploit</code> container, we simply do:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -it -p <span style="color:#e6db74">&#34;8443:8443&#34;</span> -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data remnux/metasploit
-</code></pre></div><p>The first run might take some time, so leave it running a few minutes :coffee:</p>
+</code></pre></div><p>The first run might take some time, so leave it running a few minutes ☕</p>
 <p>We&rsquo;re using the <code>docker run</code> line from the <a href="https://hub.docker.com/r/remnux/metasploit/">Docker hub page</a>.</p>
 <h3 id="use">Use</h3>
 <p>Once the container is up and running, you&rsquo;ll land in a bash shell.<br>

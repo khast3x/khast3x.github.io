@@ -18,7 +18,7 @@
       
       <guid>https://khast3x.club/posts/2020-02-01-h8mail_2.5-release/</guid>
       <description>Updating If you used the standard pip install method :
-$ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single or list of URLs and target emails found using --url or -u Dehashed API added - closes #47 Emailrep.io private API added - :key: (free!)  Data parsed extended   Full data enrichment from API providers integrated (found addresses, phone etc&amp;hellip;) Rewrote better documentation, now maintained as a wiki!</description>
+$ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single or list of URLs and target emails found using --url or -u Dehashed API added - closes #47 Emailrep.io private API added - 🔑 (free!)  Data parsed extended   Full data enrichment from API providers integrated (found addresses, phone etc&amp;hellip;) Rewrote better documentation, now maintained as a wiki!</description>
     </item>
     
     <item>

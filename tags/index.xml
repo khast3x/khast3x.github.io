@@ -6,10 +6,46 @@
     <description>Recent content in Tags on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>https://khast3x.club/tags/docker/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metasploit</title>
+      <link>https://khast3x.club/tags/metasploit/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/metasploit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redteam_infrastructure</title>
+      <link>https://khast3x.club/tags/redteam_infrastructure/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/redteam_infrastructure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socat</title>
+      <link>https://khast3x.club/tags/socat/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/socat/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>h8mail</title>
@@ -39,24 +75,6 @@
     </item>
     
     <item>
-      <title>cloudC2</title>
-      <link>https://khast3x.club/tags/cloudC2/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/tags/cloudC2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://khast3x.club/tags/docker/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>haveibeenpwned</title>
       <link>https://khast3x.club/tags/haveibeenpwned/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
@@ -75,29 +93,11 @@
     </item>
     
     <item>
-      <title>metasploit</title>
-      <link>https://khast3x.club/tags/metasploit/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/tags/metasploit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>password</title>
       <link>https://khast3x.club/tags/password/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/password/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>satellite</title>
-      <link>https://khast3x.club/tags/satellite/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/tags/satellite/</guid>
       <description></description>
     </item>
     

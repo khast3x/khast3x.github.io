@@ -6,18 +6,20 @@
     <description>Recent content in c2 on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/categories/c2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Serving payloads in the cloud with Metasploit and Docker</title>
-      <link>https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      <title>Hosting and hiding your C2 with Docker and Socat</title>
+      <link>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/DRAFT-2020-Serving-Meterpreter-Cloud/</guid>
-      <description>Traefik Done - Reverse http+tcp  Use the docker-compose.yml method to deploy Defining each service attached to each definition solved the multi service error Want to try with tcp This Doc page with more details on making rules/chaning them here Securing the docker host exposing the the api here Test staged payload  How to run  docker-compose up [new connection] docker exec -it msfconsole /bin/bash ./msfconsole -r web_delivery.rc &amp;gt; run OR  for TCP set payload 10 + set LPORT 8888 + run    transport add -t reverse_http -u handler -l 163.</description>
+      <guid>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</guid>
+      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract Using Docker, we want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
+It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
+We wish to keep our C2 container in a segmented Docker network.</description>
     </item>
     
   </channel>

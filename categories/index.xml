@@ -6,10 +6,19 @@
     <description>Recent content in Categories on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>c2</title>
+      <link>https://khast3x.club/categories/c2/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/categories/c2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>h8mail</title>
@@ -17,15 +26,6 @@
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/h8mail/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>c2</title>
-      <link>https://khast3x.club/categories/c2/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/categories/c2/</guid>
       <description></description>
     </item>
     
