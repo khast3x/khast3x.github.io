@@ -228,6 +228,7 @@ We&rsquo;re going to launch our two socat containers as daemons.</p>
 <li>Run <code>docker logs CONTAINER</code> where container could be <code>socat_delivery</code></li>
 <li>Instead of starting the container as a daemon with <code>-d</code>, replace the option with <code>-it</code> to receive output in the foreground. You&rsquo;ll need new separate terminals to run both socats.</li>
 </ul>
+<p><em>Edit: If you&rsquo;re discovering docker, you&rsquo;ll soon understand we could have replaced socat with docker port-publishing. In this post we&rsquo;re deliberatly using socat to experiment with proxifying, micro services, and session handling with Metasploit. If you need a quick Metasploit container directly connected to the internet, use <code>-p/--publish</code> with the corresponding ports.</em></p>
 <h3 id="metasploit">Metasploit</h3>
 <p>In this post, I&rsquo;ll be running the meterpeter_reverse_http on a Linux x64 target.<br>
 If you wish to target something else (Windows, OSX), use <code>show targets</code> and <code>show payloads</code> and set the <code>TARGET</code> and <code>PAYLOAD</code> options accordingly.<br>
