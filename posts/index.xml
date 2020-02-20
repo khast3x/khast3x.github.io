@@ -6,10 +6,20 @@
     <description>Recent content in Posts on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker</title>
+      <link>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</guid>
+      <description>Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in Traefik&amp;rsquo;s web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
+These modern infrastructures can seamlessly evolve and scale across hosts, servers and even countries.</description>
+    </item>
     
     <item>
       <title>Hosting and hiding your C2 with Docker and Socat</title>
