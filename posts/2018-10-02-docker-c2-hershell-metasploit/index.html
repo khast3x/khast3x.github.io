@@ -27,9 +27,7 @@ One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. 
 <link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloud reverse-shell: Hershell, Metasploit and Docker"/>
 <meta name="twitter:description" content="Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly"/>
 
@@ -39,7 +37,6 @@ One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. 
 <meta property="og:description" content="Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/" />
-<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
 <meta property="article:published_time" content="2018-10-02T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-10-02T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
 
@@ -47,24 +44,6 @@ One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. 
 
 
 
-
-    <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-
-<meta name="twitter:title" content="Cloud reverse-shell: Hershell, Metasploit and Docker"/>
-<meta name="twitter:description" content="Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly"/>
-
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-113498686-2', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
   <body class="dark-theme">
@@ -126,14 +105,22 @@ if (!doNotTrack) {
 
       <div class="content">
         
+  
+  
+
   <div class="post">
-    <h2 class="post-title"><a href="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/">Cloud reverse-shell: Hershell, Metasploit and Docker</a></h2>
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/">Cloud reverse-shell: Hershell, Metasploit and Docker</a></h1>
     <div class="post-meta">
       
         <span class="post-date">
-            2018-10-02
+          2018-10-02
         </span>
+
+        
+          
+        
       
+
       
       
     </div>
@@ -163,6 +150,7 @@ if (!doNotTrack) {
     
 
     <div class="post-content">
+      
       <hr>
 <p>In the following article we&rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&rsquo;s infrastructure.<br>
 One of the many powers of golang is it&rsquo;s cross platform capabilities. Since the codebase is minimal, we&rsquo;ll see how to use a container to host our C2.</p>
@@ -232,7 +220,7 @@ Since we need to retrieve our certificates, we&rsquo;ll copy these too.</p>
 </code></pre><h3 id="sharing">Sharing</h3>
 <p>There&rsquo;s hardly an easier method than the classic <code>python -m SimpleHTTPServer</code> to serve files using a quick web server.</p>
 <p>Since we&rsquo;re using a golang image, it would be counter-productive to add another language environment to our container. Instead, we&rsquo;ll use <code>serve</code>, a <a href="https://github.com/fogleman/serve"><em>simple Go file server for command line development use, a la Python&rsquo;s SimpleHTTPServer</em></a>.<br>
-Perfect 😏</p>
+Perfect :smirk:</p>
 <p>We&rsquo;ll simply <code>go get</code>-it like our <code>hershell</code> package. <code>serve</code> uses port 8000 by default.</p>
 <pre><code>RUN apk add --update make git openssl upx \
     &amp;&amp; go get github.com/lesnuages/hershell \
@@ -267,7 +255,7 @@ The <code>nmap</code> package is also pre installed, meaning we have <code>ncat<
 <p>Contrary to the previous method, MSF will only need our <code>server.pem</code> file.</p>
 <p>To launch our <code>metasploit</code> container, we simply do:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -it -p <span style="color:#e6db74">&#34;8443:8443&#34;</span> -v ~/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data remnux/metasploit
-</code></pre></div><p>The first run might take some time, so leave it running a few minutes ☕</p>
+</code></pre></div><p>The first run might take some time, so leave it running a few minutes :coffee:</p>
 <p>We&rsquo;re using the <code>docker run</code> line from the <a href="https://hub.docker.com/r/remnux/metasploit/">Docker hub page</a>.</p>
 <h3 id="use">Use</h3>
 <p>Once the container is up and running, you&rsquo;ll land in a bash shell.<br>
@@ -320,12 +308,12 @@ msf5 &gt; sessions -l
 <p>Once you have a working configuration in your Metasploit environment, you use the <code>makerc hershell.rc</code> to generate a config file. From there you can <code>cat</code> it from the prompt or push it elsewhere.</p>
     </div>
     
-    
+
 
     
       
     
-    
+
     </div>
 
       </div>
@@ -359,6 +347,21 @@ msf5 &gt; sessions -l
 
       
     </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
     
   </body>

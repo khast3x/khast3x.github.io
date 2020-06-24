@@ -2,45 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>khast3x blog</title>
+    
+    
+    
     <link>https://khast3x.club/</link>
     <description>Recent content on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker</title>
-      <link>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</link>
-      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      <link>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</guid>
-      <description>Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in Traefik&amp;rsquo;s web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
-These modern infrastructures can seamlessly evolve and scale across hosts, servers and even countries.</description>
+      <guid>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Deploy a scalable, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!
+          
+        
+        </description>
     </item>
     
     <item>
       <title>Hosting and hiding your C2 with Docker and Socat</title>
-      <link>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</link>
+      <link>https://khast3x.club/posts/2020-02-09-C2-Docker-Socat/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</guid>
-      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of Docker.
-It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
-Why
-Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, compared to manual installs.</description>
-    </item>
-    
-    <item>
-      <title>h8mail v2.5 release</title>
-      <link>https://khast3x.club/posts/2020-02-01-h8mail_2.5-release/</link>
-      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/posts/2020-02-01-h8mail_2.5-release/</guid>
-      <description>Updating If you used the standard pip install method :
-$ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single or list of URLs and target emails found using --url or -u Dehashed API added - closes #47 Emailrep.io private API added - 🔑 (free!)  Data parsed extended   Full data enrichment from API providers integrated (found addresses, phone etc&amp;hellip;) Rewrote better documentation, now maintained as a wiki!</description>
+      <guid>https://khast3x.club/posts/2020-02-09-C2-Docker-Socat/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Rapidly deliver payloads from your docker-hosted MSF C2, hidden behind socat containers
+          
+        
+        </description>
     </item>
     
     <item>
@@ -49,9 +60,18 @@ $ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-10-19-h8mail_2.4-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/khast3x/h8mail&#34;&gt;h8mail&lt;/a&gt; 2.4 has been released. This one is quick but deadly.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://khast3x.club/2019/08/14/h8mail_2.3-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2.3 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.4 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -60,9 +80,18 @@ $ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;h8mail 2.3 has been released. In this blog post, we&amp;rsquo;ll be having an overview of all the new features.&lt;br&gt;
-&lt;a href=&#34;https://khast3x.club/h8mail/2019/05/26/h8mail-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.3 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -71,8 +100,18 @@ $ pip3 install --upgrade h8mail New features &amp;amp; Changelog  Fetch a single
       <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-06-07-docker-h8mail/</guid>
-      <description>&lt;p&gt;In this tutorial, we&amp;rsquo;re going to move downloading and searching operations to the cloud to speed things up.&lt;br&gt;
-We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&lt;/strong&gt;, the &lt;strong&gt;h8mail container&lt;/strong&gt; and &lt;strong&gt;a shared volume&lt;/strong&gt;. For demonstration purposes, we&amp;rsquo;ll be studying the Breach Compilation.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Pushing all the heavy lifting of breach studies to the cloud
+          
+        
+        </description>
     </item>
     
     <item>
@@ -81,9 +120,18 @@ We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&
       <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-05-26-h8mail-release/</guid>
-      <description>&lt;h1 id=&#34;-h8mail-v2-has-just-been-released&#34;&gt;🌈 &lt;strong&gt;h8mail v2 has just been released&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;New features have been added to better hunt down passwords.&lt;/p&gt;
-&lt;p&gt;In the following write-up, we&amp;rsquo;ll be covering h8mail&amp;rsquo;s options with examples and use-cases. At the end of this page, you&amp;rsquo;ll hopefully be bringing passwords back like a necromancer 💀&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Or how to become a password necromancer with h8mail 💀
+          
+        
+        </description>
     </item>
     
     <item>
@@ -92,9 +140,18 @@ We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&
       <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-10-02-docker-c2-hershell-metasploit/</guid>
-      <description>&lt;hr&gt;
-&lt;p&gt;In the following article we&amp;rsquo;ll be deploying Hershell, a minimal golang reverse shell, and its C2 using Docker to host it on a cloud provider&amp;rsquo;s infrastructure.&lt;br&gt;
-One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. Since the codebase is minimal, we&amp;rsquo;ll see how to use a container to host our C2.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Quickly deploy a minimal cross-platform shell and host the Command Center using Docker. Upgrade to a meterpreter shell seamlessly
+          
+        
+        </description>
     </item>
     
     <item>
@@ -103,10 +160,18 @@ One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. 
       <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-02-08-Levels-of-Internet/</guid>
-      <description>&lt;h2 id=&#34;the-levels-of-the-internet&#34;&gt;The Levels of the Internet&lt;/h2&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;I saved this post I while back from reddit, I though it was a great mix of streched realities.&lt;/em&gt;
-(&lt;a href=&#34;https://www.reddit.com/r/nottheonion/comments/7mqap0/people_keep_uploading_hamilton_to_pornhub/drwc9x5/&#34;&gt;source&lt;/a&gt;)&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Funny fictionous description of the internet skill tree
+          
+        
+        </description>
     </item>
     
     <item>
@@ -115,10 +180,18 @@ One of the many powers of golang is it&amp;rsquo;s cross platform capabilities. 
       <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-02-07-Android-browsers/</guid>
-      <description>Hardening Android with Privacy-Focused Browsers  This is a quick post about my experience with browsers on Android. I&amp;rsquo;ll be showing off how I&amp;rsquo;ve configured my phone for daily usage. You might be gaining performance too!
- I consider two major use-cases when it comes to opening links on my phone.
-  Opening links from various apps without much prior knowledge of content.
-I want this to be as sandboxed as possible.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Privacy oriented browser workflow for Android
+          
+        
+        </description>
     </item>
     
     <item>
@@ -127,20 +200,18 @@ I want this to be as sandboxed as possible.</description>
       <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-02-05-Android-Quad9/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#hardening-android-with-dns66--quad9&#34;&gt;Hardening Android with DNS66 &amp;amp; Quad9&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#demo&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#installing-the-f-droid-store--dns66&#34;&gt;Installing the F-Droid Store &amp;amp; DNS66&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#harden-device-with-dns66--quad9&#34;&gt;Harden device with DNS66 &amp;amp; Quad9&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#notes&#34;&gt;Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#technical-details&#34;&gt;Technical details&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;hardening-android-with-dns66--quad9&#34;&gt;Hardening Android with DNS66 &amp;amp; Quad9&lt;/h1&gt;
-&lt;hr&gt;
-&lt;p&gt;_I&amp;rsquo;ll be illustrating a simple and very effective way to harden your Android phone &lt;strong&gt;without&lt;/strong&gt; needing root. Demo below._&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Using a simple DNS trick to heavily harden you Android device (non-root)
+          
+        
+        </description>
     </item>
     
     <item>
@@ -149,7 +220,18 @@ I want this to be as sandboxed as possible.</description>
       <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-02-04-Welcome/</guid>
-      <description>Mostly a test, but hello</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Mostly a test, but hello
+          
+        
+        </description>
     </item>
     
     <item>
@@ -158,7 +240,18 @@ I want this to be as sandboxed as possible.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/about/</guid>
-      <description>About   Twitter Github Keybase Email  Licence: BSD 3 Clause - khast3x.club</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          This is an about page 
+          
+        
+        </description>
     </item>
     
   </channel>

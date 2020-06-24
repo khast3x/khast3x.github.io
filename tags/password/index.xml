@@ -2,6 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>password on khast3x blog</title>
+    
+    
+    
     <link>https://khast3x.club/tags/password/</link>
     <description>Recent content in password on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
@@ -17,9 +20,18 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-10-19-h8mail_2.4-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/khast3x/h8mail&#34;&gt;h8mail&lt;/a&gt; 2.4 has been released. This one is quick but deadly.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://khast3x.club/2019/08/14/h8mail_2.3-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2.3 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.4 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -28,9 +40,18 @@
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;h8mail 2.3 has been released. In this blog post, we&amp;rsquo;ll be having an overview of all the new features.&lt;br&gt;
-&lt;a href=&#34;https://khast3x.club/h8mail/2019/05/26/h8mail-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.3 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -39,8 +60,18 @@
       <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-06-07-docker-h8mail/</guid>
-      <description>&lt;p&gt;In this tutorial, we&amp;rsquo;re going to move downloading and searching operations to the cloud to speed things up.&lt;br&gt;
-We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&lt;/strong&gt;, the &lt;strong&gt;h8mail container&lt;/strong&gt; and &lt;strong&gt;a shared volume&lt;/strong&gt;. For demonstration purposes, we&amp;rsquo;ll be studying the Breach Compilation.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Pushing all the heavy lifting of breach studies to the cloud
+          
+        
+        </description>
     </item>
     
     <item>
@@ -49,9 +80,18 @@ We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&
       <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-05-26-h8mail-release/</guid>
-      <description>&lt;h1 id=&#34;-h8mail-v2-has-just-been-released&#34;&gt;🌈 &lt;strong&gt;h8mail v2 has just been released&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;New features have been added to better hunt down passwords.&lt;/p&gt;
-&lt;p&gt;In the following write-up, we&amp;rsquo;ll be covering h8mail&amp;rsquo;s options with examples and use-cases. At the end of this page, you&amp;rsquo;ll hopefully be bringing passwords back like a necromancer 💀&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Or how to become a password necromancer with h8mail 💀
+          
+        
+        </description>
     </item>
     
   </channel>

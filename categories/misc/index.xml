@@ -2,6 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>misc on khast3x blog</title>
+    
+    
+    
     <link>https://khast3x.club/categories/misc/</link>
     <description>Recent content in misc on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
@@ -17,7 +20,18 @@
       <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2018-02-04-Welcome/</guid>
-      <description>Mostly a test, but hello</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Mostly a test, but hello
+          
+        
+        </description>
     </item>
     
   </channel>

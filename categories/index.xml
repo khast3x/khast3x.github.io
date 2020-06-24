@@ -2,40 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on khast3x blog</title>
+    
+    
+    
     <link>https://khast3x.club/categories/</link>
     <description>Recent content in Categories on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>c2, docker</title>
-      <link>https://khast3x.club/categories/c2-docker/</link>
-      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/categories/c2-docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>c2</title>
       <link>https://khast3x.club/categories/c2/</link>
-      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/c2/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
     <item>
       <title>h8mail</title>
       <link>https://khast3x.club/categories/h8mail/</link>
-      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/h8mail/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
     <item>
@@ -44,7 +60,18 @@
       <pubDate>Tue, 02 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/offensive/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
     <item>
@@ -53,7 +80,18 @@
       <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/giggles/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
     <item>
@@ -62,7 +100,18 @@
       <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/android-tips/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
     <item>
@@ -71,7 +120,18 @@
       <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/categories/misc/</guid>
-      <description></description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
     </item>
     
   </channel>

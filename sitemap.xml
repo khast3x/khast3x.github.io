@@ -3,87 +3,72 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://khast3x.club/categories/c2-docker/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <loc>https://khast3x.club/categories/c2/</loc>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/categories/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/docker/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <loc>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</loc>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/metasploit/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/posts/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/redteam_infrastructure/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/socat/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/</loc>
-    <lastmod>2020-02-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://khast3x.club/categories/c2/</loc>
+    <loc>https://khast3x.club/posts/2020-02-09-C2-Docker-Socat/</loc>
     <lastmod>2020-02-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</loc>
-    <lastmod>2020-02-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/h8mail/</loc>
-    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/categories/h8mail/</loc>
-    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/posts/2020-02-01-h8mail_2.5-release/</loc>
-    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/OSINT/</loc>
-    <lastmod>2020-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/breach/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/h8mail/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/categories/h8mail/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -99,6 +84,11 @@
   
   <url>
     <loc>https://khast3x.club/tags/leak/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/OSINT/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   

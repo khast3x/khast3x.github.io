@@ -2,35 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on khast3x blog</title>
+    
+    
+    
     <link>https://khast3x.club/tags/docker/</link>
     <description>Recent content in docker on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker</title>
-      <link>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</link>
-      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      <link>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</link>
+      <pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</guid>
-      <description>Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in Traefik&amp;rsquo;s web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
-These modern infrastructures can seamlessly evolve and scale across hosts, servers and even countries.</description>
+      <guid>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Deploy a scalable, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!
+          
+        
+        </description>
     </item>
     
     <item>
       <title>Hosting and hiding your C2 with Docker and Socat</title>
-      <link>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</link>
+      <link>https://khast3x.club/posts/2020-02-09-C2-Docker-Socat/</link>
       <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://khast3x.club/posts/2020-02-09-C2-Protection-Socat-Docker/</guid>
-      <description>Abstract Setup 🔧  Docker Socat Metasploit   Running the delivery chain 💥 Delivering and communicating with https 🔒 Notes  Abstract We want to run a simple C2 that is not exposed to the internet, with multiple socats redirecting our payload delivery and session handling correctly. All this with the help of Docker.
-It&amp;rsquo;s straightforward once you&amp;rsquo;ve gotten the grip.
-Why
-Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, compared to manual installs.</description>
+      <guid>https://khast3x.club/posts/2020-02-09-C2-Docker-Socat/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Rapidly deliver payloads from your docker-hosted MSF C2, hidden behind socat containers
+          
+        
+        </description>
     </item>
     
     <item>
@@ -39,9 +60,18 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-10-19-h8mail_2.4-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/khast3x/h8mail&#34;&gt;h8mail&lt;/a&gt; 2.4 has been released. This one is quick but deadly.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://khast3x.club/2019/08/14/h8mail_2.3-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2.3 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.4 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -50,9 +80,18 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-08-14-h8mail_2.3-release/</guid>
-      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;h8mail 2.3 has been released. In this blog post, we&amp;rsquo;ll be having an overview of all the new features.&lt;br&gt;
-&lt;a href=&#34;https://khast3x.club/h8mail/2019/05/26/h8mail-release/&#34;&gt;Click here&lt;/a&gt; to read previous h8mail v2 release post.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.3 features
+          
+        
+        </description>
     </item>
     
     <item>
@@ -61,8 +100,18 @@ Using containers means we get the &amp;ldquo;it always works&amp;rdquo; factor, 
       <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/posts/2019-06-07-docker-h8mail/</guid>
-      <description>&lt;p&gt;In this tutorial, we&amp;rsquo;re going to move downloading and searching operations to the cloud to speed things up.&lt;br&gt;
-We&amp;rsquo;ll achieve this using a &lt;strong&gt;torrent downloader container&lt;/strong&gt;, the &lt;strong&gt;h8mail container&lt;/strong&gt; and &lt;strong&gt;a shared volume&lt;/strong&gt;. For demonstration purposes, we&amp;rsquo;ll be studying the Breach Compilation.&lt;/p&gt;</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Pushing all the heavy lifting of breach studies to the cloud
+          
+        
+        </description>
     </item>
     
   </channel>
