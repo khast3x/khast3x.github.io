@@ -4,51 +4,66 @@
   
   <url>
     <loc>https://khast3x.club/categories/c2/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/categories/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/docker/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://khast3x.club/posts/2020-02-14-Moder-Routing-Traefik-MSF-Cov/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <loc>https://khast3x.club/tags/dropper/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/gscript/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/metasploit/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/posts/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/redteam_infrastructure/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/2020-02-14-Intro-Modern-Routing-Traefik-Metasploit-Docker/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/socat/</loc>
-    <lastmod>2020-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   

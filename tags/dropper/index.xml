@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dropper on khast3x blog</title>
+    
+    
+    
+    <link>https://khast3x.club/tags/dropper/</link>
+    <description>Recent content in dropper on khast3x blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://khast3x.club/tags/dropper/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker</title>
+      <link>https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/2020-06-27-Cross-Platform-Dropper/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Creating a modular, cross-platform payload dropper that checks the OS, and fetches the second stage payload using a single code base!
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>
