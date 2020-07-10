@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Getting started with sliver C2 :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="In this post we&amp;rsquo;ll be discovering the newly released sliver tool from BishopFox.
+From the original authors:
+Sliver is a general purpose cross-platform implant framework that supports C2 over Mutual-TLS, HTTP(S), and DNS. Implants are dynamically compiled with unique X.509 certificates signed by a per-instance certificate authority generated when you first run the binary.
+The server, client, and implant all support MacOS, Windows, and Linux (and possibly every Golang compiler target but we&amp;rsquo;ve not tested them all)."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2019-06-18-sliver-getting-started.md/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
+<meta name="twitter:title" content="Getting started with sliver C2"/>
+<meta name="twitter:description" content="Introduction to deploying golang-based cross platform C2, sliver!"/>
+
+
+
+<meta property="og:title" content="Getting started with sliver C2" />
+<meta property="og:description" content="Introduction to deploying golang-based cross platform C2, sliver!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2019-06-18-sliver-getting-started.md/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+<meta property="article:published_time" content="2019-06-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-18T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2019-06-18-sliver-getting-started.md/">Getting started with sliver C2</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2019-06-18
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/offensive/">offensive</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloud/">cloud</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/golang/">golang</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/C2/">C2</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>In this post we&rsquo;ll be discovering the newly released <a href="https://github.com/BishopFox/sliver"><strong>sliver</strong></a> tool from BishopFox.<br>
+From the original authors:</p>
+<p><em>Sliver is a general purpose cross-platform implant framework that supports C2 over Mutual-TLS, HTTP(S), and DNS. Implants are dynamically compiled with unique X.509 certificates signed by a per-instance certificate authority generated when you first run the binary.</em><br>
+<em>The server, client, and implant all support MacOS, Windows, and Linux (and possibly every Golang compiler target but we&rsquo;ve not tested them all).</em></p>
+<p>Keep in mind that this project is still in its alpha stage.<br>
+Maintaining our testing environment siloed, especially regarding installed packages, is better for our work environment. We&rsquo;re going to use <strong>Docker</strong> to try out the server and deploy the C2.</p>
+<h1 id="getting-sliver">Getting sliver</h1>
+<p>We&rsquo;re first going to pull the repository locally, and build the Docker image on a remote server using <code>docker-machine</code>. If this isn&rsquo;t your setup, that&rsquo;s okay, we&rsquo;re going to keep things generic.<br>
+You can learn about sliver installation methods in the <a href="https://github.com/BishopFox/sliver/wiki/Compile-From-Source"><strong>official wiki</strong></a>.</p>
+<p>Download:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/BishopFox/sliver.git
+$ cd sliver
+</code></pre></div><p>The repository contains a convenient python script for Docker related deployments called <code>build.py</code>.</p>
+<p>The first time I tried building the image with <code>docker build</code>, my remote machine ran out of memory. I this server for other projects so it had leftover junk. I used the included <code>build.py</code> python script to clean up my remote Docker environment.</p>
+<ul>
+<li><em>(Optional)</em> - Activate remote docker machine. Following this command, all <code>docker</code> related commands will be sent to our remote server. You can read more about it <a href="https://docs.docker.com/machine/">here</a>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ eval <span style="color:#f92672">(</span>docker-machine env default<span style="color:#f92672">)</span>
+</code></pre></div><ul>
+<li>Building the <code>sliver</code> Docker image with the included <code>build.py</code> script. Be careful, this argument removes all existing containers/images/volumes.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python build.py --rm-all 
+</code></pre></div><ul>
+<li>Or build <code>sliver</code> with Docker directly:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build -t sliver .
+</code></pre></div><p>There&rsquo;s going to be a lot happening in the building since it also builds Metasploit, so give it some time.<br>
+Since we used the <code>docker-machine</code> eval method, all Docker related worked is done on the remote docker machine.</p>
+
+    </div>
+    
+
+
+    
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>h8mail v2.5.3 release :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Table of content  Table of content Abstract  Updating   New API: intelx.io ⭐  Getting a free API key Using the API key  Using a config file Using command line     Bug fixes &amp;amp; QoL  Abstract  h8mail 2.5.3 has been released.  🆕 Integration of the powerful intelx.io API  IntelX offers a free 7 days API key to give them a try.   🔧 Important bug fix for local searching and some quality of life.   "/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/h2-5-3/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
+<meta name="twitter:title" content="h8mail v2.5.3 release"/>
+<meta name="twitter:description" content="Overview of h8mail v2.5.3 features - IntelX.io integration - Free trial API key"/>
+
+
+
+<meta property="og:title" content="h8mail v2.5.3 release" />
+<meta property="og:description" content="Overview of h8mail v2.5.3 features - IntelX.io integration - Free trial API key" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/h2-5-3/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+<meta property="article:published_time" content="2020-07-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-09T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/h2-5-3/">h8mail v2.5.3 release</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-07-09
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/leak/">leak</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/intelx/">intelx</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="table-of-content">Table of content</h1>
+<ul>
+<li><a href="#table-of-content">Table of content</a></li>
+<li><a href="#abstract">Abstract</a>
+<ul>
+<li><a href="#updating">Updating</a></li>
+</ul>
+</li>
+<li><a href="#new-api-intelxio-%EF%B8%8F">New API: intelx.io ⭐</a>
+<ul>
+<li><a href="#getting-a-free-api-key">Getting a free API key</a></li>
+<li><a href="#using-the-api-key">Using the API key</a>
+<ul>
+<li><a href="#using-a-config-file">Using a config file</a></li>
+<li><a href="#using-command-line">Using command line</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#bug-fixes--qol">Bug fixes &amp; QoL</a></li>
+</ul>
+<h1 id="abstract">Abstract</h1>
+<ul>
+<li><a href="https://github.com/khast3x/h8mail">h8mail</a> 2.5.3 has been released.
+<ul>
+<li>🆕 Integration of the powerful <a href="https://intelx.io">intelx.io</a> API
+<ul>
+<li>IntelX offers a free 7 days API key to give them a try.</li>
+</ul>
+</li>
+<li>🔧 Important bug fix for local searching and some quality of life.</li>
+</ul>
+</li>
+</ul>
+<h3 id="updating">Updating</h3>
+<p><em>Documentation on updating h8mail <a href="https://github.com/khast3x/h8mail/wiki/Install#update">can be found here</a></em>. Basically run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pip3 install --upgrade h8mail
+</code></pre></div><p>Complete h8mail documentation can be found <a href="https://github.com/khast3x/h8mail/wiki">here</a>.<br>
+Be sure to check it out for more information on h8mail usage and troubleshooting.</p>
+<hr>
+<h1 id="new-api-intelxio-">New API: intelx.io ⭐</h1>
+<p>To quote from <a href="https://intelx.io/about">their website</a>:</p>
+<blockquote>
+<p>Intelligence X is an independent European technology company founded in 2018 by Peter Kleissner. The company is based in Prague, Czech Republic. Its mission is to develop and maintain the search engine and data archive.
+Intelligence X differentiates itself from other search engines in these unique ways:</p>
+<ul>
+<li>The search works with selectors, i.e. specific search terms such as email addresses, domains, URLs, IPs, CIDRs, Bitcoin addresses, IPFS hashes, etc.</li>
+<li>It searches in places such as the darknet, document sharing platforms, whois data, public data leaks and others.</li>
+<li>It keeps a historical data archive of results, similar to how the Wayback Machine from archive.org stores historical copies of websites.</li>
+</ul>
+</blockquote>
+<p><strong>Basically</strong>, you can query stored archives of tons of leaks and pastes, and fetch data relevant to our targets. h8mail performs an integrated local search and returns aggregated results.</p>
+<!-- raw HTML omitted -->
+<p><a href="/assets/h8mail/h2.5.3_1-final.png">
+  <figure class="center" >
+    <img src="/assets/h8mail/h2.5.3_1-final.png"   style="border-radius: 16px;"  />
+    
+      <figcaption class="center" >h8mail looking through a breach found on intelx.io</figcaption>
+    
+  </figure>
+
+</a></p>
+<p><a href="/assets/h8mail/h2.5.3_2-final.png">
+  <figure class="center" >
+    <img src="/assets/h8mail/h2.5.3_2-final.png"   style="border-radius: 16px;"  />
+    
+      <figcaption class="center" >Aggregated results from a single file search</figcaption>
+    
+  </figure>
+
+</a></p>
+<h3 id="getting-a-free-api-key">Getting a free API key</h3>
+<p><em>Obtain a free trial key that expires after a week</em></p>
+<p>🔸 You can get your API key <a href="https://intelx.io/signup?ref=h8mail"><strong>here</strong></a>. Once the account is verified, go to <em>Account</em>, then <em>Developer</em>. Copy your API key.</p>
+<h3 id="using-the-api-key">Using the API key</h3>
+<p><em>For detailed instructions, check out the <a href="https://github.com/khast3x/h8mail/wiki/Using-APIs">dedicated wiki page</a>.</em></p>
+<h4 id="using-a-config-file">Using a config file</h4>
+<p>Before proceeding, make sure to make a copy of/save/store/&hellip; your other API keys!</p>
+<p>🔹 In your terminal, run the following:</p>
+<pre><code># Generate a blank config file
+# Will overwrite existing h8mail_config.ini file
+$ h8mail -g
+$ nano h8mail_config.ini
+</code></pre><p>🔹 Uncomment the <code>intelx_key</code> and <code>intelx_maxfile</code> lines by removing <code>;</code>.<br>
+🔹 Add your API key.  Number of results per search is optional (default is 10).</p>
+<p>🔹 Launch h8mail with the new config file, skip default checks. Save the output in a CSV file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t test@gmail.com -c h8mail_config.ini --skip -o intelx_1.csv
+</code></pre></div><h4 id="using-command-line">Using command line</h4>
+<p>🔹 Launch h8mail passing key by command line instead of config file, skip default checks:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ h8mail -t test@gmail.com -k <span style="color:#e6db74">&#34;intelx_key=my-api-key-goes-here&#34;</span> --skip
+</code></pre></div><p>🔎 You can also query domains, IP addresses, usernames, hashes or even previous search results by using the <code>--loose</code> flag. This will tell h8mail not to look for email patterns. IntelX should understand what you&rsquo;re looking for and return relevant search items to fetch.</p>
+<p>💾 By default, h8mail will delete retrieved files after searching through them. You can find the source&rsquo;s name or storage ID in h8mail&rsquo;s output if you wish to look them up again.<br>
+If you wish to <strong>keep the retrieved files</strong>, run h8mail with <code>--debug</code>. This will print the search&rsquo;s raw response, as well as skip file removal.<br>
+Temporary file’s names are based on the result&rsquo;s <code>systemid</code> field.</p>
+<p><em>This might be subject to change, but for now h8mail only queries for text media type (type 24).</em></p>
+<hr>
+<h1 id="bug-fixes--qol">Bug fixes &amp; QoL</h1>
+<ul>
+<li>Local search can now look for loosey patterns in files (such as usernames)</li>
+<li>Local file size formats to MB</li>
+<li>Fixed typos</li>
+<li>Update errors do not stop the execution anymore</li>
+</ul>
+    </div>
+    
+
+
+    
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

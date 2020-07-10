@@ -9,10 +9,30 @@
     <description>Recent content in h8mail on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/h8mail/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>h8mail v2.5.3 release</title>
+      <link>https://khast3x.club/posts/h2-5-3/</link>
+      <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/h2-5-3/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.5.3 features - IntelX.io integration - Free trial API key
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>h8mail v2.4 release</title>

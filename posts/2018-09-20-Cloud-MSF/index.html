@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Using the Metasploit Framework in the cloud with Docker :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="I&amp;rsquo;ll be illustrating different methods of deploying the Metasploit Framework to cloud providers, and different ways to take advantage of this setup. Some basic sysadmin and docker knowledge is also expected.
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2018-09-20-Cloud-MSF/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
+<meta name="twitter:title" content="Using the Metasploit Framework in the cloud with Docker"/>
+<meta name="twitter:description" content="Moving your familiar toolset to ridiculous performances with Docker, for free"/>
+
+
+
+<meta property="og:title" content="Using the Metasploit Framework in the cloud with Docker" />
+<meta property="og:description" content="Moving your familiar toolset to ridiculous performances with Docker, for free" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2018-09-20-Cloud-MSF/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+<meta property="article:published_time" content="2018-09-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-09-20T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2018-09-20-Cloud-MSF/">Using the Metasploit Framework in the cloud with Docker</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2018-09-20
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/metasploit/">metasploit</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloud/">cloud</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/aws/">aws</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/gce/">gce</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/pentest/">pentest</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/secops/">secops</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p><em>I&rsquo;ll be illustrating different methods of deploying the Metasploit Framework to cloud providers, and different ways to take advantage of this setup. Some basic sysadmin and docker knowledge is also expected.</em></p>
+<p>The Metasploit Framework will be shortened to <em>MSF</em> through this post.</p>
+<ul>
+<li><a href="#the-setup">The setup</a>
+<ul>
+<li><a href="#finding-a-cloud">Finding a cloud</a></li>
+<li><a href="#identity-and-defaults">Identity and defaults</a></li>
+</ul>
+</li>
+<li><a href="#getting-started">Getting started</a>
+<ul>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#metasploit">Metasploit</a>
+<ul>
+<li><a href="#deploy-methods-descriptions-little-individual-tables-for-a-presentation-mode">Deploy methods descriptions (little individual tables for a presentation mode?)</a>
+<ul>
+<li><a href="#debianpostgres">debian+postgres</a></li>
+<li><a href="#dev">dev</a></li>
+<li><a href="#kali-bare">kali bare</a></li>
+<li><a href="#kali-full">kali full</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#deploying-metasploit">Deploying Metasploit</a>
+<ul>
+<li><a href="#debianpostgres">debian+postgres</a></li>
+<li><a href="#dev">dev</a></li>
+<li><a href="#kali-bare">kali bare</a></li>
+<li><a href="#kali-full">kali full</a></li>
+</ul>
+</li>
+<li><a href="#deploying-msfdb">Deploying MSFDB</a>
+<ul>
+<li><a href="#kiss--debian-image">KISS = debian image</a></li>
+<li><a href="#example-from-battlecloud">example from battlecloud</a></li>
+</ul>
+</li>
+<li><a href="#talking-to-msf">Talking to MSF</a>
+<ul>
+<li><a href="#docker-attach">docker attach</a></li>
+<li><a href="#docker-machine">docker machine</a></li>
+<li><a href="#webssh">webssh</a></li>
+</ul>
+</li>
+<li><a href="#volumes">Volumes</a>
+<ul>
+<li><a href="#loot-dir">/loot dir</a></li>
+<li><a href="#add-nginx-to-browse-files-no-compose-keep-it-simple">Add nginx to browse files (no compose keep it simple)</a></li>
+</ul>
+</li>
+<li><a href="#using-msfvenom">Using msfvenom</a>
+<ul>
+<li><a href="#generating--retrieving-your-payload">Generating &amp; Retrieving your payload</a></li>
+<li><a href="#aes-from-msf-dev">AES from MSF dev</a></li>
+</ul>
+</li>
+<li><a href="#demo">Demo</a></li>
+</ul>
+<h1 id="the-setup">The setup</h1>
+<h2 id="finding-a-cloud">Finding a cloud</h2>
+<p>If you&rsquo;re reading this, chances are you&rsquo;re familiar with Rapid7&rsquo;s MSF. If not, starting with the <a href="https://www.offensive-security.com/metasploit-unleashed/">Metasploit Unleashed</a> posts is the easiest.</p>
+<p>This will work for any cloud provider, as long as you can install docker or run containers directly. The typical providers are:</p>
+<ul>
+<li>AWS</li>
+<li>Google Cloud Engine</li>
+<li>Azure</li>
+<li>Linode</li>
+<li>Vultr</li>
+<li>Scaleway</li>
+</ul>
+<p>Most of them offer <strong>a free tier at sign up of around $100</strong>. This is more than enough to get started.</p>
+<p><em>You can find more information on free PaaS providers and such in the famous <a href="https://github.com/ripienaar/free-for-dev#paas">free for devs</a> list. Check it out if you have not already!</em></p>
+<h2 id="identity-and-defaults">Identity and defaults</h2>
+<p>Most cloud providers require you to configure your <em>Identities</em>. It&rsquo;s basically a allow/deny of actions for roles that you&rsquo;ll be using. Respective providers have great documentation to &ldquo;Get started&rdquo;. It&rsquo;s also a good idea to read about the best practices for your provider later.</p>
+<p>The keep the post simple, I&rsquo;ll assume you&rsquo;re using a provider with basic deployment capabilities configured.<br>
+Either a vanilla Ubuntu server, or a Docker server image from your cloud provider will do fine.</p>
+<h1 id="getting-started">Getting started</h1>
+<h2 id="docker">Docker</h2>
+<p>This subject is very well documented by the official team as well as professionals and enthusiasts.<br>
+For a basic install on a Ubuntu server, <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">just follow the Docker documentation</a>.</p>
+<p>Once your server is up and running, access it with <code>ssh</code>.</p>
+<h2 id="metasploit">Metasploit</h2>
+<h3 id="deploy-methods-descriptions-little-individual-tables-for-a-presentation-mode">Deploy methods descriptions (little individual tables for a presentation mode?)</h3>
+<h4 id="debianpostgres">debian+postgres</h4>
+<h4 id="dev">dev</h4>
+<h4 id="kali-bare">kali bare</h4>
+<h4 id="kali-full">kali full</h4>
+<h1 id="deploying-metasploit">Deploying Metasploit</h1>
+<h2 id="debianpostgres-1">debian+postgres</h2>
+<h2 id="dev-1">dev</h2>
+<h2 id="kali-bare-1">kali bare</h2>
+<h2 id="kali-full-1">kali full</h2>
+<h1 id="deploying-msfdb">Deploying MSFDB</h1>
+<h2 id="kiss--debian-image">KISS = debian image</h2>
+<h2 id="example-from-battlecloud">example from battlecloud</h2>
+<h1 id="talking-to-msf">Talking to MSF</h1>
+<h2 id="docker-attach">docker attach</h2>
+<h2 id="docker-machine">docker machine</h2>
+<h2 id="webssh">webssh</h2>
+<h1 id="volumes">Volumes</h1>
+<h2 id="loot-dir">/loot dir</h2>
+<h2 id="add-nginx-to-browse-files-no-compose-keep-it-simple">Add nginx to browse files (no compose keep it simple)</h2>
+<h1 id="using-msfvenom">Using msfvenom</h1>
+<h2 id="generating--retrieving-your-payload">Generating &amp; Retrieving your payload</h2>
+<h2 id="aes-from-msf-dev">AES from MSF dev</h2>
+<h1 id="demo">Demo</h1>
+    </div>
+    
+
+
+    
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Understanding h8mail internals :: khast3x blog — Thoughts and notes on my side projects</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="It has been over a year since h8mail is online, and the code base is starting to &amp;ldquo;stabilize&amp;rdquo;. I&amp;rsquo;m starting new projects, so I&amp;rsquo;ll try to explain how things work for future reference, or if someone is brave enough to consider making a pull request! 😄
+"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/2019-07-12-Understanding-h8mails-code/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
+<meta name="twitter:title" content="Understanding h8mail internals"/>
+<meta name="twitter:description" content="Overview of how h8mail internals work for future reference"/>
+
+
+
+<meta property="og:title" content="Understanding h8mail internals" />
+<meta property="og:description" content="Overview of how h8mail internals work for future reference" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/2019-07-12-Understanding-h8mails-code/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+<meta property="article:published_time" content="2019-07-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-12T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2019-07-12-Understanding-h8mails-code/">Understanding h8mail internals</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2019-07-12
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/haveibeenpwned/">haveibeenpwned</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/leak/">leak</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/docker/">docker</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/cloud/">cloud</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>It has been over a year since h8mail is online, and the code base is starting to &ldquo;stabilize&rdquo;. I&rsquo;m starting new projects, so I&rsquo;ll try to explain how things work for future reference, or if someone is brave enough to consider making a pull request! 😄</p>
+<ul>
+<li><a href="#h8mail-files-and-folders">h8mail files and folders</a></li>
+<li><a href="#code-diagrams">Code Diagrams</a>
+- <a href="#classes">Classes</a>
+- <a href="#packages">Packages</a></li>
+<li><a href="#guidelines">Guidelines</a></li>
+</ul>
+<p>h8mail was, like most projects, just a script that evolved. We&rsquo;ll go over the files and folders first.</p>
+<hr>
+<h1 id="h8mail-files-and-folders">h8mail files and folders</h1>
+<p>Let&rsquo;s run a recursive <code>ls</code> to get a good overview.</p>
+<pre><code>user@host ~ : git clone https://github.com/khast3x/h8mail.git
+user@host ~ : cd h8mail
+user@host ~/h8mail/ : ls -Rla
+
+total 80
+drwxrwxr-x  6 k    k     4096 jul. 12 02:23 ./
+drwxrwxrwt 18 root root  4096 jul. 12 02:23 ../
+-rw-rw-r--  1 k    k      167 jul. 12 02:23 config.ini
+-rw-rw-r--  1 k    k      184 jul. 12 02:23 Dockerfile
+-rw-rw-r--  1 k    k      292 jul. 12 02:23 .editorconfig
+drwxrwxr-x  8 k    k     4096 jul. 12 02:23 .git/
+drwxrwxr-x  2 k    k     4096 jul. 12 02:23 .github/
+-rw-rw-r--  1 k    k     1216 jul. 12 02:23 .gitignore
+drwxrwxr-x  3 k    k     4096 jul. 12 02:23 h8mail/
+-rw-rw-r--  1 k    k     1501 jul. 12 02:23 LICENSE
+-rw-rw-r--  1 k    k     1840 jul. 12 02:23 Makefile
+-rw-rw-r--  1 k    k     1525 jul. 12 02:23 PyPi.rst
+-rw-rw-r--  1 k    k    16086 jul. 12 02:23 README.md
+-rw-rw-r--  1 k    k      390 jul. 12 02:23 setup.cfg
+-rw-rw-r--  1 k    k     1460 jul. 12 02:23 setup.py
+drwxrwxr-x  2 k    k     4096 jul. 12 02:23 tests/
+-rw-rw-r--  1 k    k      388 jul. 12 02:23 .travis.yml
+
+./.git:
+        ++ snip ++
+./h8mail:
+total 24
+drwxrwxr-x 3 k k 4096 jul. 12 02:23 ./
+drwxrwxr-x 6 k k 4096 jul. 12 02:23 ../
+-rw-rw-r-- 1 k k  137 jul. 12 02:23 __init__.py
+-rw-rw-r-- 1 k k  645 jul. 12 02:23 __main__.py
+-rw-rw-r-- 1 k k    9 jul. 12 02:23 requirements.txt
+drwxrwxr-x 2 k k 4096 jul. 12 02:23 utils/
+
+./h8mail/utils:
+total 88
+drwxrwxr-x 2 k k  4096 jul. 12 02:23 ./
+drwxrwxr-x 3 k k  4096 jul. 12 02:23 ../
+-rw-rw-r-- 1 k k  1477 jul. 12 02:23 breachcompilation.py
+-rw-rw-r-- 1 k k   739 jul. 12 02:23 chase.py
+-rw-rw-r-- 1 k k 16496 jul. 12 02:23 classes.py
+-rw-rw-r-- 1 k k  6009 jul. 12 02:23 colors.py
+-rw-rw-r-- 1 k k  4887 jul. 12 02:23 helpers.py
+-rw-rw-r-- 1 k k     0 jul. 12 02:23 __init__.py
+-rw-rw-r-- 1 k k  4991 jul. 12 02:23 localgzipsearch.py
+-rw-rw-r-- 1 k k  5866 jul. 12 02:23 localsearch.py
+-rw-rw-r-- 1 k k  2207 jul. 12 02:23 print_results.py
+-rw-rw-r-- 1 k k  8215 jul. 12 02:23 run.py
+-rw-rw-r-- 1 k k  1295 jul. 12 02:23 summary.py
+
+./tests:
+total 16
+drwxrwxr-x 2 k k 4096 jul. 12 02:23 ./
+drwxrwxr-x 6 k k 4096 jul. 12 02:23 ../
+-rw-rw-r-- 1 k k   61 jul. 12 02:23 __init__.py
+-rw-rw-r-- 1 k k  690 jul. 12 02:23 test_h8mail.py
+</code></pre><p>h8mail is distributed using <code>pip</code>, which already comes with some folder layout restrictions.<br>
+h8mail is <em>actually</em> an executable python module. As such, the actual h8mail code is found in the <code>h8mail/h8mail</code> folder.</p>
+<p>Here is an overview of &ldquo;what does what&rdquo;. References to code logic will make more sense as we go on.</p>
+<ul>
+<li><code>h8mail/</code> : home directory. Contains additional files such as a Dockerfile, a Makefile and setup.py for software distribution, the travis tests file (the <code>build:passing</code> badge), the <code>config.ini</code> template for h8mail.</li>
+<li><code>h8mail/tests</code> : testing directory. Contains the files that describe how to test that this code version works.</li>
+<li><code>h8mail/h8mail</code> : h8mail module directory. Contains the actual h8mail code, the <code>__main__.py</code> file calls the rest of the code in the <code>utils/</code> folder.</li>
+<li><code>h8mail/h8mail/utils</code> : internal packages that runs everything.
+<ul>
+<li><code>run.py</code> : Contains most of the h8mail logic. Handles target objects, and fills them with relevant data. Handles printing logic and saving to CSV.</li>
+<li><code>breachcompilation.py</code> : handles searching the BreachCompilation torrent using the <code>query.sh</code> script in the torrent.</li>
+<li><code>print_results.py</code> : handles printing results in a formated table to the CLI.</li>
+<li><code>summary.py</code> : handles printing the final summary table using the list of target objects.</li>
+<li><code>colors.py</code> : handles all colors and formated CLI outputs, such as informational messages or errors.</li>
+<li><code>chase.py</code> : handles chasing targets (currently) using the hunter.io API. It will return a list of targets to append to the ongoing target list.</li>
+<li><code>localsearch.py &amp; localgzipsearch.py</code> : handle the <code>-lb</code> and <code>-gz</code> options respectively. Multiprocessing logic is handled in their own files.</li>
+<li><code>classes.py</code> : contains the <code>target</code> object, and all the API methods to fill this object. It also contains the <code>local_breach_target</code> object, used when searching locally (with <code>-lb</code> &amp; <code>-gz</code>). It will then be transformed to a <code>target</code> object and be appended to the on-going target list. Should be refactored one day.</li>
+<li><code>helpers.py</code> : contains other useful functions such as finding emails in files and writing to the CSV file.</li>
+</ul>
+</li>
+</ul>
+<p>Basically, <code>run.py</code> reads the user args and optionally the configuration file, and creates a list of <code>target</code> objects from user input of files.<br>
+The <code>target</code> <em>object factory</em> calls <code>target</code> object methods depending on user choices and detected keys inside the configuration file.
+Once APIs have been called, if the user specified local searching, h8mail will start calling the appropriate functions depending on the file type (cleartext or <code>tar.gz</code>).
+Once that&rsquo;s done, h8mail will print a formatted table, a summary, and optionally save results as CSV.</p>
+<hr>
+<h1 id="code-diagrams">Code Diagrams</h1>
+<p>Now that we have a basic idea of how things run, here are the UML illustrations generated with <code>pyreverse</code>.</p>
+<h4 id="classes">Classes</h4>
+<p>The <code>colors</code> class takes a bit space. You&rsquo;ll really want to be looking a the <code>target</code> and <code>local_breach_target</code> classes.</p>
+<p><img src="../assets/h8mail/classes_h8mail.png" alt=""></p>
+<h4 id="packages">Packages</h4>
+<p>Hopefully, having read the previous blog segment will demystify the following diagram.</p>
+<p><img src="../assets/h8mail/packages_h8mail.png" alt=""></p>
+<hr>
+<h1 id="guidelines">Guidelines</h1>
+<p>Some of the guidelines I&rsquo;m trying to keep:</p>
+<ul>
+<li>avoid requirements as much as possible. Hence the color class</li>
+<li>Code is formatted using <a href="https://github.com/python/black">python black</a></li>
+<li>API logic goes straight to the <code>target</code> class as a method</li>
+<li>Adding a new service requires adding it to the list of searched items in the printing functions</li>
+<li>Adding a new service requires adding to the methods called in <code>run.py</code></li>
+<li>API logic is <em>per target</em>, whereas local searching is <em>per line</em>. All targets will be looked for in a single call for a single line for the local file search</li>
+<li>The code should stay cross-platform</li>
+<li>Readable python &gt; intricate python</li>
+</ul>
+    </div>
+    
+
+
+    
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

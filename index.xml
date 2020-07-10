@@ -9,10 +9,30 @@
     <description>Recent content on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>h8mail v2.5.3 release</title>
+      <link>https://khast3x.club/posts/h2-5-3/</link>
+      <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/h2-5-3/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.5.3 features - IntelX.io integration - Free trial API key
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Payload Delivery for DevOps : Building a Cross-Platform Dropper Using the Genesis Framework, Metasploit and Docker</title>
