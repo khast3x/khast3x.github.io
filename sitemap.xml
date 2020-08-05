@@ -4,22 +4,52 @@
   
   <url>
     <loc>https://khast3x.club/tags/breach/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/categories/c2/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/categories/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/h8mail/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/categories/h8mail/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/h2-5-4/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/OSINT/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/password/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/posts/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/</loc>
+    <lastmod>2020-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,33 +63,8 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/leak/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/OSINT/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/password/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/posts/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://khast3x.club/tags/</loc>
-    <lastmod>2020-07-09T00:00:00+00:00</lastmod>
+    <loc>https://khast3x.club/categories/c2/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -108,17 +113,17 @@
   </url>
   
   <url>
-    <loc>https://khast3x.club/categories/h8mail/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://khast3x.club/posts/2019-10-19-h8mail_2.4-release/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://khast3x.club/tags/haveibeenpwned/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://khast3x.club/tags/leak/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   

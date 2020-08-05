@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>h8mail v2.5.4 release :: khast3x blog — Information Security &amp; OSINT blog</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Getting straight into it:
+  Fixed Scylla errors - The internal scylla check was not timing out, resulting in h8mail hanging. In the meantime _hyp3ri0n updated scylla&amp;rsquo;s backend, and some JSON keys. Wanna give back to this free service? Help out _hyp3ri0n &amp;rsquo;s Dad kickstarter!
+  Fixed Dehashed API integration - Dehashed integration was not working since they updated to their new API. Everything is back to normal, thanks again Peter!"/>
+<meta name="keywords" content="h8mail, infosec, osint"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://khast3x.club/posts/h2-5-4/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://khast3x.club/assets/style.css">
+
+
+<link rel="stylesheet" href="https://khast3x.club/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://khast3x.club/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="https://khast3x.club/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+
+<meta name="twitter:title" content="h8mail v2.5.4 release"/>
+<meta name="twitter:description" content="Overview of h8mail v2.5.4 features - Scylla and Dehashed fixed, add spacing in results"/>
+
+
+
+<meta property="og:title" content="h8mail v2.5.4 release" />
+<meta property="og:description" content="Overview of h8mail v2.5.4 features - Scylla and Dehashed fixed, add spacing in results" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://khast3x.club/posts/h2-5-4/" />
+<meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
+<meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title"><a href="https://khast3x.club/posts/h2-5-4/">h8mail v2.5.4 release</a></h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-08-05
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://khast3x.club/tags/h8mail/">h8mail</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/OSINT/">OSINT</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/password/">password</a>&nbsp;
+        
+          #<a href="https://khast3x.club/tags/breach/">breach</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>Getting straight into it:</p>
+<ul>
+<li>
+<p><strong>Fixed Scylla errors</strong> - The internal scylla check was not timing out, resulting in h8mail hanging. In the meantime <a href="https://twitter.com/_hyp3ri0n">_hyp3ri0n</a> updated scylla&rsquo;s backend, and some JSON keys. Wanna give back to this free service? Help out <a href="https://www.kickstarter.com/projects/1016921090/riego-automatically-water-your-houseplants">_hyp3ri0n &rsquo;s Dad kickstarter!</a></p>
+</li>
+<li>
+<p><strong>Fixed Dehashed API integration</strong> - Dehashed integration was not working since they updated to their new API. Everything is back to normal, thanks again Peter! ☺️</p>
+</li>
+<li>
+<p><strong>Added spacing in results</strong> - Still unsure of some of the colours and formatting but I hope this small detail helps</p>
+</li>
+<li>
+<p><strong>Added a <a href="https://github.com/khast3x/h8mail/blob/master/CONTRIBUTING.md">contribution guideline</a></strong> - Started receiving my first PRs for h8mail, so figured it was about time we took care of that.</p>
+<ul>
+<li>Thank you <a href="https://github.com/cclauss">cclauss</a>, <a href="https://github.com/V1A0">V1A0</a> and <a href="https://github.com/maxsam4">maxsam4</a> for your contributions! ⭐</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>💜 Special shout-out to those who answered me on Twitter regarding spacing.<br>
+Asking questions in the twitter public place can give me some minor anxiety, knowing y&rsquo;all are there helps a lot. So yeah, thank you.</p>
+<p>💜 Stay safe, use your powers for good. I&rsquo;ll see you in the next update!</p>
+<hr>
+<p>📬 <em>Follow me on <a href="https://twitter.com/kh4st3x">Twitter</a> to stay updated on future developments!</em></p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finishing h8mail&#39;s next update. Thinking of adding spaces in results. <br>Q: What do y&#39;all prefer? With or without? <a href="https://t.co/JBh6lzpKpg">pic.twitter.com/JBh6lzpKpg</a></p>&mdash; khast3x 📡 (@kh4st3x) <a href="https://twitter.com/kh4st3x/status/1290945138294808587?ref_src=twsrc%5Etfw">August 5, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    </div>
+
+    
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">More posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+            
+              <span class="button next">
+                <a href="https://khast3x.club/posts/h2-5-3/">
+                  <span class="button__text">h8mail v2.5.3 release</span>
+                  <span class="button__icon">&rarr;</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">khast3x blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://khast3x.club/assets/main.js"></script>
+<script src="https://khast3x.club/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-113498686-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+  </body>
+</html>

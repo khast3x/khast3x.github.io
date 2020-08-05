@@ -9,10 +9,30 @@
     <description>Recent content on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>h8mail v2.5.4 release</title>
+      <link>https://khast3x.club/posts/h2-5-4/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/h2-5-4/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.5.4 features - Scylla and Dehashed fixed, add spacing in results
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>h8mail v2.5.3 release</title>
