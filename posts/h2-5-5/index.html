@@ -2,16 +2,15 @@
 <html lang="en">
   <head>
     
-      <title>h8mail v2.5.4 release :: khast3x blog — Information Security &amp; OSINT blog</title>
+      <title>h8mail v2.5.5 release :: khast3x blog — Information Security &amp; OSINT blog</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="⭐ Project homepage ⭐ Getting straight into it:
-  Fixed Scylla errors - The internal scylla check was not timing out, resulting in h8mail hanging. In the meantime _hyp3ri0n updated scylla&amp;rsquo;s backend, and some JSON keys. Wanna give back to this free service? Help out _hyp3ri0n &amp;rsquo;s Dad kickstarter!
-  Fixed Dehashed API integration - Dehashed integration was not working since they updated to their new API. Everything is back to normal, thanks again Peter!"/>
+ Fixed Scylla errors - Scylla&amp;rsquo;s domain has migrated to scylla.so Fixed IntelX bucket errors - h8mail will now check which buckets your API has access to before performing search New JSON ouput - h8mail can now output results to JSON format using -j or --json. A data structure sample is included below Breachdirectory.tk API integration - Breachdirectory.tk&amp;rsquo;s API has been integrated and added to config template."/>
 <meta name="keywords" content="h8mail, infosec, osint"/>
 <meta name="robots" content="noodp"/>
-<link rel="canonical" href="https://khast3x.club/posts/h2-5-4/" />
+<link rel="canonical" href="https://khast3x.club/posts/h2-5-5/" />
 
 
 
@@ -30,18 +29,18 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
 
-<meta name="twitter:title" content="h8mail v2.5.4 release"/>
-<meta name="twitter:description" content="Overview of h8mail v2.5.4 features - Scylla and Dehashed fixed, add spacing in results"/>
+<meta name="twitter:title" content="h8mail v2.5.5 release"/>
+<meta name="twitter:description" content="Overview of h8mail v2.5.5 features - Scylla fixed, JSON output and breachdirectory.tk API integration"/>
 
 
 
-<meta property="og:title" content="h8mail v2.5.4 release" />
-<meta property="og:description" content="Overview of h8mail v2.5.4 features - Scylla and Dehashed fixed, add spacing in results" />
+<meta property="og:title" content="h8mail v2.5.5 release" />
+<meta property="og:description" content="Overview of h8mail v2.5.5 features - Scylla fixed, JSON output and breachdirectory.tk API integration" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://khast3x.club/posts/h2-5-4/" />
+<meta property="og:url" content="https://khast3x.club/posts/h2-5-5/" />
 <meta property="og:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
-<meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
+<meta property="article:published_time" content="2021-01-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-28T00:00:00+00:00" /><meta property="og:site_name" content="khast3x blog" />
 
 
 
@@ -112,11 +111,11 @@
   
 
   <div class="post">
-    <h1 class="post-title"><a href="https://khast3x.club/posts/h2-5-4/">h8mail v2.5.4 release</a></h1>
+    <h1 class="post-title"><a href="https://khast3x.club/posts/h2-5-5/">h8mail v2.5.5 release</a></h1>
     <div class="post-meta">
       
         <span class="post-date">
-          2020-08-05
+          2021-01-28
         </span>
 
         
@@ -149,27 +148,53 @@
       <h3 id="-project-homepagehttpsgithubcomkhast3xh8mail-">⭐ <a href="https://github.com/khast3x/h8mail">Project homepage</a> ⭐</h3>
 <p>Getting straight into it:</p>
 <ul>
-<li>
-<p><strong>Fixed Scylla errors</strong> - The internal scylla check was not timing out, resulting in h8mail hanging. In the meantime <a href="https://twitter.com/_hyp3ri0n">_hyp3ri0n</a> updated scylla&rsquo;s backend, and some JSON keys. Wanna give back to this free service? Help out <a href="https://www.kickstarter.com/projects/1016921090/riego-automatically-water-your-houseplants">_hyp3ri0n &rsquo;s Dad kickstarter!</a></p>
-</li>
-<li>
-<p><strong>Fixed Dehashed API integration</strong> - Dehashed integration was not working since they updated to their new API. Everything is back to normal, thanks again Peter! ☺️</p>
-</li>
-<li>
-<p><strong>Added spacing in results</strong> - Still unsure of some of the colours and formatting but I hope this small detail helps</p>
-</li>
-<li>
-<p><strong>Added a <a href="https://github.com/khast3x/h8mail/blob/master/CONTRIBUTING.md">contribution guideline</a></strong> - Started receiving my first PRs for h8mail, so figured it was about time we took care of that.</p>
-<ul>
-<li>Thank you <a href="https://github.com/cclauss">cclauss</a>, <a href="https://github.com/V1A0">V1A0</a> and <a href="https://github.com/maxsam4">maxsam4</a> for your contributions! ⭐</li>
-</ul>
-</li>
+<li><strong>Fixed Scylla errors</strong> - Scylla&rsquo;s domain has migrated to scylla.so</li>
+<li><strong>Fixed IntelX bucket errors</strong> - h8mail will now check which buckets your API has access to before performing search</li>
+<li><strong>New JSON ouput</strong> - h8mail can now output results to JSON format using <code>-j</code> or <code>--json</code>. A data structure sample is included below</li>
+<li><strong><a href="Breachdirectory.tk">Breachdirectory.tk</a> API integration</strong> - <a href="Breachdirectory.tk">Breachdirectory.tk</a>&rsquo;s API has been integrated and added to config template. Key is free for infosec students and pro! 🔑</li>
 </ul>
 <hr>
-<p>💜 Stay safe, use your powers for good. I&rsquo;ll see you in the next update!</p>
-<hr>
+<h4 id="json-output">JSON output</h4>
+<p>Below is a simple demonstration of h8mail JSON output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; h8mail -t test@gmail.com -j test.json
+*** snip ***
+&gt; cat test.json | jq
+<span style="color:#f92672">{</span>
+   <span style="color:#e6db74">&#34;targets&#34;</span>:<span style="color:#f92672">[</span>
+      <span style="color:#f92672">{</span>
+         <span style="color:#e6db74">&#34;target&#34;</span>:<span style="color:#e6db74">&#34;test@gmail.com&#34;</span>,
+         <span style="color:#e6db74">&#34;pwn_num&#34;</span>:108,
+         <span style="color:#e6db74">&#34;data&#34;</span>:<span style="color:#f92672">[</span>
+            <span style="color:#f92672">[</span>
+               <span style="color:#e6db74">&#34;SCYLLA_SOURCE:Collections&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#f92672">[</span>
+               <span style="color:#e6db74">&#34;SCYLLA_PASSWORD:jontest&#34;</span>,
+               <span style="color:#e6db74">&#34;SCYLLA_SOURCE:lbsg.net&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#f92672">[</span>
+               <span style="color:#e6db74">&#34;SCYLLA_PASSWORD:Atoru&#34;</span>,
+               <span style="color:#e6db74">&#34;SCYLLA_SOURCE:Collection1-btc-combo&#34;</span>
+            <span style="color:#f92672">]</span>,
+            <span style="color:#f92672">[</span>
+               <span style="color:#e6db74">&#34;SCYLLA_PASSWORD:x23abc&#34;</span>,
+               <span style="color:#e6db74">&#34;SCYLLA_USERNAME:orinko0624&#34;</span>,
+               <span style="color:#e6db74">&#34;SCYLLA_SOURCE:lbsg.net&#34;</span>
+            <span style="color:#f92672">]</span>
+         <span style="color:#f92672">]</span>
+      <span style="color:#f92672">}</span>
+   <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="breachdirectorytk-api-integration">Breachdirectory.tk API integration</h4>
+<p><a href="Breachdirectory.tk">Breachdirectory.tk</a> integration follows the standard workflow for API integration. You will receive a username and password. Generate a configuration file, uncomment the two lines mentioning breachdirectory, fill with your username and password, save.</p>
+<pre><code>&gt; h8mail -g
+&gt; nano h8mail_config.ini
+# Uncomment breachdirectory user/pass, fill
+&gt; h8mail -t test@example.com -c h8mail_config.ini
+
+</code></pre><hr>
 <p>📬 <em>Follow me on <a href="https://twitter.com/kh4st3x">Twitter</a> to stay updated on future developments!</em></p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finishing h8mail&#39;s next update. Thinking of adding spaces in results. <br>Q: What do y&#39;all prefer? With or without? <a href="https://t.co/JBh6lzpKpg">pic.twitter.com/JBh6lzpKpg</a></p>&mdash; khast3x 📡 (@kh4st3x) <a href="https://twitter.com/kh4st3x/status/1290945138294808587?ref_src=twsrc%5Etfw">August 5, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">New API from <a href="https://t.co/6WzEULHl5B">https://t.co/6WzEULHl5B</a> will also be integrated. You can get a free API key if you&#39;re an infosec student or pro💡 <a href="https://t.co/G0MqnHvqdt">https://t.co/G0MqnHvqdt</a> <a href="https://t.co/vzWG4Dom42">pic.twitter.com/vzWG4Dom42</a></p>&mdash; khast3x 📡 (@kh4st3x) <a href="https://twitter.com/kh4st3x/status/1354864461547524098?ref_src=twsrc%5Etfw">January 28, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
@@ -186,17 +211,10 @@
           <div class="pagination__buttons">
             
             
-              <span class="button previous">
-                <a href="https://khast3x.club/posts/h2-5-5/">
-                  <span class="button__icon">&larr;</span>
-                  <span class="button__text">h8mail v2.5.5 release</span>
-                </a>
-              </span>
-            
             
               <span class="button next">
-                <a href="https://khast3x.club/posts/h2-5-3/">
-                  <span class="button__text">h8mail v2.5.3 release</span>
+                <a href="https://khast3x.club/posts/h2-5-4/">
+                  <span class="button__text">h8mail v2.5.4 release</span>
                   <span class="button__icon">&rarr;</span>
                 </a>
               </span>

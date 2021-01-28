@@ -9,10 +9,30 @@
     <description>Recent content in breach on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/breach/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>h8mail v2.5.5 release</title>
+      <link>https://khast3x.club/posts/h2-5-5/</link>
+      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/posts/h2-5-5/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Overview of h8mail v2.5.5 features - Scylla fixed, JSON output and breachdirectory.tk API integration
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>h8mail v2.5.4 release</title>
