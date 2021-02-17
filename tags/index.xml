@@ -9,7 +9,7 @@
     <description>Recent content in Tags on khast3x blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Feb 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://khast3x.club/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
     <item>
       <title>breach</title>
       <link>https://khast3x.club/tags/breach/</link>
-      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/breach/</guid>
       <description>
@@ -35,9 +35,29 @@
     </item>
     
     <item>
+      <title>COMB</title>
+      <link>https://khast3x.club/tags/COMB/</link>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/COMB/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>h8mail</title>
       <link>https://khast3x.club/tags/h8mail/</link>
-      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/h8mail/</guid>
       <description>
@@ -55,9 +75,29 @@
     </item>
     
     <item>
+      <title>leak</title>
+      <link>https://khast3x.club/tags/leak/</link>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://khast3x.club/tags/leak/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+    <item>
       <title>OSINT</title>
       <link>https://khast3x.club/tags/OSINT/</link>
-      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/OSINT/</guid>
       <description>
@@ -77,7 +117,7 @@
     <item>
       <title>password</title>
       <link>https://khast3x.club/tags/password/</link>
-      <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/password/</guid>
       <description>
@@ -240,26 +280,6 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://khast3x.club/tags/haveibeenpwned/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>leak</title>
-      <link>https://khast3x.club/tags/leak/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://khast3x.club/tags/leak/</guid>
       <description>
         
           
