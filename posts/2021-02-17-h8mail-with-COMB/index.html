@@ -176,7 +176,6 @@ To quote the news:
 <p>Since the <code>query.sh</code> script is in bash, you&rsquo;ll need to be on a UNIX system or using WSL for Window.
 You&rsquo;ll need the original COMB 7zip archive, and to have <a href="https://github.com/khast3x/h8mail/wiki/Install">h8mail installed</a>.</p>
 <p><strong>Launch h8mail with bash</strong>, the query script uses a BASH environment variable.</p>
-<p>OSX users might want to look into replacing the default <code>query.sh</code> script with an <a href="https://gist.github.com/sumgr0/f40c8a574c9083fc28b229b2e953d289">OSX friendly version</a>. Make sure you rename it to <code>query.sh</code> to replace the original script. - <em>Thanks sumgr0!</em></p>
 <p>The original COMB archive is encrypted, so we&rsquo;re going to decrypt and extract it.</p>
 <p>🔹 Once you&rsquo;re in the same directory as the downloaded archive, run the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># &gt; bash</span>
@@ -192,6 +191,7 @@ drwx------ <span style="color:#ae81ff">30</span> root     root     <span style="
 -rw-r--r--  <span style="color:#ae81ff">1</span> root     root     <span style="color:#ae81ff">1718</span> Apr  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">2020</span> sorter.sh
 
 </code></pre></div><p>The <code>query.sh</code> script should be at the root of the extracted archive as show above.</p>
+<p>OSX users might want to look into replacing the default <code>query.sh</code> script with an <a href="https://gist.github.com/sumgr0/f40c8a574c9083fc28b229b2e953d289">OSX friendly version</a>. Make sure you rename it to <code>query.sh</code> to replace the original script. - <em>Thanks sumgr0!</em></p>
 <h2 id="targeting-emails">Targeting emails</h2>
 <p>The <code>query.sh</code> script is meant to be used with emails, we&rsquo;ll look into the domain and password search further down.</p>
 <p>🔹 To search for emails, run the following:</p>
