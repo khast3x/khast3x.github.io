@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     
-      <title>Hunting credential leaks like a Pro using h8mail and the new COMB (Combination Of Many Breaches) :: khast3x blog — Information Security &amp; OSINT blog</title>
+      <title>Hunting credential leaks using h8mail and the new COMB (Combination Of Many Breaches) :: khast3x blog — Information Security &amp; OSINT blog</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Abstract Setup Targeting emails Targeting passwords and domains Finding the COMB   
 Abstract To jump to the important parts, look for the small blue diamonds 🔹
-In early Feburary, a massive credential dump titled COMB (Combination Of Many Leaks) started leaking on several forums.
+In early February, a massive credential dump titled COMB (Combination Of Many Leaks) started leaking on several forums.
 To quote the news:
  On Tuesday, February 2, COMB was leaked on a popular hacking forum. It contains billions of user credentials from past leaks from Netflix, LinkedIn, Exploit."/>
 <meta name="keywords" content="h8mail, infosec, osint"/>
@@ -32,12 +32,12 @@ To quote the news:
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://khast3x.club/assets/demo/haunter_alt.png"/>
 
-<meta name="twitter:title" content="Hunting credential leaks like a Pro using h8mail and the new COMB (Combination Of Many Breaches)"/>
+<meta name="twitter:title" content="Hunting credential leaks using h8mail and the new COMB (Combination Of Many Breaches)"/>
 <meta name="twitter:description" content="In this post we&#39;re learning how to use h8mail with the Combination Of Many Breaches for efficient searching and harvesting"/>
 
 
 
-<meta property="og:title" content="Hunting credential leaks like a Pro using h8mail and the new COMB (Combination Of Many Breaches)" />
+<meta property="og:title" content="Hunting credential leaks using h8mail and the new COMB (Combination Of Many Breaches)" />
 <meta property="og:description" content="In this post we&#39;re learning how to use h8mail with the Combination Of Many Breaches for efficient searching and harvesting" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://khast3x.club/posts/2021-02-17-h8mail-with-COMB/" />
@@ -114,7 +114,7 @@ To quote the news:
   
 
   <div class="post">
-    <h1 class="post-title"><a href="https://khast3x.club/posts/2021-02-17-h8mail-with-COMB/">Hunting credential leaks like a Pro using h8mail and the new COMB (Combination Of Many Breaches)</a></h1>
+    <h1 class="post-title"><a href="https://khast3x.club/posts/2021-02-17-h8mail-with-COMB/">Hunting credential leaks using h8mail and the new COMB (Combination Of Many Breaches)</a></h1>
     <div class="post-meta">
       
         <span class="post-date">
@@ -163,7 +163,7 @@ To quote the news:
 <p><a href="https://github.com/khast3x/h8mail"><img src="/assets/h8mail/cover.png" alt=""></a></p>
 <h2 id="abstract">Abstract</h2>
 <p><em>To jump to the important parts, look for the small blue diamonds</em> 🔹</p>
-<p>In early Feburary, a massive credential dump titled <strong>COMB</strong> <em>(Combination Of Many Leaks)</em> started leaking on several forums.</p>
+<p>In early February, a massive credential dump titled <strong>COMB</strong> <em>(Combination Of Many Leaks)</em> started leaking on several forums.</p>
 <p>To quote the news:</p>
 <blockquote>
 <p>On Tuesday, February 2, COMB was leaked on a popular hacking forum. It contains billions of user credentials from past leaks from Netflix, LinkedIn, Exploit.in, Bitcoin and more. This leak is comparable to the Breach Compilation of 2017, in which 1.4 billion credentials were leaked. (<em><a href="https://cybernews.com/news/largest-compilation-of-emails-and-passwords-leaked-free/">Source</a></em>)</p>
@@ -174,8 +174,9 @@ To quote the news:
 <h2 id="setup">Setup</h2>
 <p><em>💡 Advanced users, you can use a VPS with Docker to download the COMB faster and use a h8mail container to search through it, similar to this <a href="https://khast3x.club/posts/2019-06-07-docker-h8mail/">previous blog post</a>.</em></p>
 <p>Since the <code>query.sh</code> script is in bash, you&rsquo;ll need to be on a UNIX system or using WSL for Window.
-You&rsquo;ll need the original COMB 7zip archive, and have <a href="https://github.com/khast3x/h8mail/wiki/Install">h8mail installed</a>.<br>
-<strong>Launch h8mail with bash</strong>, the query script uses a BASH environment variable. OSX users might want to look into replacing the <code>query.sh</code> script with an <a href="https://gist.github.com/sumgr0/f40c8a574c9083fc28b229b2e953d289">OSX friendly version</a>. Make sure you rename it to <code>query.sh</code> to replace the original script. - <em>Thanks sumgr0!</em></p>
+You&rsquo;ll need the original COMB 7zip archive, and to have <a href="https://github.com/khast3x/h8mail/wiki/Install">h8mail installed</a>.<br>
+<strong>Launch h8mail with bash</strong>, the query script uses a BASH environment variable.<br>
+OSX users might want to look into replacing the <code>query.sh</code> script with an <a href="https://gist.github.com/sumgr0/f40c8a574c9083fc28b229b2e953d289">OSX friendly version</a>. Make sure you rename it to <code>query.sh</code> to replace the original script. - <em>Thanks sumgr0!</em></p>
 <p>The original COMB archive is encrypted, so we&rsquo;re going to decrypt and extract it.</p>
 <p>🔹 Once you&rsquo;re in the same directory as the downloaded archive, run the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># &gt; bash</span>
@@ -192,7 +193,7 @@ drwx------ <span style="color:#ae81ff">30</span> root     root     <span style="
 
 </code></pre></div><p>The <code>query.sh</code> script should be at the root of the extracted archive as show above.</p>
 <h2 id="targeting-emails">Targeting emails</h2>
-<p>The <code>query.sh</code> script is meant to be used with emails, we&rsquo;ll look into domain and password search further down.</p>
+<p>The <code>query.sh</code> script is meant to be used with emails, we&rsquo;ll look into the domain and password search further down.</p>
 <p>🔹 To search for emails, run the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; h8mail -t test@example.com -sk -bc ./CompilationOfManyBreaches/
 </code></pre></div><ul>
@@ -203,20 +204,20 @@ drwx------ <span style="color:#ae81ff">30</span> root     root     <span style="
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; h8mail -t targets.txt -sk -bc ./CompilationOfManyBreaches/
 </code></pre></div><h2 id="targeting-passwords-and-domains">Targeting passwords and domains</h2>
 <p>The <code>query.sh</code> script only handles searching for strings that are the first part of the combo.<br>
-To search for passwords and domains, we&rsquo;ll use h8mail&rsquo;s integrated file search, which uses multi-processing to speed up the search. Since the breach is about 20GB, it will still take some time. On a ARM CPU, it takes about 3:30:00 for all the data to be processed.<br>
+To search for passwords and domains, we&rsquo;ll use h8mail&rsquo;s integrated file search, which uses multiprocessing to speed up the search. Since the breach is about 20GB, it will still take some time. On an ARM CPU, it takes about 3:30:00 for all the data to be processed.<br>
 We replace the previous <code>-bc</code> param with <code>-lb</code>, and add <code>--loose</code>.</p>
 <p>🔹 To search for patterns such as domain names or passwords, run the following:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; h8mail -t example.com fcorp.com -sk -lb ./CompilationOfManyBreaches/ --loose
 &gt; h8mail -t <span style="color:#e6db74">&#34;Yourefired&#34;</span> <span style="color:#e6db74">&#34;Another_s3cretP@ss&#34;</span> -sk -lb ./CompilationOfManyBreaches/ --loose
 </code></pre></div><ul>
-<li>The <code>-lb</code> param tells h8mail to perform a standard local breach search using multi-processing.</li>
-<li>The <code>--loose</code> param tells h8mail to accept any type of input, instead of enforcing email pattern.</li>
+<li>The <code>-lb</code> param tells h8mail to perform a standard local breach search using multiprocessing.</li>
+<li>The <code>--loose</code> param tells h8mail to accept any type of input, instead of enforcing the email pattern.</li>
 </ul>
 <p>🔹 We can also use files with patterns as targets (one per line):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; h8mail -t target_domains.txt -sk -lb ./CompilationOfManyBreaches/ --loose
 </code></pre></div><hr>
 <h2 id="finding-the-comb">Finding the COMB</h2>
-<p>I&rsquo;m not going to link it of course, but infosec practicioners should know there are websites and forums to monitor those things. You can check out MisterCh0c&rsquo;s <a href="https://github.com/misterch0c/CrimeBoards">CrimeBoards list</a> or look into more <a href="https://www.getsignal.info/blog/7-dark-web-forums-for-improved-cybersecurity">infosec publications</a>.<br>
+<p>I&rsquo;m not going to link it of course, but infosec practitioners should know there are websites and forums to monitor those things. You can check out MisterCh0c&rsquo;s <a href="https://github.com/misterch0c/CrimeBoards">CrimeBoards list</a> or look into more <a href="https://www.getsignal.info/blog/7-dark-web-forums-for-improved-cybersecurity">infosec publications</a>.<br>
 From what I have seen, the same password is used for decryption across mirrors.</p>
 <hr>
 <p>📬 <em>Follow me on <a href="https://twitter.com/kh4st3x">Twitter</a> to stay updated</em></p>
